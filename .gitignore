@@ -1,9 +1,28 @@
+# Exclude document and data files
+*.doc
+*.docx
+*.esf2
+*.pdf
+
+# Node modules
 node_modules/
-.env
-.DS_Store
-*.log
+
+# Build output
 dist/
 build/
+out/
+
+# Environment files
+.env
 *.local
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
 .vscode/
 .idea/
