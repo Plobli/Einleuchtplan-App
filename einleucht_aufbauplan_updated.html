@@ -172,45 +172,7 @@
         .scheinwerfer-table tr:not(.inactive) {
             background: #e8f5e9;
         }
-
-        .scheinwerfer-table tr.category-row {
-            background: #e0e0e0;
-            font-weight: bold;
-        }
-
-        .scheinwerfer-table tr.category-row td {
-            padding: 12px 8px;
-            border-bottom: 2px solid #999;
-        }
-
-        .scheinwerfer-table tr.category-row:hover {
-            background: #d5d5d5;
-        }
-
-        .category-name {
-            font-size: 14px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .add-row-btn {
-            float: right;
-            padding: 2px 8px;
-            font-size: 11px;
-            background: #fff;
-            border: 1px solid #999;
-            border-radius: 3px;
-            cursor: pointer;
-            color: #666;
-            opacity: 0.6;
-            transition: opacity 0.2s;
-        }
-
-        .add-row-btn:hover {
-            opacity: 1;
-            background: #f5f5f5;
-        }
-
+        
         input[type="checkbox"] {
             width: 20px;
             height: 20px;
@@ -389,6 +351,134 @@
         
         <h2>Bereich 2: Festverhang</h2>
 
+        <div class="form-group">
+            <label for="kategorien">Kategorien (wie im Einleuchtplan):</label>
+            <div class="format-toolbar" id="kategorienToolbar">
+                <button type="button" class="format-btn" onclick="formatText('bold')" title="Fett (Strg+B)"><b>B</b></button>
+                <button type="button" class="format-btn" onclick="formatText('italic')" title="Kursiv (Strg+I)"><i>I</i></button>
+                <button type="button" class="format-btn" onclick="formatText('underline')" title="Unterstrichen (Strg+U)"><u>U</u></button>
+                <button type="button" class="format-btn" onclick="formatText('removeFormat')" title="Formatierung entfernen">✕</button>
+            </div>
+            <div id="kategorien" class="editable-field" contenteditable="true"
+                 onfocus="showToolbar('kategorienToolbar')"
+                 onblur="hideToolbar('kategorienToolbar')">
+<b>Versatz Bühne hinten links</b><br>
+Kanäle: 1-7<br><br>
+
+<b>Versatz Bühne hinten rechts</b><br>
+Kanäle: 9-15<br><br>
+
+<b>Versatzklappe Bühne links und rechts</b><br>
+Kanäle: 17-22<br><br>
+
+<b>Unterbühne Mitte bzw. I-Pult an Treppe</b><br>
+Kanäle: 23-28<br><br>
+
+<b>Versatzklappe Bühne rechts</b><br>
+Kanäle: 30-35<br><br>
+
+<b>Versatz I-Pult links</b><br>
+Kanäle: 36-41<br><br>
+
+<b>Versatz FW-Platz rechts</b><br>
+Kanäle: 42-47<br><br>
+
+<b>Portal Lks</b><br>
+Kanäle: 48-50, 623<br><br>
+
+<b>Portal Rs</b><br>
+Kanäle: 51-53, 626<br><br>
+
+<b>Brücke</b><br>
+Kanäle: 101-118, 615-616, 671<br><br>
+
+<b>1. Galerie links</b><br>
+Kanäle: 131-136, 193<br><br>
+
+<b>Bar 1. Galerie hinten links</b><br>
+Kanäle: 137-142<br><br>
+
+<b>BAR 1. Galerie hinten rechts</b><br>
+Kanäle: 143-148<br><br>
+
+<b>1. Galerie rechts</b><br>
+Kanäle: 149-154, 196<br><br>
+
+<b>2. Galerie</b><br>
+Kanäle: 161-172<br><br>
+
+<b>Versatz 2. Galerie oder MZ</b><br>
+Kanäle: 181-192<br><br>
+
+<b>Versatz VB</b><br>
+Kanäle: 201-214<br><br>
+
+<b>2kW F Saal</b><br>
+Kanäle: 221-228<br><br>
+
+<b>Selecon</b><br>
+Kanäle: 231-238<br><br>
+
+<b>Profiler 2kW</b><br>
+Kanäle: 241-248<br><br>
+
+<b>ETC Lustre S2</b><br>
+Kanäle: 271-278<br><br>
+
+<b>Saaltruss</b><br>
+Kanäle: 301-312<br><br>
+
+<b>Tontruss F</b><br>
+Kanäle: 313-318<br><br>
+
+<b>Saaltruss PC</b><br>
+Kanäle: 319-324<br><br>
+
+<b>Saaltruss</b><br>
+Kanäle: 327-332<br><br>
+
+<b>Tontruss</b><br>
+Kanäle: 335-340<br><br>
+
+<b>Scheinwerferstand</b><br>
+Kanäle: 401-408, 411-414<br><br>
+
+<b>Z-Kabine</b><br>
+Kanäle: 421-426<br><br>
+
+<b>Zusatzdimmer</b><br>
+Kanäle: 491-496<br><br>
+
+<b>Astera Titantube</b><br>
+Kanäle: 551-558<br><br>
+
+<b>Astera Bulbs</b><br>
+Kanäle: 561-565<br><br>
+
+<b>Cameo Flat Pro</b><br>
+Kanäle: 620-627<br><br>
+
+<b>Sixbars 1000</b><br>
+Kanal: 631<br><br>
+
+<b>LDDE NanoPix</b><br>
+Kanäle: 641-646<br><br>
+
+<b>LDDE CYC8</b><br>
+Kanäle: 661-668<br><br>
+
+<b>ApeLabs Sticks</b><br>
+Kanäle: 681-687<br><br>
+
+<b>ApeLabs Maxi</b><br>
+Kanäle: 691-694<br><br>
+
+<b>Martin Rush Zoom</b><br>
+Kanäle: 721-728
+            </div>
+            <div class="format-hint">💡 Tipp: Kategorien können frei bearbeitet, hinzugefügt oder gelöscht werden</div>
+        </div>
+
         <div class="filter-box">
             <input type="text" id="filter" placeholder="Filter nach Kanal oder Gerät...">
             <button class="btn-secondary" onclick="toggleAll(true)">Alle aktivieren</button>
@@ -414,7 +504,7 @@
         </table>
         
         <div style="margin-top: 15px;">
-            <button class="btn-secondary" onclick="addNewRow()">➕ Neue Zeile hinzufügen (ans Ende)</button>
+            <button class="btn-secondary" onclick="addNewRow()">➕ Neue Zeile hinzufügen</button>
         </div>
         
         <div class="actions">
@@ -435,7 +525,6 @@
         
         // Scheinwerfer-Daten (aus deinem Word-Dokument extrahiert)
 const scheinwerferData = [
-    {kategorie: "Versatz Bühne hinten links"},
     {kanal: "1", adresse: "121", geraet: "VK Bühne unten Lks", farbe: "NC", beschreibung: ""},
     {kanal: "2", adresse: "122", geraet: "VK Bühne unten Lks", farbe: "NC", beschreibung: ""},
     {kanal: "3", adresse: "123", geraet: "VK Bühne unten Lks", farbe: "NC", beschreibung: ""},
@@ -443,7 +532,6 @@ const scheinwerferData = [
     {kanal: "5", adresse: "125", geraet: "VK Bühne unten Lks", farbe: "NC", beschreibung: ""},
     {kanal: "6", adresse: "126", geraet: "VK Bühne unten Lks", farbe: "NC", beschreibung: ""},
     {kanal: "7", adresse: "145", geraet: "5 KW", farbe: "NC", beschreibung: ""},
-    {kategorie: "Versatz Bühne hinten rechts"},
     {kanal: "9", adresse: "127", geraet: "VK Bühne unten Rs", farbe: "NC", beschreibung: ""},
     {kanal: "10", adresse: "128", geraet: "VK Bühne unten Rs", farbe: "NC", beschreibung: ""},
     {kanal: "11", adresse: "129", geraet: "VK Bühne unten Rs", farbe: "NC", beschreibung: ""},
@@ -451,43 +539,36 @@ const scheinwerferData = [
     {kanal: "13", adresse: "131", geraet: "VK Bühne unten Rs", farbe: "NC", beschreibung: ""},
     {kanal: "14", adresse: "132", geraet: "VK Bühne unten Rs", farbe: "NC", beschreibung: ""},
     {kanal: "15", adresse: "146", geraet: "5 KW", farbe: "NC", beschreibung: ""},
-    {kategorie: "Versatzklappe Bühne links und rechts"},
     {kanal: "17", adresse: "133", geraet: "VK Bühne Bodentank links und rechts", farbe: "NC", beschreibung: ""},
     {kanal: "18", adresse: "134", geraet: "VK Bühne Bodentank links und rechts", farbe: "NC", beschreibung: ""},
     {kanal: "19", adresse: "135", geraet: "VK Bühne Bodentank links und rechts", farbe: "NC", beschreibung: ""},
     {kanal: "20", adresse: "136", geraet: "VK Bühne Bodentank links und rechts", farbe: "NC", beschreibung: ""},
     {kanal: "21", adresse: "137", geraet: "VK Bühne Bodentank links und rechts", farbe: "NC", beschreibung: ""},
     {kanal: "22", adresse: "138", geraet: "VK Bühne Bodentank links und rechts", farbe: "NC", beschreibung: ""},
-    {kategorie: "Unterbühne Mitte bzw. I-Pult an Treppe"},
     {kanal: "23", adresse: "115", geraet: "VK I-Pult Hölzerner", farbe: "NC", beschreibung: ""},
     {kanal: "24", adresse: "116", geraet: "VK I-Pult Hölzerner", farbe: "NC", beschreibung: ""},
     {kanal: "25", adresse: "117", geraet: "VK I-Pult Hölzerner", farbe: "NC", beschreibung: ""},
     {kanal: "26", adresse: "118", geraet: "VK I-Pult Hölzerner", farbe: "NC", beschreibung: ""},
     {kanal: "27", adresse: "119", geraet: "VK I-Pult Hölzerner", farbe: "NC", beschreibung: ""},
     {kanal: "28", adresse: "120", geraet: "VK I-Pult Hölzerner", farbe: "NC", beschreibung: ""},
-    {kategorie: "Versatz I-Pult links"},
     {kanal: "36", adresse: "25", geraet: "VK I-Pult (SD)", farbe: "NC", beschreibung: ""},
     {kanal: "37", adresse: "26", geraet: "VK I-Pult (SD)", farbe: "NC", beschreibung: ""},
     {kanal: "38", adresse: "27", geraet: "VK I-Pult (SD)", farbe: "NC", beschreibung: ""},
     {kanal: "39", adresse: "28", geraet: "VK I-Pult (SD)", farbe: "NC", beschreibung: ""},
     {kanal: "40", adresse: "29", geraet: "VK I-Pult (SD)", farbe: "NC", beschreibung: ""},
     {kanal: "41", adresse: "30", geraet: "VK I-Pult (SD)", farbe: "NC", beschreibung: ""},
-    {kategorie: "Versatz FW-Platz rechts"},
     {kanal: "42", adresse: "34", geraet: "VK FW-Platz", farbe: "NC", beschreibung: ""},
     {kanal: "43", adresse: "35", geraet: "VK FW-Platz", farbe: "NC", beschreibung: ""},
     {kanal: "44", adresse: "36", geraet: "VK FW-Platz", farbe: "NC", beschreibung: ""},
     {kanal: "45", adresse: "37", geraet: "VK FW-Platz", farbe: "NC", beschreibung: ""},
     {kanal: "46", adresse: "38", geraet: "VK FW-Platz", farbe: "NC", beschreibung: ""},
     {kanal: "47", adresse: "39", geraet: "VK FW-Platz", farbe: "NC", beschreibung: ""},
-    {kategorie: "Portal Lks"},
     {kanal: "48", adresse: "31", geraet: "VK Portal Lks", farbe: "NC", beschreibung: ""},
     {kanal: "49", adresse: "32", geraet: "VK Portal Lks", farbe: "NC", beschreibung: ""},
     {kanal: "50", adresse: "33", geraet: "VK Portal Lks", farbe: "NC", beschreibung: ""},
-    {kategorie: "Portal Rs"},
     {kanal: "51", adresse: "40", geraet: "VK Portal Rs", farbe: "NC", beschreibung: ""},
     {kanal: "52", adresse: "41", geraet: "VK Portal Rs", farbe: "NC", beschreibung: ""},
     {kanal: "53", adresse: "42", geraet: "VK Portal Rs", farbe: "NC", beschreibung: ""},
-    {kategorie: "Brücke"},
     {kanal: "101", adresse: "1", geraet: "1,2kW Profil", farbe: "NC", beschreibung: ""},
     {kanal: "102", adresse: "2", geraet: "2kW F", farbe: "NC", beschreibung: ""},
     {kanal: "103", adresse: "3", geraet: "2kW F", farbe: "NC", beschreibung: ""},
@@ -506,34 +587,29 @@ const scheinwerferData = [
     {kanal: "116", adresse: "13", geraet: "1,2kW PC", farbe: "NC", beschreibung: ""},
     {kanal: "117", adresse: "14", geraet: "1,2kW PC", farbe: "NC", beschreibung: ""},
     {kanal: "118", adresse: "15", geraet: "1,2kW Profil", farbe: "NC", beschreibung: ""},
-    {kategorie: "1. Galerie links"},
     {kanal: "131", adresse: "49", geraet: "2kW PC", farbe: "NC", beschreibung: ""},
     {kanal: "132", adresse: "50", geraet: "2kW PC", farbe: "NC", beschreibung: ""},
     {kanal: "133", adresse: "51", geraet: "2kW PC", farbe: "NC", beschreibung: ""},
     {kanal: "134", adresse: "52", geraet: "2x PAR", farbe: "NC", beschreibung: ""},
     {kanal: "135", adresse: "53", geraet: "2x PAR", farbe: "NC", beschreibung: ""},
     {kanal: "136", adresse: "54", geraet: "Profil", farbe: "NC", beschreibung: ""},
-    {kategorie: "Bar 1. Galerie hinten links"},
     {kanal: "137", adresse: "46", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "138", adresse: "47", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "139", adresse: "48", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "140", adresse: "22", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "141", adresse: "23", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "142", adresse: "24", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kategorie: "Bar 1. Galerie hinten rechts"},
     {kanal: "143", adresse: "139", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "144", adresse: "140", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "145", adresse: "141", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "146", adresse: "142", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "147", adresse: "143", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "148", adresse: "144", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kategorie: "1. Galerie rechts"},
     {kanal: "149", adresse: "55", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "150", adresse: "56", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "151", adresse: "57", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "153", adresse: "59", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "154", adresse: "60", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kategorie: "2. Galerie"},
     {kanal: "161", adresse: "61", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "162", adresse: "62", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "163", adresse: "63", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
@@ -546,7 +622,6 @@ const scheinwerferData = [
     {kanal: "170", adresse: "70", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "171", adresse: "71", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "172", adresse: "72", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kategorie: "Versatz 2. Galerie oder MZ"},
     {kanal: "181", adresse: "79", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "182", adresse: "80", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "183", adresse: "81", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
@@ -559,12 +634,10 @@ const scheinwerferData = [
     {kanal: "190", adresse: "76", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "191", adresse: "77", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "192", adresse: "78", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kategorie: "Versatz VB"},
     {kanal: "193", adresse: "147", geraet: "5 KW", farbe: "NC", beschreibung: ""},
     {kanal: "194", adresse: "463", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "195", adresse: "148", geraet: "5 KW", farbe: "NC", beschreibung: ""},
     {kanal: "196", adresse: "476", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kategorie: "2kW F Saal"},
     {kanal: "201", adresse: "97", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "202", adresse: "98", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "203", adresse: "99", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
@@ -579,7 +652,6 @@ const scheinwerferData = [
     {kanal: "212", adresse: "107", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "213", adresse: "108", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "214", adresse: "150", geraet: "5 KW", farbe: "NC", beschreibung: ""},
-    {kategorie: "Selecon"},
     {kanal: "221", adresse: "151", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "222", adresse: "152", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "223", adresse: "153", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
@@ -588,7 +660,6 @@ const scheinwerferData = [
     {kanal: "226", adresse: "86", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "227", adresse: "87", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "228", adresse: "88", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kategorie: "Profiler 2kW"},
     {kanal: "231", adresse: "155", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "232", adresse: "156", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "233", adresse: "157", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
@@ -605,7 +676,6 @@ const scheinwerferData = [
     {kanal: "246", adresse: "94", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "247", adresse: "95", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "248", adresse: "96", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kategorie: "ETC Lustre S2"},
     {kanal: "271", adresse: "332-341", geraet: "S4 LED S2 Lustr QS General", farbe: "NC", beschreibung: ""},
     {kanal: "272", adresse: "342-351", geraet: "S4 LED S2 Lustr QS General", farbe: "NC", beschreibung: ""},
     {kanal: "273", adresse: "352-361", geraet: "S4 LED S2 Lustr QS General", farbe: "NC", beschreibung: ""},
@@ -614,7 +684,6 @@ const scheinwerferData = [
     {kanal: "276", adresse: "382-391", geraet: "S4 LED S2 Lustr QS General", farbe: "NC", beschreibung: ""},
     {kanal: "277", adresse: "392-401", geraet: "S4 LED S2 Lustr QS General", farbe: "NC", beschreibung: ""},
     {kanal: "278", adresse: "402-411", geraet: "S4 LED S2 Lustr QS General", farbe: "NC", beschreibung: ""},
-    {kategorie: "Saaltruss"},
     {kanal: "301", adresse: "109", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "302", adresse: "110", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "303", adresse: "111", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
@@ -627,28 +696,24 @@ const scheinwerferData = [
     {kanal: "310", adresse: "184", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "311", adresse: "185", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "312", adresse: "186", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kategorie: "Tontruss F"},
     {kanal: "313", adresse: "187", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "314", adresse: "188", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "315", adresse: "189", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "316", adresse: "190", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "317", adresse: "191", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "318", adresse: "192", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kategorie: "Saaltruss PC"},
     {kanal: "327", adresse: "193", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "328", adresse: "194", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "329", adresse: "195", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "330", adresse: "196", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "331", adresse: "197", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "332", adresse: "198", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kategorie: "Tontruss"},
     {kanal: "335", adresse: "199", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "336", adresse: "200", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "337", adresse: "201", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "338", adresse: "202", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "339", adresse: "203", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "340", adresse: "204", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kategorie: "Scheinwerferstand"},
     {kanal: "401", adresse: "163", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "402", adresse: "164", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "403", adresse: "165", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
@@ -661,14 +726,12 @@ const scheinwerferData = [
     {kanal: "412", adresse: "172", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "413", adresse: "173", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "414", adresse: "174", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kategorie: "Z-Kabine"},
     {kanal: "421", adresse: "175", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "422", adresse: "176", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "423", adresse: "177", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "424", adresse: "178", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "425", adresse: "179", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "426", adresse: "180", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kategorie: "Zusatzdimmer"},
     {kanal: "491", adresse: "491", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "492", adresse: "492", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "493", adresse: "493", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
@@ -685,10 +748,8 @@ const scheinwerferData = [
     {kanal: "509", adresse: "509", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "510", adresse: "510", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "511", adresse: "511", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kategorie: "Fusion MBL"},
     {kanal: "512", adresse: "3/278-282", geraet: "Fusion MBL40 Adv AL Vorbühne", farbe: "NC", beschreibung: ""},
     {kanal: "513", adresse: "3/273-277", geraet: "Fusion MBL40 Adv AL 2.Saaltraverse", farbe: "NC", beschreibung: ""},
-    {kategorie: "Astera Titantubes"},
     {kanal: "551", adresse: "3/283-285", geraet: "Titan Tube 1: RGB 1 Pixel", farbe: "NC", beschreibung: ""},
     {kanal: "552", adresse: "3/286-288", geraet: "Titan Tube 1: RGB 1 Pixel", farbe: "NC", beschreibung: ""},
     {kanal: "553", adresse: "3/289-291", geraet: "Titan Tube 1: RGB 1 Pixel", farbe: "NC", beschreibung: ""},
@@ -697,7 +758,6 @@ const scheinwerferData = [
     {kanal: "556", adresse: "3/298-300", geraet: "Titan Tube 1: RGB 1 Pixel", farbe: "NC", beschreibung: ""},
     {kanal: "557", adresse: "3/301-303", geraet: "Titan Tube 1: RGB 1 Pixel", farbe: "NC", beschreibung: ""},
     {kanal: "558", adresse: "3/304-306", geraet: "Titan Tube 1: RGB 1 Pixel", farbe: "NC", beschreibung: ""},
-    {kategorie: "Astera NYX Bulbs"},
     {kanal: "561", adresse: "3/307-309", geraet: "NYX Bulb 1: RGB 1 Pixel", farbe: "NC", beschreibung: ""},
     {kanal: "562", adresse: "3/310-312", geraet: "NYX Bulb 1: RGB 1 Pixel", farbe: "NC", beschreibung: ""},
     {kanal: "563", adresse: "3/313-315", geraet: "NYX Bulb 1: RGB 1 Pixel", farbe: "NC", beschreibung: ""},
@@ -706,10 +766,8 @@ const scheinwerferData = [
     {kanal: "566", adresse: "3/338-340", geraet: "NYX Bulb 1: RGB 1 Pixel", farbe: "NC", beschreibung: ""},
     {kanal: "567", adresse: "3/497-499", geraet: "NYX Bulb 1: RGB 1 Pixel", farbe: "NC", beschreibung: ""},
     {kanal: "568", adresse: "NYX", geraet: "Bulb 1: RGB 1 Pixel", farbe: "NC", beschreibung: ""},
-    {kategorie: "CuePix Panel"},
     {kanal: "615", adresse: "412-417", geraet: "CuePix Panel 6ch", farbe: "NC", beschreibung: ""},
     {kanal: "616", adresse: "481-486", geraet: "CuePix Panel 6ch", farbe: "NC", beschreibung: ""},
-    {kategorie: "Cameo Flat Pro"},
     {kanal: "620", adresse: "2/273-280", geraet: "Flat Pro Outdoor Par Can 8ch", farbe: "NC", beschreibung: ""},
     {kanal: "621", adresse: "2/177-184", geraet: "Flat Pro Outdoor Par Can 8ch", farbe: "NC", beschreibung: ""},
     {kanal: "622", adresse: "2/185-192", geraet: "Flat Pro Outdoor Par Can 8ch", farbe: "NC", beschreibung: ""},
@@ -717,14 +775,12 @@ const scheinwerferData = [
     {kanal: "624", adresse: "2/201-208", geraet: "Flat Pro Outdoor Par Can 8ch", farbe: "NC", beschreibung: ""},
     {kanal: "625", adresse: "2/209-216", geraet: "Flat Pro Outdoor Par Can 8ch", farbe: "NC", beschreibung: ""},
     {kanal: "626", adresse: "2/217-224", geraet: "Flat Pro Outdoor Par Can 8ch", farbe: "NC", beschreibung: ""},
-    {kategorie: "LDDE NanoPix"},
     {kanal: "641", adresse: "2/225-232", geraet: "NanoPIX 1440HP 7ch+control", farbe: "NC", beschreibung: ""},
     {kanal: "642", adresse: "2/233-240", geraet: "NanoPIX 1440HP 7ch+control", farbe: "NC", beschreibung: ""},
     {kanal: "643", adresse: "2/241-248", geraet: "NanoPIX 1440HP 7ch+control", farbe: "NC", beschreibung: ""},
     {kanal: "644", adresse: "2/249-256", geraet: "NanoPIX 1440HP 7ch+control", farbe: "NC", beschreibung: ""},
     {kanal: "645", adresse: "2/257-264", geraet: "NanoPIX 1440HP 7ch+control", farbe: "NC", beschreibung: ""},
     {kanal: "646", adresse: "2/265-272", geraet: "NanoPIX 1440HP 7ch+control", farbe: "NC", beschreibung: ""},
-    {kategorie: "CL PixBar 650 Pro"},
     {kanal: "651", adresse: "2/379-387", geraet: "CL PixBar 650 Pro 9ch", farbe: "NC", beschreibung: ""},
     {kanal: "652", adresse: "2/388-396", geraet: "CL PixBar 650 Pro 9ch", farbe: "NC", beschreibung: ""},
     {kanal: "653", adresse: "2/397-405", geraet: "CL PixBar 650 Pro 9ch", farbe: "NC", beschreibung: ""},
@@ -733,7 +789,6 @@ const scheinwerferData = [
     {kanal: "656", adresse: "2/424-432", geraet: "CL PixBar 650 Pro 9ch", farbe: "NC", beschreibung: ""},
     {kanal: "657", adresse: "2/433-441", geraet: "CL PixBar 650 Pro 9ch", farbe: "NC", beschreibung: ""},
     {kanal: "658", adresse: "2/442-450", geraet: "CL PixBar 650 Pro 9ch", farbe: "NC", beschreibung: ""},
-    {kategorie: "LDDE CYC8"},
     {kanal: "661", adresse: "3/319-334", geraet: "NanoPix CYC 8 16b 16ch", farbe: "NC", beschreibung: ""},
     {kanal: "662", adresse: "3/385-400", geraet: "NanoPix CYC 8 16b 16ch", farbe: "NC", beschreibung: ""},
     {kanal: "663", adresse: "3/401-416", geraet: "NanoPix CYC 8 16b 16ch", farbe: "NC", beschreibung: ""},
@@ -742,9 +797,7 @@ const scheinwerferData = [
     {kanal: "666", adresse: "3/449-464", geraet: "NanoPix CYC 8 16b 16ch", farbe: "NC", beschreibung: ""},
     {kanal: "667", adresse: "3/465-480", geraet: "NanoPix CYC 8 16b 16ch", farbe: "NC", beschreibung: ""},
     {kanal: "668", adresse: "3/481-496", geraet: "NanoPix CYC 8 16b 16ch", farbe: "NC", beschreibung: ""},
-    {kategorie: "Retro Flat Par"},
     {kanal: "671", adresse: "867-874", geraet: "Retro Flat Par 18x10W RGBWAUV 8ch", farbe: "NC", beschreibung: ""},
-    {kategorie: "ApeLabs Sticks"},
     {kanal: "681", adresse: "1/237-240", geraet: "Ape Stick 4ch", farbe: "NC", beschreibung: ""},
     {kanal: "682", adresse: "1/241-244", geraet: "Ape Stick 4ch", farbe: "NC", beschreibung: ""},
     {kanal: "683", adresse: "1/245-248", geraet: "Ape Stick 4ch", farbe: "NC", beschreibung: ""},
@@ -752,19 +805,16 @@ const scheinwerferData = [
     {kanal: "685", adresse: "1/253-256", geraet: "Ape Stick 4ch", farbe: "NC", beschreibung: ""},
     {kanal: "686", adresse: "221-224", geraet: "Ape Stick 4ch", farbe: "NC", beschreibung: ""},
     {kanal: "687", adresse: "225-228", geraet: "Ape Stick 4ch", farbe: "NC", beschreibung: ""},
-    {kategorie: "ApeLabs Maxi"},
     {kanal: "691", adresse: "262-265", geraet: "ApeLight Maxi 4ch", farbe: "NC", beschreibung: ""},
     {kanal: "692", adresse: "1/266-269", geraet: "ApeLight Maxi 4ch", farbe: "NC", beschreibung: ""},
     {kanal: "693", adresse: "1/270-273", geraet: "ApeLight Maxi 4ch", farbe: "NC", beschreibung: ""},
     {kanal: "694", adresse: "1/320-323", geraet: "ApeLight Maxi 4ch", farbe: "NC", beschreibung: ""},
     {kanal: "695", adresse: "1/324-327", geraet: "ApeLight Maxi 4ch", farbe: "NC", beschreibung: ""},
     {kanal: "696", adresse: "1/328-331", geraet: "ApeLight Maxi 4ch", farbe: "NC", beschreibung: ""},
-    {kategorie: "Robin LEDBeam 350"},
     {kanal: "701", adresse: "1209-1230", geraet: "Robin LEDBeam 350 M1", farbe: "NC", beschreibung: ""},
     {kanal: "702", adresse: "1231-1252", geraet: "Robin LEDBeam 350 M1", farbe: "NC", beschreibung: ""},
     {kanal: "703", adresse: "1253-1274", geraet: "Robin LEDBeam 350 M1", farbe: "NC", beschreibung: ""},
     {kanal: "704", adresse: "1275-1296", geraet: "Robin LEDBeam 350 M1", farbe: "NC", beschreibung: ""},
-    {kategorie: "A8 Standard"},
     {kanal: "705", adresse: "2/89-110", geraet: "A8 Standard Standard RGB16 M16", farbe: "NC", beschreibung: ""},
     {kanal: "706", adresse: "623-644", geraet: "A8 Standard Standard RGB16 M16", farbe: "NC", beschreibung: ""},
     {kanal: "707", adresse: "645-666", geraet: "A8 Standard Standard RGB16 M16", farbe: "NC", beschreibung: ""},
@@ -775,7 +825,6 @@ const scheinwerferData = [
     {kanal: "712", adresse: "579-600", geraet: "A8 Standard Standard RGB16 M16", farbe: "NC", beschreibung: ""},
     {kanal: "713", adresse: "801-822", geraet: "A8 Standard Standard RGB16 M16", farbe: "NC", beschreibung: ""},
     {kanal: "714", adresse: "2/333-354", geraet: "A8 Standard Standard RGB16 M16", farbe: "NC", beschreibung: ""},
-    {kategorie: "Martin Rush Par"},
     {kanal: "721", adresse: "2/1-5", geraet: "Rush Par 2 RGBW Zoom 5ch", farbe: "NC", beschreibung: ""},
     {kanal: "722", adresse: "2/6-10", geraet: "Rush Par 2 RGBW Zoom 5ch", farbe: "NC", beschreibung: ""},
     {kanal: "723", adresse: "2/11-15", geraet: "Rush Par 2 RGBW Zoom 5ch", farbe: "NC", beschreibung: ""},
@@ -788,7 +837,6 @@ const scheinwerferData = [
     {kanal: "730", adresse: "2/51-55", geraet: "Rush Par 2 RGBW Zoom 5ch", farbe: "NC", beschreibung: ""},
     {kanal: "731", adresse: "2/56-60", geraet: "Rush Par 2 RGBW Zoom 5ch", farbe: "NC", beschreibung: ""},
     {kanal: "732", adresse: "2/61-65", geraet: "Rush Par 2 RGBW Zoom 5ch", farbe: "NC", beschreibung: ""},
-    {kategorie: "Robe Opus / P12 Profile"},
     {kanal: "801", adresse: "3/1-50", geraet: "Opus SP5 Extended", farbe: "NC", beschreibung: ""},
     {kanal: "802", adresse: "3/51-100", geraet: "Opus SP5 Extended", farbe: "NC", beschreibung: ""},
     {kanal: "803", adresse: "3/101-142", geraet: "P12 Profile HC M1", farbe: "NC", beschreibung: ""},
@@ -845,6 +893,7 @@ const scheinwerferData = [
             document.getElementById('sbtor').value = data.sbtor || '';
             document.getElementById('zuege').value = data.zuege || '';
             document.getElementById('aufbau').innerHTML = data.aufbau || '';
+            document.getElementById('kategorien').innerHTML = data.kategorien || document.getElementById('kategorien').innerHTML;
             
             // Alle deaktivieren
             toggleAll(false);
@@ -979,7 +1028,7 @@ const scheinwerferData = [
         }
         
         let customRowCounter = 1000; // Starte bei 1000 für benutzerdefinierte Zeilen
-
+        
         function addNewRow() {
             const tbody = document.getElementById('scheinwerferBody');
             const row = document.createElement('tr');
@@ -1041,120 +1090,50 @@ const scheinwerferData = [
         function renderTable() {
             const tbody = document.getElementById('scheinwerferBody');
             tbody.innerHTML = '';
-
+            
             console.log('Rendering', scheinwerferData.length, 'Scheinwerfer');
-
+            
             scheinwerferData.forEach((item, index) => {
                 const row = document.createElement('tr');
-
-                // Prüfe ob es eine Kategoriezeile ist
-                if (item.kategorie) {
-                    row.className = 'category-row';
-                    row.dataset.index = index;
-                    row.dataset.category = 'true';
-
-                    row.innerHTML = '<td colspan="7" style="padding-left: 20px;">' +
-                        '<span class="category-name">' + escapeHtml(item.kategorie) + '</span>' +
-                        '<button class="add-row-btn" onclick="addRowAfterCategory(' + index + ')" title="Zeile hinzufügen">+ Zeile</button>' +
-                        '</td>';
-                } else {
-                    // Normale Scheinwerferzeile
-                    row.className = 'inactive';
-                    row.dataset.index = index;
-
-                    const kanalNum = parseInt(item.kanal);
-
-                    // Alle Gerät-Felder sind jetzt editierbar und zeigen die Daten an
-                    const geraetWert = item.geraet || '';
-                    const geraetField = '<input type="text" class="geraet-input beschreibung-input" value="' + escapeHtml(geraetWert) + '" placeholder="Gerät">';
-
-                    // Farbe-Dropdown
-                    const farbOptionen = ['NC', '200', '201', '202'];
-                    const selectedFarbe = item.farbe || 'NC';
-                    let farbDropdown = '<select class="farbe-select" onchange="autoActivateRow(this)">';
-                    farbOptionen.forEach(function(opt) {
-                        const selected = opt === selectedFarbe ? ' selected' : '';
-                        farbDropdown += '<option value="' + opt + '"' + selected + '>' + opt + '</option>';
-                    });
-                    farbDropdown += '</select>';
-
-                    row.innerHTML = '<td style="text-align: center;">' +
-                        '<input type="checkbox" onchange="toggleRow(this, ' + index + ')">' +
-                        '</td>' +
-                        '<td><strong>' + escapeHtml(item.kanal) + '</strong></td>' +
-                        '<td><input type="text" class="beschreibung-input adresse-input" value="' + escapeHtml(item.adresse || '') + '" placeholder="Adresse" oninput="autoActivateRow(this)"></td>' +
-                        '<td>' + geraetField + '</td>' +
-                        '<td>' + farbDropdown + '</td>' +
-                        '<td>' +
-                            '<div class="editable-beschreibung beschreibung-feld" contenteditable="true" ' +
-                                 'oninput="autoActivateRow(this)" ' +
-                                 'data-placeholder="Position / Beschreibung eingeben..."></div>' +
-                        '</td>' +
-                        '<td></td>';
-                }
-
+                row.className = 'inactive';
+                row.dataset.index = index;
+                
+                const kanalNum = parseInt(item.kanal);
+                
+                // Alle Gerät-Felder sind jetzt editierbar und zeigen die Daten an
+                const geraetWert = item.geraet || '';
+                const geraetField = '<input type="text" class="geraet-input beschreibung-input" value="' + escapeHtml(geraetWert) + '" placeholder="Gerät">';
+                
+                // Farbe-Dropdown
+                const farbOptionen = ['NC', '200', '201', '202'];
+                const selectedFarbe = item.farbe || 'NC';
+                let farbDropdown = '<select class="farbe-select" onchange="autoActivateRow(this)">';
+                farbOptionen.forEach(function(opt) {
+                    const selected = opt === selectedFarbe ? ' selected' : '';
+                    farbDropdown += '<option value="' + opt + '"' + selected + '>' + opt + '</option>';
+                });
+                farbDropdown += '</select>';
+                
+                row.innerHTML = '<td style="text-align: center;">' +
+                    '<input type="checkbox" onchange="toggleRow(this, ' + index + ')">' +
+                    '</td>' +
+                    '<td><strong>' + escapeHtml(item.kanal) + '</strong></td>' +
+                    '<td><input type="text" class="beschreibung-input adresse-input" value="' + escapeHtml(item.adresse || '') + '" placeholder="Adresse" oninput="autoActivateRow(this)"></td>' +
+                    '<td>' + geraetField + '</td>' +
+                    '<td>' + farbDropdown + '</td>' +
+                    '<td>' +
+                        '<div class="editable-beschreibung beschreibung-feld" contenteditable="true" ' +
+                             'oninput="autoActivateRow(this)" ' +
+                             'data-placeholder="Position / Beschreibung eingeben..."></div>' +
+                    '</td>' +
+                    '<td></td>';
+                
                 tbody.appendChild(row);
             });
-
+            
             console.log('Tabelle gerendert!');
         }
-
-        function addRowAfterCategory(categoryIndex) {
-            // Finde die Position nach dieser Kategorie
-            const tbody = document.getElementById('scheinwerferBody');
-            const allRows = tbody.querySelectorAll('tr');
-            let insertAfterRow = null;
-
-            // Suche die Zeile der Kategorie
-            allRows.forEach(row => {
-                if (row.dataset.index == categoryIndex) {
-                    insertAfterRow = row;
-                }
-            });
-
-            // Erstelle eine neue Zeile
-            const row = document.createElement('tr');
-            row.className = '';
-            row.dataset.index = 'custom-' + customRowCounter;
-            row.dataset.custom = 'true';
-
-            const farbOptionen = ['NC', '200', '201', '202'];
-            let farbDropdown = '<select class="farbe-select">';
-            farbOptionen.forEach(function(opt) {
-                const selected = opt === 'NC' ? ' selected' : '';
-                farbDropdown += '<option value="' + opt + '"' + selected + '>' + opt + '</option>';
-            });
-            farbDropdown += '</select>';
-
-            row.innerHTML = '<td style="text-align: center;">' +
-                '<input type="checkbox" checked onchange="toggleRow(this, \'custom-' + customRowCounter + '\')">' +
-                '</td>' +
-                '<td><input type="text" class="beschreibung-input kreis-input" placeholder="Kreis" style="width: 70px;"></td>' +
-                '<td><input type="text" class="beschreibung-input adresse-input" placeholder="Adresse" style="width: 70px;"></td>' +
-                '<td><input type="text" class="geraet-input beschreibung-input" placeholder="Gerät"></td>' +
-                '<td>' + farbDropdown + '</td>' +
-                '<td>' +
-                    '<div class="editable-beschreibung beschreibung-feld" contenteditable="true" ' +
-                         'data-placeholder="Position / Beschreibung eingeben..."></div>' +
-                '</td>' +
-                '<td style="text-align: center;">' +
-                    '<button class="btn-delete" onclick="deleteRow(this)" title="Zeile löschen">🗑️</button>' +
-                '</td>';
-
-            // Füge die Zeile direkt nach der Kategorie ein
-            if (insertAfterRow) {
-                insertAfterRow.insertAdjacentElement('afterend', row);
-            } else {
-                tbody.appendChild(row);
-            }
-
-            customRowCounter++;
-            updateStats();
-
-            // Fokussiere Kreis-Feld
-            row.querySelector('.kreis-input').focus();
-        }
-
+        
         function toggleRow(checkbox, index) {
             const row = checkbox.closest('tr');
             
@@ -1179,22 +1158,17 @@ const scheinwerferData = [
         function filterTable() {
             const filter = document.getElementById('filter').value.toLowerCase();
             const rows = document.querySelectorAll('#scheinwerferBody tr');
-
+            
             rows.forEach(row => {
-                // Kategoriezeilen immer anzeigen
-                if (row.dataset.category === 'true') {
-                    row.style.display = '';
-                } else {
-                    const text = row.textContent.toLowerCase();
-                    row.style.display = text.includes(filter) ? '' : 'none';
-                }
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(filter) ? '' : 'none';
             });
         }
         
         function updateStats() {
-            const total = scheinwerferData.filter(item => !item.kategorie).length;
+            const total = scheinwerferData.length;
             const active = document.querySelectorAll('input[type="checkbox"]:checked').length;
-            document.getElementById('stats').textContent =
+            document.getElementById('stats').textContent = 
                 active + ' von ' + total + ' Scheinwerfern aktiviert';
         }
         
@@ -1251,54 +1225,47 @@ const scheinwerferData = [
                 doc.text(aufbauLines, 14, yPos);
             }
 
-            // Bereich 2: Festverhang - mit Kategorien
+            // Kategorien hinzufügen
+            const kategorien = document.getElementById('kategorien').innerText;
+            if (kategorien.trim()) {
+                yPos += 10;
+                doc.setFontSize(14);
+                doc.text('Kategorien:', 14, yPos);
+                yPos += 7;
+                doc.setFontSize(9);
+                const kategorienLines = doc.splitTextToSize(kategorien, 180);
+                doc.text(kategorienLines, 14, yPos);
+            }
+
+            // Bereich 2: Festverhang
             const activeRows = [];
-            let currentCategory = '';
-
-            document.querySelectorAll('#scheinwerferBody tr').forEach(row => {
+            document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
+                const row = cb.closest('tr');
                 const index = row.dataset.index;
-                const isCategory = row.dataset.category === 'true';
                 const isCustom = row.dataset.custom === 'true';
-
-                if (isCategory) {
-                    // Kategoriezeile - Name speichern
-                    const categoryInput = row.querySelector('.category-name-input');
-                    if (categoryInput && categoryInput.value.trim()) {
-                        currentCategory = categoryInput.value.trim();
-                    }
+                
+                let kreis, adresse, geraet, farbe, beschreibung;
+                
+                if (isCustom) {
+                    // Benutzerdefinierte Zeile
+                    kreis = row.querySelector('.kreis-input').value;
+                    adresse = row.querySelector('.adresse-input').value;
+                    geraet = row.querySelector('.geraet-input').value;
+                    farbe = row.querySelector('.farbe-select').value;
+                    beschreibung = row.querySelector('.beschreibung-feld').innerText;
                 } else {
-                    // Normale Zeile - nur wenn Checkbox aktiviert
-                    const checkbox = row.querySelector('input[type="checkbox"]');
-                    if (checkbox && checkbox.checked) {
-                        let kreis, adresse, geraet, farbe, beschreibung;
-
-                        if (isCustom) {
-                            // Benutzerdefinierte Zeile
-                            kreis = row.querySelector('.kreis-input').value;
-                            adresse = row.querySelector('.adresse-input').value;
-                            geraet = row.querySelector('.geraet-input').value;
-                            farbe = row.querySelector('.farbe-select').value;
-                            beschreibung = row.querySelector('.beschreibung-feld').innerText;
-                        } else {
-                            // Standard-Zeile aus scheinwerferData
-                            const item = scheinwerferData[index];
-
-                            const geraetInput = row.querySelector('.geraet-input');
-                            kreis = item.kanal;
-                            adresse = row.querySelector('.adresse-input').value;
-                            geraet = geraetInput ? geraetInput.value : item.geraet;
-                            farbe = row.querySelector('.farbe-select').value;
-                            beschreibung = row.querySelector('.beschreibung-feld').innerText;
-                        }
-
-                        // Füge Kategorie als separate Zeile hinzu, wenn neue Kategorie
-                        if (currentCategory && (activeRows.length === 0 || activeRows[activeRows.length - 1][0] !== '')) {
-                            activeRows.push(['KATEGORIE:' + currentCategory, '', '', '', '']);
-                        }
-
-                        activeRows.push([kreis, adresse, geraet, farbe, beschreibung]);
-                    }
+                    // Standard-Zeile aus scheinwerferData
+                    const item = scheinwerferData[index];
+                    
+                    const geraetInput = row.querySelector('.geraet-input');
+                    kreis = item.kanal;
+                    adresse = row.querySelector('.adresse-input').value;
+                    geraet = geraetInput ? geraetInput.value : item.geraet;
+                    farbe = row.querySelector('.farbe-select').value;
+                    beschreibung = row.querySelector('.beschreibung-feld').innerText;
                 }
+                
+                activeRows.push([kreis, adresse, geraet, farbe, beschreibung]);
             });
             
             if (activeRows.length > 0) {
@@ -1359,6 +1326,7 @@ const scheinwerferData = [
                 sbtor: document.getElementById('sbtor').value,
                 zuege: document.getElementById('zuege').value,
                 aufbau: document.getElementById('aufbau').innerHTML,
+                kategorien: document.getElementById('kategorien').innerHTML,
                 scheinwerfer: []
             };
             
