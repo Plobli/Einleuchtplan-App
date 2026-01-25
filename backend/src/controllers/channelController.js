@@ -84,12 +84,3 @@ export const deleteChannel = async (req, res, next) => {
         next(error);
     }
 };
-
-export const getChannelHistory = async (req, res, next) => {
-    try {
-        const history = await Channel.getHistory(req.params.id);
-        res.json(history);
-    } catch (error) {
-        next(error);
-    }
-};

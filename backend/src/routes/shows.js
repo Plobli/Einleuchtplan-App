@@ -23,6 +23,7 @@ router.delete('/:id', deleteShow);
 router.post('/:id/restore', restoreShow);
 router.delete('/:id/permanent', permanentDeleteShow);
 router.post('/:id/import', importChannels);
+router.post('/:id/channels', importChannels); // Alias für Channel-Erstellung
 router.get('/:id/export/json', exportShowAsJSON);
 
 export default router;

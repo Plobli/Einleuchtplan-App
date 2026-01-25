@@ -1,7 +1,7 @@
 [
   {
     "kanal": "1",
-    "adresse": "121",
+    "adresse": "1/121",
     "geraet": "VK Bühne unten Lks",
     "farbe": "NC",
     "beschreibung": "",
@@ -11,7 +11,7 @@
   },
   {
     "kanal": "2",
-    "adresse": "122",
+    "adresse": "1/122",
     "geraet": "VK Bühne unten Lks",
     "farbe": "NC",
     "beschreibung": "",
@@ -21,7 +21,7 @@
   },
   {
     "kanal": "3",
-    "adresse": "123",
+    "adresse": "1/123",
     "geraet": "VK Bühne unten Lks",
     "farbe": "NC",
     "beschreibung": "",
@@ -31,7 +31,7 @@
   },
   {
     "kanal": "4",
-    "adresse": "124",
+    "adresse": "1/124",
     "geraet": "VK Bühne unten Lks",
     "farbe": "NC",
     "beschreibung": "",
@@ -41,7 +41,7 @@
   },
   {
     "kanal": "5",
-    "adresse": "125",
+    "adresse": "1/125",
     "geraet": "VK Bühne unten Lks",
     "farbe": "NC",
     "beschreibung": "",
@@ -51,7 +51,7 @@
   },
   {
     "kanal": "6",
-    "adresse": "126",
+    "adresse": "1/126",
     "geraet": "VK Bühne unten Lks",
     "farbe": "NC",
     "beschreibung": "",
@@ -61,7 +61,7 @@
   },
   {
     "kanal": "7",
-    "adresse": "145",
+    "adresse": "1/145",
     "geraet": "5 KW",
     "farbe": "NC",
     "beschreibung": "",
@@ -71,7 +71,7 @@
   },
   {
     "kanal": "9",
-    "adresse": "127",
+    "adresse": "1/127",
     "geraet": "VK Bühne unten Rs",
     "farbe": "NC",
     "beschreibung": "",
@@ -81,7 +81,7 @@
   },
   {
     "kanal": "10",
-    "adresse": "128",
+    "adresse": "1/128",
     "geraet": "VK Bühne unten Rs",
     "farbe": "NC",
     "beschreibung": "",
@@ -91,7 +91,7 @@
   },
   {
     "kanal": "11",
-    "adresse": "129",
+    "adresse": "1/129",
     "geraet": "VK Bühne unten Rs",
     "farbe": "NC",
     "beschreibung": "",
@@ -101,7 +101,7 @@
   },
   {
     "kanal": "12",
-    "adresse": "130",
+    "adresse": "1/130",
     "geraet": "VK Bühne unten Rs",
     "farbe": "NC",
     "beschreibung": "",
@@ -111,7 +111,7 @@
   },
   {
     "kanal": "13",
-    "adresse": "131",
+    "adresse": "1/131",
     "geraet": "VK Bühne unten Rs",
     "farbe": "NC",
     "beschreibung": "",
@@ -121,7 +121,7 @@
   },
   {
     "kanal": "14",
-    "adresse": "132",
+    "adresse": "1/132",
     "geraet": "VK Bühne unten Rs",
     "farbe": "NC",
     "beschreibung": "",
@@ -131,7 +131,7 @@
   },
   {
     "kanal": "15",
-    "adresse": "146",
+    "adresse": "1/146",
     "geraet": "5 KW",
     "farbe": "NC",
     "beschreibung": "",
@@ -141,7 +141,7 @@
   },
   {
     "kanal": "17",
-    "adresse": "133",
+    "adresse": "1/133",
     "geraet": "VK Bühne Bodentank links und rechts",
     "farbe": "NC",
     "beschreibung": "",
@@ -151,7 +151,7 @@
   },
   {
     "kanal": "18",
-    "adresse": "134",
+    "adresse": "1/134",
     "geraet": "VK Bühne Bodentank links und rechts",
     "farbe": "NC",
     "beschreibung": "",
@@ -161,7 +161,7 @@
   },
   {
     "kanal": "19",
-    "adresse": "135",
+    "adresse": "1/135",
     "geraet": "VK Bühne Bodentank links und rechts",
     "farbe": "NC",
     "beschreibung": "",
@@ -171,7 +171,7 @@
   },
   {
     "kanal": "20",
-    "adresse": "136",
+    "adresse": "1/136",
     "geraet": "VK Bühne Bodentank links und rechts",
     "farbe": "NC",
     "beschreibung": "",
@@ -181,7 +181,7 @@
   },
   {
     "kanal": "21",
-    "adresse": "137",
+    "adresse": "1/137",
     "geraet": "VK Bühne Bodentank links und rechts",
     "farbe": "NC",
     "beschreibung": "",
@@ -191,7 +191,7 @@
   },
   {
     "kanal": "22",
-    "adresse": "138",
+    "adresse": "1/138",
     "geraet": "VK Bühne Bodentank links und rechts",
     "farbe": "NC",
     "beschreibung": "",
@@ -201,7 +201,7 @@
   },
   {
     "kanal": "23",
-    "adresse": "115",
+    "adresse": "1/115",
     "geraet": "VK I-Pult Hölzerner",
     "farbe": "NC",
     "beschreibung": "",
@@ -211,7 +211,7 @@
   },
   {
     "kanal": "24",
-    "adresse": "116",
+    "adresse": "1/116",
     "geraet": "VK I-Pult Hölzerner",
     "farbe": "NC",
     "beschreibung": "",
@@ -221,7 +221,7 @@
   },
   {
     "kanal": "25",
-    "adresse": "117",
+    "adresse": "1/117",
     "geraet": "VK I-Pult Hölzerner",
     "farbe": "NC",
     "beschreibung": "",
@@ -231,7 +231,7 @@
   },
   {
     "kanal": "26",
-    "adresse": "118",
+    "adresse": "1/118",
     "geraet": "VK I-Pult Hölzerner",
     "farbe": "NC",
     "beschreibung": "",
@@ -241,7 +241,7 @@
   },
   {
     "kanal": "27",
-    "adresse": "119",
+    "adresse": "1/119",
     "geraet": "VK I-Pult Hölzerner",
     "farbe": "NC",
     "beschreibung": "",
@@ -251,7 +251,7 @@
   },
   {
     "kanal": "28",
-    "adresse": "120",
+    "adresse": "1/120",
     "geraet": "VK I-Pult Hölzerner",
     "farbe": "NC",
     "beschreibung": "",
@@ -261,7 +261,7 @@
   },
   {
     "kanal": "36",
-    "adresse": "25",
+    "adresse": "1/25",
     "geraet": "VK I-Pult (SD)",
     "farbe": "NC",
     "beschreibung": "",
@@ -271,7 +271,7 @@
   },
   {
     "kanal": "37",
-    "adresse": "26",
+    "adresse": "1/26",
     "geraet": "VK I-Pult (SD)",
     "farbe": "NC",
     "beschreibung": "",
@@ -281,7 +281,7 @@
   },
   {
     "kanal": "38",
-    "adresse": "27",
+    "adresse": "1/27",
     "geraet": "VK I-Pult (SD)",
     "farbe": "NC",
     "beschreibung": "",
@@ -291,7 +291,7 @@
   },
   {
     "kanal": "39",
-    "adresse": "28",
+    "adresse": "1/28",
     "geraet": "VK I-Pult (SD)",
     "farbe": "NC",
     "beschreibung": "",
@@ -301,7 +301,7 @@
   },
   {
     "kanal": "40",
-    "adresse": "29",
+    "adresse": "1/29",
     "geraet": "VK I-Pult (SD)",
     "farbe": "NC",
     "beschreibung": "",
@@ -311,7 +311,7 @@
   },
   {
     "kanal": "41",
-    "adresse": "30",
+    "adresse": "1/30",
     "geraet": "VK I-Pult (SD)",
     "farbe": "NC",
     "beschreibung": "",
@@ -321,7 +321,7 @@
   },
   {
     "kanal": "42",
-    "adresse": "34",
+    "adresse": "1/34",
     "geraet": "VK FW-Platz",
     "farbe": "NC",
     "beschreibung": "",
@@ -331,7 +331,7 @@
   },
   {
     "kanal": "43",
-    "adresse": "35",
+    "adresse": "1/35",
     "geraet": "VK FW-Platz",
     "farbe": "NC",
     "beschreibung": "",
@@ -341,7 +341,7 @@
   },
   {
     "kanal": "44",
-    "adresse": "36",
+    "adresse": "1/36",
     "geraet": "VK FW-Platz",
     "farbe": "NC",
     "beschreibung": "",
@@ -351,7 +351,7 @@
   },
   {
     "kanal": "45",
-    "adresse": "37",
+    "adresse": "1/37",
     "geraet": "VK FW-Platz",
     "farbe": "NC",
     "beschreibung": "",
@@ -361,7 +361,7 @@
   },
   {
     "kanal": "46",
-    "adresse": "38",
+    "adresse": "1/38",
     "geraet": "VK FW-Platz",
     "farbe": "NC",
     "beschreibung": "",
@@ -371,7 +371,7 @@
   },
   {
     "kanal": "47",
-    "adresse": "39",
+    "adresse": "1/39",
     "geraet": "VK FW-Platz",
     "farbe": "NC",
     "beschreibung": "",
@@ -381,7 +381,7 @@
   },
   {
     "kanal": "48",
-    "adresse": "31",
+    "adresse": "1/31",
     "geraet": "VK Portal Lks",
     "farbe": "NC",
     "beschreibung": "",
@@ -391,7 +391,7 @@
   },
   {
     "kanal": "49",
-    "adresse": "32",
+    "adresse": "1/32",
     "geraet": "VK Portal Lks",
     "farbe": "NC",
     "beschreibung": "",
@@ -401,7 +401,7 @@
   },
   {
     "kanal": "50",
-    "adresse": "33",
+    "adresse": "1/33",
     "geraet": "VK Portal Lks",
     "farbe": "NC",
     "beschreibung": "",
@@ -421,7 +421,7 @@
   },
   {
     "kanal": "51",
-    "adresse": "40",
+    "adresse": "1/40",
     "geraet": "VK Portal Rs",
     "farbe": "NC",
     "beschreibung": "",
@@ -431,7 +431,7 @@
   },
   {
     "kanal": "52",
-    "adresse": "41",
+    "adresse": "1/41",
     "geraet": "VK Portal Rs",
     "farbe": "NC",
     "beschreibung": "",
@@ -441,7 +441,7 @@
   },
   {
     "kanal": "53",
-    "adresse": "42",
+    "adresse": "1/42",
     "geraet": "VK Portal Rs",
     "farbe": "NC",
     "beschreibung": "",
@@ -461,7 +461,7 @@
   },
   {
     "kanal": "101",
-    "adresse": "1",
+    "adresse": "1/1",
     "geraet": "1,2kW Profil",
     "farbe": "NC",
     "beschreibung": "",
@@ -471,7 +471,7 @@
   },
   {
     "kanal": "102",
-    "adresse": "2",
+    "adresse": "1/2",
     "geraet": "2kW F",
     "farbe": "NC",
     "beschreibung": "",
@@ -481,7 +481,7 @@
   },
   {
     "kanal": "103",
-    "adresse": "3",
+    "adresse": "1/3",
     "geraet": "2kW F",
     "farbe": "NC",
     "beschreibung": "",
@@ -491,7 +491,7 @@
   },
   {
     "kanal": "104",
-    "adresse": "4",
+    "adresse": "1/4",
     "geraet": "2kW F",
     "farbe": "NC",
     "beschreibung": "",
@@ -501,7 +501,7 @@
   },
   {
     "kanal": "105",
-    "adresse": "5",
+    "adresse": "1/5",
     "geraet": "1,2kW PC",
     "farbe": "NC",
     "beschreibung": "",
@@ -511,7 +511,7 @@
   },
   {
     "kanal": "106",
-    "adresse": "6",
+    "adresse": "1/6",
     "geraet": "1,2kW PC",
     "farbe": "NC",
     "beschreibung": "",
@@ -521,7 +521,7 @@
   },
   {
     "kanal": "107",
-    "adresse": "43",
+    "adresse": "1/43",
     "geraet": "1,2kW Profil",
     "farbe": "NC",
     "beschreibung": "",
@@ -531,7 +531,7 @@
   },
   {
     "kanal": "108",
-    "adresse": "44",
+    "adresse": "1/44",
     "geraet": "2kW F",
     "farbe": "NC",
     "beschreibung": "",
@@ -541,7 +541,7 @@
   },
   {
     "kanal": "109",
-    "adresse": "45",
+    "adresse": "1/45",
     "geraet": "1,2kW Profil",
     "farbe": "NC",
     "beschreibung": "",
@@ -551,7 +551,7 @@
   },
   {
     "kanal": "671",
-    "adresse": "867-874",
+    "adresse": "2/355-2/362",
     "geraet": "Retro Flat Par 18x10W RGBWAUV 8ch",
     "farbe": "NC",
     "beschreibung": "",
@@ -561,7 +561,7 @@
   },
   {
     "kanal": "110",
-    "adresse": "7",
+    "adresse": "1/7",
     "geraet": "2kW F",
     "farbe": "NC",
     "beschreibung": "",
@@ -571,7 +571,7 @@
   },
   {
     "kanal": "111",
-    "adresse": "8",
+    "adresse": "1/8",
     "geraet": "1,2kW PC",
     "farbe": "NC",
     "beschreibung": "",
@@ -581,7 +581,7 @@
   },
   {
     "kanal": "112",
-    "adresse": "9",
+    "adresse": "1/9",
     "geraet": "1,2kW PC",
     "farbe": "NC",
     "beschreibung": "",
@@ -591,7 +591,7 @@
   },
   {
     "kanal": "113",
-    "adresse": "10",
+    "adresse": "1/10",
     "geraet": "2kW F",
     "farbe": "NC",
     "beschreibung": "",
@@ -601,7 +601,7 @@
   },
   {
     "kanal": "114",
-    "adresse": "11",
+    "adresse": "1/11",
     "geraet": "2kW F",
     "farbe": "NC",
     "beschreibung": "",
@@ -611,7 +611,7 @@
   },
   {
     "kanal": "115",
-    "adresse": "12",
+    "adresse": "1/12",
     "geraet": "2kW F",
     "farbe": "NC",
     "beschreibung": "",
@@ -621,7 +621,7 @@
   },
   {
     "kanal": "116",
-    "adresse": "13",
+    "adresse": "1/13",
     "geraet": "1,2kW PC",
     "farbe": "NC",
     "beschreibung": "",
@@ -631,7 +631,7 @@
   },
   {
     "kanal": "117",
-    "adresse": "14",
+    "adresse": "1/14",
     "geraet": "1,2kW PC",
     "farbe": "NC",
     "beschreibung": "",
@@ -641,7 +641,7 @@
   },
   {
     "kanal": "118",
-    "adresse": "15",
+    "adresse": "1/15",
     "geraet": "1,2kW Profil",
     "farbe": "NC",
     "beschreibung": "",
@@ -651,7 +651,7 @@
   },
   {
     "kanal": "131",
-    "adresse": "49",
+    "adresse": "1/49",
     "geraet": "2kW PC",
     "farbe": "NC",
     "beschreibung": "",
@@ -661,7 +661,7 @@
   },
   {
     "kanal": "132",
-    "adresse": "50",
+    "adresse": "1/50",
     "geraet": "2kW PC",
     "farbe": "NC",
     "beschreibung": "",
@@ -671,7 +671,7 @@
   },
   {
     "kanal": "133",
-    "adresse": "51",
+    "adresse": "1/51",
     "geraet": "2kW PC",
     "farbe": "NC",
     "beschreibung": "",
@@ -681,7 +681,7 @@
   },
   {
     "kanal": "134",
-    "adresse": "52",
+    "adresse": "1/52",
     "geraet": "2x PAR",
     "farbe": "NC",
     "beschreibung": "",
@@ -691,7 +691,7 @@
   },
   {
     "kanal": "135",
-    "adresse": "53",
+    "adresse": "1/53",
     "geraet": "2x PAR",
     "farbe": "NC",
     "beschreibung": "",
@@ -701,7 +701,7 @@
   },
   {
     "kanal": "136",
-    "adresse": "54",
+    "adresse": "1/54",
     "geraet": "Profil",
     "farbe": "NC",
     "beschreibung": "",
@@ -711,7 +711,7 @@
   },
   {
     "kanal": "137",
-    "adresse": "46",
+    "adresse": "1/46",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -721,7 +721,7 @@
   },
   {
     "kanal": "138",
-    "adresse": "47",
+    "adresse": "1/47",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -731,7 +731,7 @@
   },
   {
     "kanal": "139",
-    "adresse": "48",
+    "adresse": "1/48",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -741,7 +741,7 @@
   },
   {
     "kanal": "140",
-    "adresse": "22",
+    "adresse": "1/22",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -751,7 +751,7 @@
   },
   {
     "kanal": "141",
-    "adresse": "23",
+    "adresse": "1/23",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -761,7 +761,7 @@
   },
   {
     "kanal": "142",
-    "adresse": "24",
+    "adresse": "1/24",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -771,7 +771,7 @@
   },
   {
     "kanal": "143",
-    "adresse": "139",
+    "adresse": "1/139",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -781,7 +781,7 @@
   },
   {
     "kanal": "144",
-    "adresse": "140",
+    "adresse": "1/140",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -791,7 +791,7 @@
   },
   {
     "kanal": "145",
-    "adresse": "141",
+    "adresse": "1/141",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -801,7 +801,7 @@
   },
   {
     "kanal": "146",
-    "adresse": "142",
+    "adresse": "1/142",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -811,7 +811,7 @@
   },
   {
     "kanal": "147",
-    "adresse": "143",
+    "adresse": "1/143",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -821,7 +821,7 @@
   },
   {
     "kanal": "148",
-    "adresse": "144",
+    "adresse": "1/144",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -831,7 +831,7 @@
   },
   {
     "kanal": "149",
-    "adresse": "55",
+    "adresse": "1/55",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -841,7 +841,7 @@
   },
   {
     "kanal": "150",
-    "adresse": "56",
+    "adresse": "1/56",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -851,7 +851,7 @@
   },
   {
     "kanal": "151",
-    "adresse": "57",
+    "adresse": "1/57",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -861,7 +861,7 @@
   },
   {
     "kanal": "153",
-    "adresse": "59",
+    "adresse": "1/59",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -871,7 +871,7 @@
   },
   {
     "kanal": "154",
-    "adresse": "60",
+    "adresse": "1/60",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -881,7 +881,7 @@
   },
   {
     "kanal": "161",
-    "adresse": "61",
+    "adresse": "1/61",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -891,7 +891,7 @@
   },
   {
     "kanal": "162",
-    "adresse": "62",
+    "adresse": "1/62",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -901,7 +901,7 @@
   },
   {
     "kanal": "163",
-    "adresse": "63",
+    "adresse": "1/63",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -911,7 +911,7 @@
   },
   {
     "kanal": "164",
-    "adresse": "64",
+    "adresse": "1/64",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -921,7 +921,7 @@
   },
   {
     "kanal": "165",
-    "adresse": "65",
+    "adresse": "1/65",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -931,7 +931,7 @@
   },
   {
     "kanal": "166",
-    "adresse": "66",
+    "adresse": "1/66",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -941,7 +941,7 @@
   },
   {
     "kanal": "167",
-    "adresse": "67",
+    "adresse": "1/67",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -951,7 +951,7 @@
   },
   {
     "kanal": "168",
-    "adresse": "68",
+    "adresse": "1/68",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -961,7 +961,7 @@
   },
   {
     "kanal": "169",
-    "adresse": "69",
+    "adresse": "1/69",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -971,7 +971,7 @@
   },
   {
     "kanal": "170",
-    "adresse": "70",
+    "adresse": "1/70",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -981,7 +981,7 @@
   },
   {
     "kanal": "171",
-    "adresse": "71",
+    "adresse": "1/71",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -991,7 +991,7 @@
   },
   {
     "kanal": "172",
-    "adresse": "72",
+    "adresse": "1/72",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1001,7 +1001,7 @@
   },
   {
     "kanal": "181",
-    "adresse": "79",
+    "adresse": "1/79",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1011,7 +1011,7 @@
   },
   {
     "kanal": "182",
-    "adresse": "80",
+    "adresse": "1/80",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1021,7 +1021,7 @@
   },
   {
     "kanal": "183",
-    "adresse": "81",
+    "adresse": "1/81",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1031,7 +1031,7 @@
   },
   {
     "kanal": "184",
-    "adresse": "82",
+    "adresse": "1/82",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1041,7 +1041,7 @@
   },
   {
     "kanal": "185",
-    "adresse": "83",
+    "adresse": "1/83",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1051,7 +1051,7 @@
   },
   {
     "kanal": "186",
-    "adresse": "84",
+    "adresse": "1/84",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1061,7 +1061,7 @@
   },
   {
     "kanal": "187",
-    "adresse": "73",
+    "adresse": "1/73",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1071,7 +1071,7 @@
   },
   {
     "kanal": "188",
-    "adresse": "74",
+    "adresse": "1/74",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1081,7 +1081,7 @@
   },
   {
     "kanal": "189",
-    "adresse": "75",
+    "adresse": "1/75",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1091,7 +1091,7 @@
   },
   {
     "kanal": "190",
-    "adresse": "76",
+    "adresse": "1/76",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1101,7 +1101,7 @@
   },
   {
     "kanal": "191",
-    "adresse": "77",
+    "adresse": "1/77",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1111,7 +1111,7 @@
   },
   {
     "kanal": "192",
-    "adresse": "78",
+    "adresse": "1/78",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1121,7 +1121,7 @@
   },
   {
     "kanal": "193",
-    "adresse": "147",
+    "adresse": "1/147",
     "geraet": "5 KW",
     "farbe": "NC",
     "beschreibung": "",
@@ -1131,7 +1131,7 @@
   },
   {
     "kanal": "194",
-    "adresse": "463",
+    "adresse": "1/463",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1141,7 +1141,7 @@
   },
   {
     "kanal": "195",
-    "adresse": "148",
+    "adresse": "1/148",
     "geraet": "5 KW",
     "farbe": "NC",
     "beschreibung": "",
@@ -1151,7 +1151,7 @@
   },
   {
     "kanal": "196",
-    "adresse": "476",
+    "adresse": "1/476",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1161,7 +1161,7 @@
   },
   {
     "kanal": "201",
-    "adresse": "97",
+    "adresse": "1/97",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1171,7 +1171,7 @@
   },
   {
     "kanal": "202",
-    "adresse": "98",
+    "adresse": "1/98",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1181,7 +1181,7 @@
   },
   {
     "kanal": "203",
-    "adresse": "99",
+    "adresse": "1/99",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1191,7 +1191,7 @@
   },
   {
     "kanal": "204",
-    "adresse": "100",
+    "adresse": "1/100",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1201,7 +1201,7 @@
   },
   {
     "kanal": "205",
-    "adresse": "101",
+    "adresse": "1/101",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1211,7 +1211,7 @@
   },
   {
     "kanal": "206",
-    "adresse": "102",
+    "adresse": "1/102",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1221,7 +1221,7 @@
   },
   {
     "kanal": "207",
-    "adresse": "149",
+    "adresse": "1/149",
     "geraet": "5 KW",
     "farbe": "NC",
     "beschreibung": "",
@@ -1231,7 +1231,7 @@
   },
   {
     "kanal": "208",
-    "adresse": "103",
+    "adresse": "1/103",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1241,7 +1241,7 @@
   },
   {
     "kanal": "209",
-    "adresse": "104",
+    "adresse": "1/104",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1251,7 +1251,7 @@
   },
   {
     "kanal": "210",
-    "adresse": "105",
+    "adresse": "1/105",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1261,7 +1261,7 @@
   },
   {
     "kanal": "211",
-    "adresse": "106",
+    "adresse": "1/106",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1271,7 +1271,7 @@
   },
   {
     "kanal": "212",
-    "adresse": "107",
+    "adresse": "1/107",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1281,7 +1281,7 @@
   },
   {
     "kanal": "213",
-    "adresse": "108",
+    "adresse": "1/108",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1291,7 +1291,7 @@
   },
   {
     "kanal": "214",
-    "adresse": "150",
+    "adresse": "1/150",
     "geraet": "5 KW",
     "farbe": "NC",
     "beschreibung": "",
@@ -1301,7 +1301,7 @@
   },
   {
     "kanal": "221",
-    "adresse": "151",
+    "adresse": "1/151",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1311,7 +1311,7 @@
   },
   {
     "kanal": "222",
-    "adresse": "152",
+    "adresse": "1/152",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1321,7 +1321,7 @@
   },
   {
     "kanal": "223",
-    "adresse": "153",
+    "adresse": "1/153",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1331,7 +1331,7 @@
   },
   {
     "kanal": "224",
-    "adresse": "154",
+    "adresse": "1/154",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1341,7 +1341,7 @@
   },
   {
     "kanal": "225",
-    "adresse": "85",
+    "adresse": "1/85",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1351,7 +1351,7 @@
   },
   {
     "kanal": "226",
-    "adresse": "86",
+    "adresse": "1/86",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1361,7 +1361,7 @@
   },
   {
     "kanal": "227",
-    "adresse": "87",
+    "adresse": "1/87",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1371,7 +1371,7 @@
   },
   {
     "kanal": "228",
-    "adresse": "88",
+    "adresse": "1/88",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1381,7 +1381,7 @@
   },
   {
     "kanal": "231",
-    "adresse": "155",
+    "adresse": "1/155",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1391,7 +1391,7 @@
   },
   {
     "kanal": "232",
-    "adresse": "156",
+    "adresse": "1/156",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1401,7 +1401,7 @@
   },
   {
     "kanal": "233",
-    "adresse": "157",
+    "adresse": "1/157",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1411,7 +1411,7 @@
   },
   {
     "kanal": "234",
-    "adresse": "158",
+    "adresse": "1/158",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1421,7 +1421,7 @@
   },
   {
     "kanal": "235",
-    "adresse": "89",
+    "adresse": "1/89",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1431,7 +1431,7 @@
   },
   {
     "kanal": "236",
-    "adresse": "90",
+    "adresse": "1/90",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1441,7 +1441,7 @@
   },
   {
     "kanal": "237",
-    "adresse": "91",
+    "adresse": "1/91",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1451,7 +1451,7 @@
   },
   {
     "kanal": "238",
-    "adresse": "92",
+    "adresse": "1/92",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1461,7 +1461,7 @@
   },
   {
     "kanal": "241",
-    "adresse": "159",
+    "adresse": "1/159",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1471,7 +1471,7 @@
   },
   {
     "kanal": "242",
-    "adresse": "160",
+    "adresse": "1/160",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1481,7 +1481,7 @@
   },
   {
     "kanal": "243",
-    "adresse": "161",
+    "adresse": "1/161",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1491,7 +1491,7 @@
   },
   {
     "kanal": "244",
-    "adresse": "162",
+    "adresse": "1/162",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1501,7 +1501,7 @@
   },
   {
     "kanal": "245",
-    "adresse": "93",
+    "adresse": "1/93",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1511,7 +1511,7 @@
   },
   {
     "kanal": "246",
-    "adresse": "94",
+    "adresse": "1/94",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1521,7 +1521,7 @@
   },
   {
     "kanal": "247",
-    "adresse": "95",
+    "adresse": "1/95",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1531,7 +1531,7 @@
   },
   {
     "kanal": "248",
-    "adresse": "96",
+    "adresse": "1/96",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1541,7 +1541,7 @@
   },
   {
     "kanal": "271",
-    "adresse": "332-341",
+    "adresse": "1/332-1/341",
     "geraet": "S4 LED S2 Lustr QS General",
     "farbe": "NC",
     "beschreibung": "",
@@ -1551,7 +1551,7 @@
   },
   {
     "kanal": "272",
-    "adresse": "342-351",
+    "adresse": "1/342-1/351",
     "geraet": "S4 LED S2 Lustr QS General",
     "farbe": "NC",
     "beschreibung": "",
@@ -1561,7 +1561,7 @@
   },
   {
     "kanal": "273",
-    "adresse": "352-361",
+    "adresse": "1/352-1/361",
     "geraet": "S4 LED S2 Lustr QS General",
     "farbe": "NC",
     "beschreibung": "",
@@ -1571,7 +1571,7 @@
   },
   {
     "kanal": "274",
-    "adresse": "362-371",
+    "adresse": "1/362-1/371",
     "geraet": "S4 LED S2 Lustr QS General",
     "farbe": "NC",
     "beschreibung": "",
@@ -1581,7 +1581,7 @@
   },
   {
     "kanal": "275",
-    "adresse": "372-381",
+    "adresse": "1/372-1/381",
     "geraet": "S4 LED S2 Lustr QS General",
     "farbe": "NC",
     "beschreibung": "",
@@ -1591,7 +1591,7 @@
   },
   {
     "kanal": "276",
-    "adresse": "382-391",
+    "adresse": "1/382-1/391",
     "geraet": "S4 LED S2 Lustr QS General",
     "farbe": "NC",
     "beschreibung": "",
@@ -1601,7 +1601,7 @@
   },
   {
     "kanal": "277",
-    "adresse": "392-401",
+    "adresse": "1/392-1/401",
     "geraet": "S4 LED S2 Lustr QS General",
     "farbe": "NC",
     "beschreibung": "",
@@ -1611,7 +1611,7 @@
   },
   {
     "kanal": "278",
-    "adresse": "402-411",
+    "adresse": "1/402-1/411",
     "geraet": "S4 LED S2 Lustr QS General",
     "farbe": "NC",
     "beschreibung": "",
@@ -1621,7 +1621,7 @@
   },
   {
     "kanal": "301",
-    "adresse": "109",
+    "adresse": "1/109",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1631,7 +1631,7 @@
   },
   {
     "kanal": "302",
-    "adresse": "110",
+    "adresse": "1/110",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1641,7 +1641,7 @@
   },
   {
     "kanal": "303",
-    "adresse": "111",
+    "adresse": "1/111",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1651,7 +1651,7 @@
   },
   {
     "kanal": "304",
-    "adresse": "112",
+    "adresse": "1/112",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1661,7 +1661,7 @@
   },
   {
     "kanal": "305",
-    "adresse": "113",
+    "adresse": "1/113",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1671,7 +1671,7 @@
   },
   {
     "kanal": "306",
-    "adresse": "114",
+    "adresse": "1/114",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1681,7 +1681,7 @@
   },
   {
     "kanal": "307",
-    "adresse": "181",
+    "adresse": "1/181",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1691,7 +1691,7 @@
   },
   {
     "kanal": "308",
-    "adresse": "182",
+    "adresse": "1/182",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1701,7 +1701,7 @@
   },
   {
     "kanal": "309",
-    "adresse": "183",
+    "adresse": "1/183",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1711,7 +1711,7 @@
   },
   {
     "kanal": "310",
-    "adresse": "184",
+    "adresse": "1/184",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1721,7 +1721,7 @@
   },
   {
     "kanal": "311",
-    "adresse": "185",
+    "adresse": "1/185",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1731,7 +1731,7 @@
   },
   {
     "kanal": "312",
-    "adresse": "186",
+    "adresse": "1/186",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1741,7 +1741,7 @@
   },
   {
     "kanal": "313",
-    "adresse": "187",
+    "adresse": "1/187",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1751,7 +1751,7 @@
   },
   {
     "kanal": "314",
-    "adresse": "188",
+    "adresse": "1/188",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1761,7 +1761,7 @@
   },
   {
     "kanal": "315",
-    "adresse": "189",
+    "adresse": "1/189",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1771,7 +1771,7 @@
   },
   {
     "kanal": "316",
-    "adresse": "190",
+    "adresse": "1/190",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1781,7 +1781,7 @@
   },
   {
     "kanal": "317",
-    "adresse": "191",
+    "adresse": "1/191",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1791,7 +1791,7 @@
   },
   {
     "kanal": "318",
-    "adresse": "192",
+    "adresse": "1/192",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1801,7 +1801,7 @@
   },
   {
     "kanal": "327",
-    "adresse": "193",
+    "adresse": "1/193",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1811,7 +1811,7 @@
   },
   {
     "kanal": "328",
-    "adresse": "194",
+    "adresse": "1/194",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1821,7 +1821,7 @@
   },
   {
     "kanal": "329",
-    "adresse": "195",
+    "adresse": "1/195",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1831,7 +1831,7 @@
   },
   {
     "kanal": "330",
-    "adresse": "196",
+    "adresse": "1/196",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1841,7 +1841,7 @@
   },
   {
     "kanal": "331",
-    "adresse": "197",
+    "adresse": "1/197",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1851,7 +1851,7 @@
   },
   {
     "kanal": "332",
-    "adresse": "198",
+    "adresse": "1/198",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1861,7 +1861,7 @@
   },
   {
     "kanal": "335",
-    "adresse": "199",
+    "adresse": "1/199",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1871,7 +1871,7 @@
   },
   {
     "kanal": "336",
-    "adresse": "200",
+    "adresse": "1/200",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1881,7 +1881,7 @@
   },
   {
     "kanal": "337",
-    "adresse": "201",
+    "adresse": "1/201",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1891,7 +1891,7 @@
   },
   {
     "kanal": "338",
-    "adresse": "202",
+    "adresse": "1/202",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1901,7 +1901,7 @@
   },
   {
     "kanal": "339",
-    "adresse": "203",
+    "adresse": "1/203",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1911,7 +1911,7 @@
   },
   {
     "kanal": "340",
-    "adresse": "204",
+    "adresse": "1/204",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1921,7 +1921,7 @@
   },
   {
     "kanal": "401",
-    "adresse": "163",
+    "adresse": "1/163",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1931,7 +1931,7 @@
   },
   {
     "kanal": "402",
-    "adresse": "164",
+    "adresse": "1/164",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1941,7 +1941,7 @@
   },
   {
     "kanal": "403",
-    "adresse": "165",
+    "adresse": "1/165",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1951,7 +1951,7 @@
   },
   {
     "kanal": "404",
-    "adresse": "166",
+    "adresse": "1/166",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1961,7 +1961,7 @@
   },
   {
     "kanal": "405",
-    "adresse": "167",
+    "adresse": "1/167",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1971,7 +1971,7 @@
   },
   {
     "kanal": "406",
-    "adresse": "168",
+    "adresse": "1/168",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1981,7 +1981,7 @@
   },
   {
     "kanal": "407",
-    "adresse": "169",
+    "adresse": "1/169",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -1991,7 +1991,7 @@
   },
   {
     "kanal": "408",
-    "adresse": "170",
+    "adresse": "1/170",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -2001,7 +2001,7 @@
   },
   {
     "kanal": "411",
-    "adresse": "171",
+    "adresse": "1/171",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -2011,7 +2011,7 @@
   },
   {
     "kanal": "412",
-    "adresse": "172",
+    "adresse": "1/172",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -2021,7 +2021,7 @@
   },
   {
     "kanal": "413",
-    "adresse": "173",
+    "adresse": "1/173",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -2031,7 +2031,7 @@
   },
   {
     "kanal": "414",
-    "adresse": "174",
+    "adresse": "1/174",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -2041,7 +2041,7 @@
   },
   {
     "kanal": "421",
-    "adresse": "175",
+    "adresse": "1/175",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -2051,7 +2051,7 @@
   },
   {
     "kanal": "422",
-    "adresse": "176",
+    "adresse": "1/176",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -2061,7 +2061,7 @@
   },
   {
     "kanal": "423",
-    "adresse": "177",
+    "adresse": "1/177",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -2071,7 +2071,7 @@
   },
   {
     "kanal": "424",
-    "adresse": "178",
+    "adresse": "1/178",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -2081,7 +2081,7 @@
   },
   {
     "kanal": "425",
-    "adresse": "179",
+    "adresse": "1/179",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -2091,7 +2091,7 @@
   },
   {
     "kanal": "426",
-    "adresse": "180",
+    "adresse": "1/180",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -2101,7 +2101,7 @@
   },
   {
     "kanal": "491",
-    "adresse": "491",
+    "adresse": "1/491",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -2111,7 +2111,7 @@
   },
   {
     "kanal": "492",
-    "adresse": "492",
+    "adresse": "1/492",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -2121,7 +2121,7 @@
   },
   {
     "kanal": "493",
-    "adresse": "493",
+    "adresse": "1/493",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -2131,7 +2131,7 @@
   },
   {
     "kanal": "494",
-    "adresse": "494",
+    "adresse": "1/494",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -2141,7 +2141,7 @@
   },
   {
     "kanal": "495",
-    "adresse": "495",
+    "adresse": "1/495",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -2151,7 +2151,7 @@
   },
   {
     "kanal": "496",
-    "adresse": "496",
+    "adresse": "1/496",
     "geraet": "Dimmer",
     "farbe": "NC",
     "beschreibung": "",
@@ -2321,7 +2321,7 @@
   },
   {
     "kanal": "615",
-    "adresse": "412-417",
+    "adresse": "1/412-1/417",
     "geraet": "CuePix Panel 6ch",
     "farbe": "NC",
     "beschreibung": "",
@@ -2331,7 +2331,7 @@
   },
   {
     "kanal": "616",
-    "adresse": "481-486",
+    "adresse": "1/481-1/486",
     "geraet": "CuePix Panel 6ch",
     "farbe": "NC",
     "beschreibung": "",
@@ -2661,7 +2661,7 @@
   },
   {
     "kanal": "686",
-    "adresse": "221-224",
+    "adresse": "1/221-1/224",
     "geraet": "Ape Stick 4ch",
     "farbe": "NC",
     "beschreibung": "",
@@ -2671,7 +2671,7 @@
   },
   {
     "kanal": "687",
-    "adresse": "225-228",
+    "adresse": "1/225-1/228",
     "geraet": "Ape Stick 4ch",
     "farbe": "NC",
     "beschreibung": "",
@@ -2681,7 +2681,7 @@
   },
   {
     "kanal": "691",
-    "adresse": "262-265",
+    "adresse": "1/262-1/265",
     "geraet": "ApeLight Maxi 4ch",
     "farbe": "NC",
     "beschreibung": "",
@@ -2741,7 +2741,7 @@
   },
   {
     "kanal": "701",
-    "adresse": "1209-1230",
+    "adresse": "3/185-3/206",
     "geraet": "Robin LEDBeam 350 M1",
     "farbe": "NC",
     "beschreibung": "",
@@ -2751,7 +2751,7 @@
   },
   {
     "kanal": "702",
-    "adresse": "1231-1252",
+    "adresse": "3/207-3/228",
     "geraet": "Robin LEDBeam 350 M1",
     "farbe": "NC",
     "beschreibung": "",
@@ -2761,7 +2761,7 @@
   },
   {
     "kanal": "703",
-    "adresse": "1253-1274",
+    "adresse": "3/229-3/250",
     "geraet": "Robin LEDBeam 350 M1",
     "farbe": "NC",
     "beschreibung": "",
@@ -2771,7 +2771,7 @@
   },
   {
     "kanal": "704",
-    "adresse": "1275-1296",
+    "adresse": "3/251-3/272",
     "geraet": "Robin LEDBeam 350 M1",
     "farbe": "NC",
     "beschreibung": "",
@@ -2791,7 +2791,7 @@
   },
   {
     "kanal": "706",
-    "adresse": "623-644",
+    "adresse": "2/111-2/132",
     "geraet": "A8 Standard Standard RGB16 M16",
     "farbe": "NC",
     "beschreibung": "",
@@ -2801,7 +2801,7 @@
   },
   {
     "kanal": "707",
-    "adresse": "645-666",
+    "adresse": "2/133-2/154",
     "geraet": "A8 Standard Standard RGB16 M16",
     "farbe": "NC",
     "beschreibung": "",
@@ -2811,7 +2811,7 @@
   },
   {
     "kanal": "708",
-    "adresse": "667-688",
+    "adresse": "2/155-2/176",
     "geraet": "A8 Standard Standard RGB16 M16",
     "farbe": "NC",
     "beschreibung": "",
@@ -2841,7 +2841,7 @@
   },
   {
     "kanal": "711",
-    "adresse": "823-844",
+    "adresse": "2/311-2/332",
     "geraet": "A8 Standard Standard RGB16 M16",
     "farbe": "NC",
     "beschreibung": "",
@@ -2851,7 +2851,7 @@
   },
   {
     "kanal": "712",
-    "adresse": "579-600",
+    "adresse": "2/67-2/88",
     "geraet": "A8 Standard Standard RGB16 M16",
     "farbe": "NC",
     "beschreibung": "",
@@ -2861,7 +2861,7 @@
   },
   {
     "kanal": "713",
-    "adresse": "801-822",
+    "adresse": "2/289-2/310",
     "geraet": "A8 Standard Standard RGB16 M16",
     "farbe": "NC",
     "beschreibung": "",

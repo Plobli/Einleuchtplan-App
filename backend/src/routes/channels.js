@@ -4,8 +4,7 @@ import {
     getChannelById,
     createChannel,
     updateChannel,
-    deleteChannel,
-    getChannelHistory
+    deleteChannel
 } from '../controllers/channelController.js';
 
 const router = express.Router();
@@ -15,6 +14,5 @@ router.get('/:id', getChannelById);
 router.post('/show/:showId', createChannel);
 router.put('/:id', updateChannel);
 router.delete('/:id', deleteChannel);
-router.get('/:id/history', getChannelHistory);
 
 export default router;

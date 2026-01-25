@@ -50,11 +50,19 @@
         </div>
         <div class="form-group">
           <label>Höhe Züge:</label>
-          <textarea v-model="show.zuege" @blur="updateShowField('zuege')" rows="3"></textarea>
+          <div class="editor-toolbar">
+            <button @click="formatText('zuege', 'bold')" class="format-btn" title="Fett" type="button"><strong>B</strong></button>
+            <button @click="formatText('zuege', 'italic')" class="format-btn" title="Kursiv" type="button"><em>I</em></button>
+          </div>
+          <textarea ref="zuegeTextarea" v-model="show.zuege" @blur="updateShowField('zuege')" rows="3"></textarea>
         </div>
         <div class="form-group">
           <label>Weitere Aufbaunotizen:</label>
-          <textarea v-model="show.aufbau" @blur="updateShowField('aufbau')" rows="5"></textarea>
+          <div class="editor-toolbar">
+            <button @click="formatText('aufbau', 'bold')" class="format-btn" title="Fett" type="button"><strong>B</strong></button>
+            <button @click="formatText('aufbau', 'italic')" class="format-btn" title="Kursiv" type="button"><em>I</em></button>
+          </div>
+          <textarea ref="aufbauTextarea" v-model="show.aufbau" @blur="updateShowField('aufbau')" rows="5"></textarea>
         </div>
       </div>
 
@@ -69,7 +77,6 @@
         />
         <div class="stats">
           {{ filteredChannels.length }} von {{ channels.length }} Channels
-          | {{ activeChannelsCount }} aktiv
         </div>
       </div>
 
@@ -79,42 +86,34 @@
         <table class="channels-table">
           <thead>
             <tr>
-              <th style="width: 50px">✓</th>
               <th style="width: 100px">Kanal</th>
-              <th style="width: 100px">Adresse</th>
+              <th style="width: 140px">Adresse</th>
               <th style="width: 200px">Gerät</th>
               <th style="width: 80px">Farbe</th>
               <th>Beschreibung / Position</th>
-              <th style="width: 80px">Aktionen</th>
             </tr>
           </thead>
           <tbody>
             <template v-for="(group, index) in channelsByCategory" :key="index">
               <!-- Kategorie-Zeile -->
               <tr class="category-row">
-                <td colspan="7">
+                <td colspan="4">
                   <span class="category-name">{{ group.category }}</span>
+                </td>
+                <td colspan="1" style="text-align: right; padding-right: var(--space-3);">
+                  <button @click="addChannelToCategory(group.category)" class="btn-add-channel" title="Zeile hinzufügen">+</button>
                 </td>
               </tr>
               <!-- Channel-Zeilen -->
               <tr 
                 v-for="channel in group.channels" 
                 :key="channel.id"
-                :class="{ 'active-row': channel.aktiv, 'editing-row': editingChannelId === channel.id }"
               >
-                <td>
-                  <input 
-                    type="checkbox" 
-                    v-model="channel.aktiv"
-                    @change="updateChannel(channel, 'aktiv', channel.aktiv)"
-                  />
-                </td>
                 <td class="channel-number">{{ channel.kanal }}</td>
                 <td>
                   <input 
                     v-model="channel.adresse"
                     @blur="updateChannel(channel, 'adresse', channel.adresse)"
-                    @focus="startEditing(channel.id)"
                     @input="handleTyping(channel.id, 'adresse')"
                     class="cell-input"
                   />
@@ -123,7 +122,6 @@
                   <input 
                     v-model="channel.geraet"
                     @blur="updateChannel(channel, 'geraet', channel.geraet)"
-                    @focus="startEditing(channel.id)"
                     @input="handleTyping(channel.id, 'geraet')"
                     class="cell-input"
                   />
@@ -132,7 +130,6 @@
                   <select 
                     v-model="channel.farbe"
                     @change="updateChannel(channel, 'farbe', channel.farbe)"
-                    @focus="startEditing(channel.id)"
                     class="cell-select"
                   >
                     <option value="NC">NC</option>
@@ -145,24 +142,20 @@
                   <textarea 
                     v-model="channel.beschreibung"
                     @blur="updateChannel(channel, 'beschreibung', channel.beschreibung)"
-                    @focus="startEditing(channel.id)"
                     @input="handleTyping(channel.id, 'beschreibung')"
                     class="cell-textarea"
                     placeholder="Position/Notizen"
                     rows="1"
                   ></textarea>
                 </td>
-                <td>
-                  <button 
-                    @click="showHistory(channel)"
-                    class="btn-icon"
-                    title="Änderungshistorie"
-                  >
-                    📜
-                  </button>
-                </td>
               </tr>
             </template>
+            <!-- Neue Kategorie hinzufügen -->
+            <tr>
+              <td colspan="5" style="text-align: center; padding: var(--space-4);">
+                <button @click="showNewCategoryModal = true" class="btn-add-category">+ Neue Kategorie</button>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -186,26 +179,17 @@
       </div>
     </div>
 
-    <!-- History Modal -->
-    <div v-if="showHistoryModal" class="modal" @click.self="showHistoryModal = false">
+    <!-- Neue Kategorie Modal -->
+    <div v-if="showNewCategoryModal" class="modal" @click.self="showNewCategoryModal = false">
       <div class="modal-content">
-        <h2>Änderungshistorie - Kanal {{ selectedChannel?.kanal }}</h2>
-        <div v-if="loadingHistory" class="loading">Lädt...</div>
-        <div v-else-if="history.length === 0">Keine Änderungen vorhanden</div>
-        <div v-else class="history-list">
-          <div v-for="entry in history" :key="entry.id" class="history-entry">
-            <div class="history-header">
-              <strong>{{ entry.user_name }}</strong>
-              <span class="history-time">{{ formatDateTime(entry.changed_at) }}</span>
-            </div>
-            <div class="history-change">
-              <strong>{{ entry.field_name }}:</strong>
-              "{{ entry.old_value }}" → "{{ entry.new_value }}"
-            </div>
-          </div>
+        <h2>Neue Kategorie erstellen</h2>
+        <div class="form-group">
+          <label>Kategoriename:</label>
+          <input v-model="newCategoryName" type="text" placeholder="z.B. Seitenlicht" />
         </div>
         <div class="modal-actions">
-          <button @click="showHistoryModal = false" class="btn-secondary">Schließen</button>
+          <button @click="showNewCategoryModal = false" class="btn-secondary">Abbrechen</button>
+          <button @click="createNewCategory" class="btn-primary">Erstellen</button>
         </div>
       </div>
     </div>
@@ -235,10 +219,11 @@ const activeUsers = ref([])
 const showImportModal = ref(false)
 const importData = ref('')
 
-const showHistoryModal = ref(false)
-const selectedChannel = ref(null)
-const history = ref([])
-const loadingHistory = ref(false)
+const showNewCategoryModal = ref(false)
+const newCategoryName = ref('')
+
+const zuegeTextarea = ref(null)
+const aufbauTextarea = ref(null)
 
 let typingTimeout = null
 const socket = getSocket()
@@ -331,10 +316,6 @@ const channelsByCategory = computed(() => {
   }))
 })
 
-const activeChannelsCount = computed(() => {
-  return channels.value.filter(c => c.aktiv).length
-})
-
 const startEditing = (channelId) => {
   editingChannelId.value = channelId
 }
@@ -419,8 +400,9 @@ const exportPDF = () => {
     doc.text(`Venue: ${show.value.venue}`, 14, 22)
   }
   
+  // Exportiere Kanäle, die eine Beschreibung haben
   const tableData = channels.value
-    .filter(c => c.aktiv)
+    .filter(c => c.beschreibung && c.beschreibung.trim() !== '')
     .map(c => [c.kanal, c.adresse, c.geraet, c.farbe, c.beschreibung])
 
   doc.autoTable({
@@ -433,19 +415,71 @@ const exportPDF = () => {
   doc.save(`${show.value.name}_${new Date().toISOString().split('T')[0]}.pdf`)
 }
 
-const showHistory = async (channel) => {
-  selectedChannel.value = channel
-  showHistoryModal.value = true
-  loadingHistory.value = true
-
+const deleteChannel = async (channelId) => {
+  if (!confirm('Kanal wirklich löschen?')) return
   try {
-    const response = await api.get(`/api/channels/${channel.id}/history`)
-    history.value = response.data
+    await api.delete(`/api/channels/${channelId}`)
+    channels.value = channels.value.filter(c => c.id !== channelId)
   } catch (error) {
-    alert('Fehler beim Laden der Historie')
-  } finally {
-    loadingHistory.value = false
+    alert('Fehler beim Löschen')
   }
+}
+
+const addChannelToCategory = async (categoryName) => {
+  try {
+    const maxPosition = Math.max(...channels.value.map(c => c.position || 0), 0)
+    const newChannel = {
+      kanal: '',
+      adresse: '',
+      geraet: '',
+      farbe: 'NC',
+      beschreibung: '',
+      kategorie: categoryName,
+      position: maxPosition + 1,
+      aktiv: false
+    }
+    
+    const response = await api.post(`/api/shows/${route.params.id}/channels`, newChannel)
+    channels.value.push(response.data)
+  } catch (error) {
+    alert('Fehler beim Hinzufügen')
+  }
+}
+
+const createNewCategory = async () => {
+  if (!newCategoryName.value.trim()) {
+    alert('Bitte Kategorienamen eingeben')
+    return
+  }
+  
+  await addChannelToCategory(newCategoryName.value.trim())
+  showNewCategoryModal.value = false
+  newCategoryName.value = ''
+}
+
+const formatText = (field, style) => {
+  const textarea = field === 'zuege' ? zuegeTextarea.value : aufbauTextarea.value
+  if (!textarea) return
+  
+  const start = textarea.selectionStart
+  const end = textarea.selectionEnd
+  const selectedText = show.value[field].substring(start, end)
+  
+  if (!selectedText) return
+  
+  let formattedText = ''
+  if (style === 'bold') {
+    formattedText = `**${selectedText}**`
+  } else if (style === 'italic') {
+    formattedText = `*${selectedText}*`
+  }
+  
+  show.value[field] = 
+    show.value[field].substring(0, start) + 
+    formattedText + 
+    show.value[field].substring(end)
+  
+  updateShowField(field)
 }
 
 const formatDate = (date) => {
@@ -693,15 +727,6 @@ const deleteShow = async () => {
   color: var(--color-text-primary);
 }
 
-.active-row {
-  background: var(--color-surface-accent) !important;
-}
-
-.editing-row {
-  background: var(--color-primary-light) !important;
-  opacity: 0.1;
-}
-
 .channel-number {
   font-weight: 600;
   color: var(--color-primary);
@@ -809,37 +834,73 @@ const deleteShow = async () => {
   background: var(--color-primary-hover);
 }
 
-.history-list {
-  margin-top: var(--space-4);
-}
-
-.history-entry {
-  padding: var(--space-3);
-  border-left: 3px solid var(--color-primary);
-  background: var(--color-surface-subtle);
-  margin-bottom: var(--space-3);
-  border-radius: var(--radius-sm);
-}
-
-.history-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: var(--space-2);
-}
-
-.history-time {
-  color: var(--color-text-tertiary);
-  font-size: var(--text-sm);
-}
-
-.history-change {
-  font-size: var(--text-sm);
-  color: var(--color-text-secondary);
-}
-
 .loading {
   text-align: center;
   padding: var(--space-8);
   color: var(--color-text-secondary);
+}
+
+.btn-add-channel {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  opacity: 0.7;
+}
+
+.btn-add-channel:hover {
+  opacity: 1;
+}
+
+.btn-add-category {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: var(--text-sm);
+}
+
+.btn-add-category:hover {
+  background: var(--color-primary-hover);
+}
+
+.btn-delete {
+  color: var(--color-danger);
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.btn-delete:hover {
+  color: var(--color-danger-hover);
+}
+
+.editor-toolbar {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.format-btn {
+  background: white;
+  border: 1px solid var(--color-border-default);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  min-width: 32px;
+}
+
+.format-btn:hover {
+  background: var(--color-surface-muted);
+}
+
+.format-btn strong,
+.format-btn em {
+  font-size: var(--text-sm);
 }
 </style>

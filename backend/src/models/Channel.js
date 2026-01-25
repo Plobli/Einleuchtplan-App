@@ -58,10 +58,6 @@ export const Channel = {
         try {
             await client.query('BEGIN');
 
-            // Get current values for history
-            const current = await client.query('SELECT * FROM channels WHERE id = $1', [id]);
-            const currentData = current.rows[0];
-
             // Build update query
             const fields = [];
             const values = [];
@@ -73,15 +69,6 @@ export const Channel = {
                 if (data[field] !== undefined) {
                     fields.push(`${field} = $${paramCount++}`);
                     values.push(data[field]);
-
-                    // Record history
-                    if (currentData[field] !== data[field]) {
-                        await client.query(
-                            `INSERT INTO channel_history (channel_id, user_id, field_name, old_value, new_value)
-                             VALUES ($1, $2, $3, $4, $5)`,
-                            [id, userId, field, String(currentData[field]), String(data[field])]
-                        );
-                    }
                 }
             }
 
@@ -104,17 +91,5 @@ export const Channel = {
 
     async delete(id) {
         await pool.query('DELETE FROM channels WHERE id = $1', [id]);
-    },
-
-    async getHistory(channelId, limit = 50) {
-        const result = await pool.query(`
-            SELECT ch.*, u.name as user_name
-            FROM channel_history ch
-            LEFT JOIN users u ON ch.user_id = u.id
-            WHERE ch.channel_id = $1
-            ORDER BY ch.changed_at DESC
-            LIMIT $2
-        `, [channelId, limit]);
-        return result.rows;
     }
 };
