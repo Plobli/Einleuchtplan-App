@@ -83,6 +83,17 @@
             background: white;
             cursor: text;
         }
+
+        .editable-field-zuege {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            min-height: 80px;
+            background: white;
+            cursor: text;
+        }
         
         .editable-field:focus {
             outline: 2px solid #4CAF50;
@@ -180,7 +191,6 @@
 
         .scheinwerfer-table tr.category-row td {
             padding: 12px 8px;
-            border-bottom: 2px solid #999;
         }
 
         .scheinwerfer-table tr.category-row:hover {
@@ -367,10 +377,20 @@
                 <label for="sbtor">SB-Tor:</label>
                 <input type="text" id="sbtor">
             </div>
-            <div class="form-group">
-                <label for="zuege">Höhe Züge:</label>
-                <input type="text" id="zuege">
+        </div>
+
+        <div class="form-group">
+            <label for="aufbau">Höhe Züge:</label>
+            <div class="format-toolbar" id="aufbauToolbar">
+                <button type="button" class="format-btn" onclick="formatText('bold')" title="Fett (Strg+B)"><b>B</b></button>
+                <button type="button" class="format-btn" onclick="formatText('italic')" title="Kursiv (Strg+I)"><i>I</i></button>
+                <button type="button" class="format-btn" onclick="formatText('underline')" title="Unterstrichen (Strg+U)"><u>U</u></button>
+                <button type="button" class="format-btn" onclick="formatText('removeFormat')" title="Formatierung entfernen">✕</button>
             </div>
+            <div id="zuege" class="editable-field-zuege" contenteditable="true" 
+                 onfocus="showToolbar('aufbauToolbar')" 
+                 onblur="hideToolbar('aufbauToolbar')"></div>
+            <div class="format-hint">💡 Tipp: Text markieren und Strg+B für fett, Strg+I für kursiv, Strg+U für unterstrichen</div>
         </div>
         
         <div class="form-group">
@@ -390,9 +410,7 @@
         <h2>Bereich 2: Festverhang</h2>
 
         <div class="filter-box">
-            <input type="text" id="filter" placeholder="Filter nach Kanal oder Gerät...">
-            <button class="btn-secondary" onclick="toggleAll(true)">Alle aktivieren</button>
-            <button class="btn-secondary" onclick="toggleAll(false)">Alle deaktivieren</button>
+            <button class="btn-secondary" onclick="clearAllFields()">🗑️ Alle Felder leeren</button>
             <div class="stats" id="stats"></div>
         </div>
         
@@ -483,10 +501,12 @@ const scheinwerferData = [
     {kanal: "48", adresse: "31", geraet: "VK Portal Lks", farbe: "NC", beschreibung: ""},
     {kanal: "49", adresse: "32", geraet: "VK Portal Lks", farbe: "NC", beschreibung: ""},
     {kanal: "50", adresse: "33", geraet: "VK Portal Lks", farbe: "NC", beschreibung: ""},
+    {kanal: "623", adresse: "2/193-200", geraet: "Flat Pro Outdoor Par Can 8ch", farbe: "NC", beschreibung: ""},
     {kategorie: "Portal Rs"},
     {kanal: "51", adresse: "40", geraet: "VK Portal Rs", farbe: "NC", beschreibung: ""},
     {kanal: "52", adresse: "41", geraet: "VK Portal Rs", farbe: "NC", beschreibung: ""},
     {kanal: "53", adresse: "42", geraet: "VK Portal Rs", farbe: "NC", beschreibung: ""},
+    {kanal: "626", adresse: "2/217-224", geraet: "Flat Pro Outdoor Par Can 8ch", farbe: "NC", beschreibung: ""},
     {kategorie: "Brücke"},
     {kanal: "101", adresse: "1", geraet: "1,2kW Profil", farbe: "NC", beschreibung: ""},
     {kanal: "102", adresse: "2", geraet: "2kW F", farbe: "NC", beschreibung: ""},
@@ -497,6 +517,7 @@ const scheinwerferData = [
     {kanal: "107", adresse: "43", geraet: "1,2kW Profil", farbe: "NC", beschreibung: ""},
     {kanal: "108", adresse: "44", geraet: "2kW F", farbe: "NC", beschreibung: ""},
     {kanal: "109", adresse: "45", geraet: "1,2kW Profil", farbe: "NC", beschreibung: ""},
+    {kanal: "671", adresse: "867-874", geraet: "Retro Flat Par 18x10W RGBWAUV 8ch", farbe: "NC", beschreibung: ""},
     {kanal: "110", adresse: "7", geraet: "2kW F", farbe: "NC", beschreibung: ""},
     {kanal: "111", adresse: "8", geraet: "1,2kW PC", farbe: "NC", beschreibung: ""},
     {kanal: "112", adresse: "9", geraet: "1,2kW PC", farbe: "NC", beschreibung: ""},
@@ -675,19 +696,6 @@ const scheinwerferData = [
     {kanal: "494", adresse: "494", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "495", adresse: "495", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
     {kanal: "496", adresse: "496", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kanal: "497", adresse: "497", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kanal: "498", adresse: "498", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kanal: "503", adresse: "503", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kanal: "504", adresse: "504", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kanal: "505", adresse: "505", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kanal: "506", adresse: "506", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kanal: "508", adresse: "508", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kanal: "509", adresse: "509", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kanal: "510", adresse: "510", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kanal: "511", adresse: "511", geraet: "Dimmer", farbe: "NC", beschreibung: ""},
-    {kategorie: "Fusion MBL"},
-    {kanal: "512", adresse: "3/278-282", geraet: "Fusion MBL40 Adv AL Vorbühne", farbe: "NC", beschreibung: ""},
-    {kanal: "513", adresse: "3/273-277", geraet: "Fusion MBL40 Adv AL 2.Saaltraverse", farbe: "NC", beschreibung: ""},
     {kategorie: "Astera Titantubes"},
     {kanal: "551", adresse: "3/283-285", geraet: "Titan Tube 1: RGB 1 Pixel", farbe: "NC", beschreibung: ""},
     {kanal: "552", adresse: "3/286-288", geraet: "Titan Tube 1: RGB 1 Pixel", farbe: "NC", beschreibung: ""},
@@ -713,10 +721,8 @@ const scheinwerferData = [
     {kanal: "620", adresse: "2/273-280", geraet: "Flat Pro Outdoor Par Can 8ch", farbe: "NC", beschreibung: ""},
     {kanal: "621", adresse: "2/177-184", geraet: "Flat Pro Outdoor Par Can 8ch", farbe: "NC", beschreibung: ""},
     {kanal: "622", adresse: "2/185-192", geraet: "Flat Pro Outdoor Par Can 8ch", farbe: "NC", beschreibung: ""},
-    {kanal: "623", adresse: "2/193-200", geraet: "Flat Pro Outdoor Par Can 8ch", farbe: "NC", beschreibung: ""},
     {kanal: "624", adresse: "2/201-208", geraet: "Flat Pro Outdoor Par Can 8ch", farbe: "NC", beschreibung: ""},
     {kanal: "625", adresse: "2/209-216", geraet: "Flat Pro Outdoor Par Can 8ch", farbe: "NC", beschreibung: ""},
-    {kanal: "626", adresse: "2/217-224", geraet: "Flat Pro Outdoor Par Can 8ch", farbe: "NC", beschreibung: ""},
     {kategorie: "LDDE NanoPix"},
     {kanal: "641", adresse: "2/225-232", geraet: "NanoPIX 1440HP 7ch+control", farbe: "NC", beschreibung: ""},
     {kanal: "642", adresse: "2/233-240", geraet: "NanoPIX 1440HP 7ch+control", farbe: "NC", beschreibung: ""},
@@ -742,8 +748,6 @@ const scheinwerferData = [
     {kanal: "666", adresse: "3/449-464", geraet: "NanoPix CYC 8 16b 16ch", farbe: "NC", beschreibung: ""},
     {kanal: "667", adresse: "3/465-480", geraet: "NanoPix CYC 8 16b 16ch", farbe: "NC", beschreibung: ""},
     {kanal: "668", adresse: "3/481-496", geraet: "NanoPix CYC 8 16b 16ch", farbe: "NC", beschreibung: ""},
-    {kategorie: "Retro Flat Par"},
-    {kanal: "671", adresse: "867-874", geraet: "Retro Flat Par 18x10W RGBWAUV 8ch", farbe: "NC", beschreibung: ""},
     {kategorie: "ApeLabs Sticks"},
     {kanal: "681", adresse: "1/237-240", geraet: "Ape Stick 4ch", farbe: "NC", beschreibung: ""},
     {kanal: "682", adresse: "1/241-244", geraet: "Ape Stick 4ch", farbe: "NC", beschreibung: ""},
@@ -845,9 +849,6 @@ const scheinwerferData = [
             document.getElementById('sbtor').value = data.sbtor || '';
             document.getElementById('zuege').value = data.zuege || '';
             document.getElementById('aufbau').innerHTML = data.aufbau || '';
-            
-            // Alle deaktivieren
-            toggleAll(false);
             
             // Gespeicherte Scheinwerfer aktivieren
             if (data.scheinwerfer) {
@@ -1167,28 +1168,36 @@ const scheinwerferData = [
             updateStats();
         }
         
-        function toggleAll(state) {
+        function clearAllFields() {
+            if (!confirm('Möchten Sie wirklich alle Eingabefelder leeren? Diese Aktion kann nicht rückgängig gemacht werden.')) {
+                return;
+            }
+            
+            // Header-Felder leeren
+            document.getElementById('stueck').value = '';
+            document.getElementById('datum').value = '';
+            document.getElementById('portalbruecke').value = '';
+            document.getElementById('portale').value = '';
+            document.getElementById('sbtor').value = '';
+            document.getElementById('zuege').value = '';
+            document.getElementById('aufbau').innerHTML = '';
+            
+            // Alle Checkboxen deaktivieren
             const checkboxes = document.querySelectorAll('input[type="checkbox"]');
             checkboxes.forEach(cb => {
-                cb.checked = state;
+                cb.checked = false;
                 const index = cb.closest('tr').dataset.index;
                 toggleRow(cb, index);
             });
-        }
-        
-        function filterTable() {
-            const filter = document.getElementById('filter').value.toLowerCase();
-            const rows = document.querySelectorAll('#scheinwerferBody tr');
-
-            rows.forEach(row => {
-                // Kategoriezeilen immer anzeigen
-                if (row.dataset.category === 'true') {
-                    row.style.display = '';
-                } else {
-                    const text = row.textContent.toLowerCase();
-                    row.style.display = text.includes(filter) ? '' : 'none';
-                }
-            });
+            
+            // Alle custom Rows entfernen
+            const customRows = document.querySelectorAll('tr[data-custom="true"]');
+            customRows.forEach(row => row.remove());
+            
+            // LocalStorage leeren
+            localStorage.removeItem('einleuchtplan');
+            
+            updateStats();
         }
         
         function updateStats() {
