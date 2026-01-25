@@ -1,0 +1,87 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: theaterplan-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: theaterplan
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Ut27Jfwu9Gqu4HQYeJ+f3Bwd+7xsUolE
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: theaterplan-redis
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:6380:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    container_name: theaterplan-backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: theaterplan
+      DB_USER: postgres
+      DB_PASSWORD: Ut27Jfwu9Gqu4HQYeJ+f3Bwd+7xsUolE
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      JWT_SECRET: WiekE3OqiIVcXWu0ZQ5rYZKj17/XySKlvOuV/+066Wg=
+      JWT_EXPIRES_IN: 7d
+      CORS_ORIGIN: http://159.195.30.23:5173
+    ports:
+      - "127.0.0.1:3006:3000"
+    volumes:
+      - ./backend/src:/app/src
+      - /app/node_modules
+
+  frontend:
+    build: ./frontend
+    container_name: theaterplan-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "127.0.0.1:5174:5173"
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+      - /app/node_modules
+    environment:
+      VITE_API_URL: http://159.195.30.23:3000
+      VITE_WS_URL: ws://159.195.30.23:3000
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  default:
+    name: web
+    external: true

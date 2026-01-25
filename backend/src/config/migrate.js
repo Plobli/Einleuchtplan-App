@@ -1,0 +1,94 @@
+import pool from './database.js';
+
+const migrations = `
+-- Users Table
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    role VARCHAR(50) DEFAULT 'technician',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Shows/Produktionen Table
+CREATE TABLE IF NOT EXISTS shows (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    venue VARCHAR(255),
+    date DATE,
+    created_by INTEGER REFERENCES users(id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Channels Table
+CREATE TABLE IF NOT EXISTS channels (
+    id SERIAL PRIMARY KEY,
+    show_id INTEGER REFERENCES shows(id) ON DELETE CASCADE,
+    kanal VARCHAR(10) NOT NULL,
+    adresse VARCHAR(50),
+    geraet VARCHAR(255),
+    farbe VARCHAR(10),
+    beschreibung TEXT,
+    aktiv BOOLEAN DEFAULT false,
+    position INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(show_id, kanal)
+);
+
+-- Channel History Table
+CREATE TABLE IF NOT EXISTS channel_history (
+    id SERIAL PRIMARY KEY,
+    channel_id INTEGER REFERENCES channels(id) ON DELETE CASCADE,
+    user_id INTEGER REFERENCES users(id),
+    field_name VARCHAR(50) NOT NULL,
+    old_value TEXT,
+    new_value TEXT,
+    changed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Indexes
+CREATE INDEX IF NOT EXISTS idx_channels_show_id ON channels(show_id);
+CREATE INDEX IF NOT EXISTS idx_channels_kanal ON channels(kanal);
+CREATE INDEX IF NOT EXISTS idx_channel_history_channel_id ON channel_history(channel_id);
+CREATE INDEX IF NOT EXISTS idx_channel_history_changed_at ON channel_history(changed_at);
+
+-- Update timestamp function
+CREATE OR REPLACE FUNCTION update_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = CURRENT_TIMESTAMP;
+    RETURN NEW;
+END;
+$$ language 'plpgsql';
+
+-- Triggers for updated_at
+DROP TRIGGER IF EXISTS update_users_updated_at ON users;
+CREATE TRIGGER update_users_updated_at BEFORE UPDATE ON users
+    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+DROP TRIGGER IF EXISTS update_shows_updated_at ON shows;
+CREATE TRIGGER update_shows_updated_at BEFORE UPDATE ON shows
+    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+DROP TRIGGER IF EXISTS update_channels_updated_at ON channels;
+CREATE TRIGGER update_channels_updated_at BEFORE UPDATE ON channels
+    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+`;
+
+async function migrate() {
+    try {
+        console.log('🚀 Starting database migration...');
+        await pool.query(migrations);
+        console.log('✅ Migration completed successfully');
+        process.exit(0);
+    } catch (error) {
+        console.error('❌ Migration failed:', error);
+        process.exit(1);
+    }
+}
+
+migrate();
