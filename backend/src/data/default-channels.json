@@ -1,0 +1,3042 @@
+[
+  {
+    "kanal": "1",
+    "adresse": "121",
+    "geraet": "VK Bühne unten Lks",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz Bühne hinten links",
+    "position": 0,
+    "aktiv": false
+  },
+  {
+    "kanal": "2",
+    "adresse": "122",
+    "geraet": "VK Bühne unten Lks",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz Bühne hinten links",
+    "position": 1,
+    "aktiv": false
+  },
+  {
+    "kanal": "3",
+    "adresse": "123",
+    "geraet": "VK Bühne unten Lks",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz Bühne hinten links",
+    "position": 2,
+    "aktiv": false
+  },
+  {
+    "kanal": "4",
+    "adresse": "124",
+    "geraet": "VK Bühne unten Lks",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz Bühne hinten links",
+    "position": 3,
+    "aktiv": false
+  },
+  {
+    "kanal": "5",
+    "adresse": "125",
+    "geraet": "VK Bühne unten Lks",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz Bühne hinten links",
+    "position": 4,
+    "aktiv": false
+  },
+  {
+    "kanal": "6",
+    "adresse": "126",
+    "geraet": "VK Bühne unten Lks",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz Bühne hinten links",
+    "position": 5,
+    "aktiv": false
+  },
+  {
+    "kanal": "7",
+    "adresse": "145",
+    "geraet": "5 KW",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz Bühne hinten links",
+    "position": 6,
+    "aktiv": false
+  },
+  {
+    "kanal": "9",
+    "adresse": "127",
+    "geraet": "VK Bühne unten Rs",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz Bühne hinten rechts",
+    "position": 7,
+    "aktiv": false
+  },
+  {
+    "kanal": "10",
+    "adresse": "128",
+    "geraet": "VK Bühne unten Rs",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz Bühne hinten rechts",
+    "position": 8,
+    "aktiv": false
+  },
+  {
+    "kanal": "11",
+    "adresse": "129",
+    "geraet": "VK Bühne unten Rs",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz Bühne hinten rechts",
+    "position": 9,
+    "aktiv": false
+  },
+  {
+    "kanal": "12",
+    "adresse": "130",
+    "geraet": "VK Bühne unten Rs",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz Bühne hinten rechts",
+    "position": 10,
+    "aktiv": false
+  },
+  {
+    "kanal": "13",
+    "adresse": "131",
+    "geraet": "VK Bühne unten Rs",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz Bühne hinten rechts",
+    "position": 11,
+    "aktiv": false
+  },
+  {
+    "kanal": "14",
+    "adresse": "132",
+    "geraet": "VK Bühne unten Rs",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz Bühne hinten rechts",
+    "position": 12,
+    "aktiv": false
+  },
+  {
+    "kanal": "15",
+    "adresse": "146",
+    "geraet": "5 KW",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz Bühne hinten rechts",
+    "position": 13,
+    "aktiv": false
+  },
+  {
+    "kanal": "17",
+    "adresse": "133",
+    "geraet": "VK Bühne Bodentank links und rechts",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatzklappe Bühne links und rechts",
+    "position": 14,
+    "aktiv": false
+  },
+  {
+    "kanal": "18",
+    "adresse": "134",
+    "geraet": "VK Bühne Bodentank links und rechts",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatzklappe Bühne links und rechts",
+    "position": 15,
+    "aktiv": false
+  },
+  {
+    "kanal": "19",
+    "adresse": "135",
+    "geraet": "VK Bühne Bodentank links und rechts",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatzklappe Bühne links und rechts",
+    "position": 16,
+    "aktiv": false
+  },
+  {
+    "kanal": "20",
+    "adresse": "136",
+    "geraet": "VK Bühne Bodentank links und rechts",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatzklappe Bühne links und rechts",
+    "position": 17,
+    "aktiv": false
+  },
+  {
+    "kanal": "21",
+    "adresse": "137",
+    "geraet": "VK Bühne Bodentank links und rechts",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatzklappe Bühne links und rechts",
+    "position": 18,
+    "aktiv": false
+  },
+  {
+    "kanal": "22",
+    "adresse": "138",
+    "geraet": "VK Bühne Bodentank links und rechts",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatzklappe Bühne links und rechts",
+    "position": 19,
+    "aktiv": false
+  },
+  {
+    "kanal": "23",
+    "adresse": "115",
+    "geraet": "VK I-Pult Hölzerner",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Unterbühne Mitte bzw. I-Pult an Treppe",
+    "position": 20,
+    "aktiv": false
+  },
+  {
+    "kanal": "24",
+    "adresse": "116",
+    "geraet": "VK I-Pult Hölzerner",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Unterbühne Mitte bzw. I-Pult an Treppe",
+    "position": 21,
+    "aktiv": false
+  },
+  {
+    "kanal": "25",
+    "adresse": "117",
+    "geraet": "VK I-Pult Hölzerner",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Unterbühne Mitte bzw. I-Pult an Treppe",
+    "position": 22,
+    "aktiv": false
+  },
+  {
+    "kanal": "26",
+    "adresse": "118",
+    "geraet": "VK I-Pult Hölzerner",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Unterbühne Mitte bzw. I-Pult an Treppe",
+    "position": 23,
+    "aktiv": false
+  },
+  {
+    "kanal": "27",
+    "adresse": "119",
+    "geraet": "VK I-Pult Hölzerner",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Unterbühne Mitte bzw. I-Pult an Treppe",
+    "position": 24,
+    "aktiv": false
+  },
+  {
+    "kanal": "28",
+    "adresse": "120",
+    "geraet": "VK I-Pult Hölzerner",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Unterbühne Mitte bzw. I-Pult an Treppe",
+    "position": 25,
+    "aktiv": false
+  },
+  {
+    "kanal": "36",
+    "adresse": "25",
+    "geraet": "VK I-Pult (SD)",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz I-Pult links",
+    "position": 26,
+    "aktiv": false
+  },
+  {
+    "kanal": "37",
+    "adresse": "26",
+    "geraet": "VK I-Pult (SD)",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz I-Pult links",
+    "position": 27,
+    "aktiv": false
+  },
+  {
+    "kanal": "38",
+    "adresse": "27",
+    "geraet": "VK I-Pult (SD)",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz I-Pult links",
+    "position": 28,
+    "aktiv": false
+  },
+  {
+    "kanal": "39",
+    "adresse": "28",
+    "geraet": "VK I-Pult (SD)",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz I-Pult links",
+    "position": 29,
+    "aktiv": false
+  },
+  {
+    "kanal": "40",
+    "adresse": "29",
+    "geraet": "VK I-Pult (SD)",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz I-Pult links",
+    "position": 30,
+    "aktiv": false
+  },
+  {
+    "kanal": "41",
+    "adresse": "30",
+    "geraet": "VK I-Pult (SD)",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz I-Pult links",
+    "position": 31,
+    "aktiv": false
+  },
+  {
+    "kanal": "42",
+    "adresse": "34",
+    "geraet": "VK FW-Platz",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz FW-Platz rechts",
+    "position": 32,
+    "aktiv": false
+  },
+  {
+    "kanal": "43",
+    "adresse": "35",
+    "geraet": "VK FW-Platz",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz FW-Platz rechts",
+    "position": 33,
+    "aktiv": false
+  },
+  {
+    "kanal": "44",
+    "adresse": "36",
+    "geraet": "VK FW-Platz",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz FW-Platz rechts",
+    "position": 34,
+    "aktiv": false
+  },
+  {
+    "kanal": "45",
+    "adresse": "37",
+    "geraet": "VK FW-Platz",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz FW-Platz rechts",
+    "position": 35,
+    "aktiv": false
+  },
+  {
+    "kanal": "46",
+    "adresse": "38",
+    "geraet": "VK FW-Platz",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz FW-Platz rechts",
+    "position": 36,
+    "aktiv": false
+  },
+  {
+    "kanal": "47",
+    "adresse": "39",
+    "geraet": "VK FW-Platz",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz FW-Platz rechts",
+    "position": 37,
+    "aktiv": false
+  },
+  {
+    "kanal": "48",
+    "adresse": "31",
+    "geraet": "VK Portal Lks",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Portal Lks",
+    "position": 38,
+    "aktiv": false
+  },
+  {
+    "kanal": "49",
+    "adresse": "32",
+    "geraet": "VK Portal Lks",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Portal Lks",
+    "position": 39,
+    "aktiv": false
+  },
+  {
+    "kanal": "50",
+    "adresse": "33",
+    "geraet": "VK Portal Lks",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Portal Lks",
+    "position": 40,
+    "aktiv": false
+  },
+  {
+    "kanal": "623",
+    "adresse": "2/193-200",
+    "geraet": "Flat Pro Outdoor Par Can 8ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Portal Lks",
+    "position": 41,
+    "aktiv": false
+  },
+  {
+    "kanal": "51",
+    "adresse": "40",
+    "geraet": "VK Portal Rs",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Portal Rs",
+    "position": 42,
+    "aktiv": false
+  },
+  {
+    "kanal": "52",
+    "adresse": "41",
+    "geraet": "VK Portal Rs",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Portal Rs",
+    "position": 43,
+    "aktiv": false
+  },
+  {
+    "kanal": "53",
+    "adresse": "42",
+    "geraet": "VK Portal Rs",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Portal Rs",
+    "position": 44,
+    "aktiv": false
+  },
+  {
+    "kanal": "626",
+    "adresse": "2/217-224",
+    "geraet": "Flat Pro Outdoor Par Can 8ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Portal Rs",
+    "position": 45,
+    "aktiv": false
+  },
+  {
+    "kanal": "101",
+    "adresse": "1",
+    "geraet": "1,2kW Profil",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Brücke",
+    "position": 46,
+    "aktiv": false
+  },
+  {
+    "kanal": "102",
+    "adresse": "2",
+    "geraet": "2kW F",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Brücke",
+    "position": 47,
+    "aktiv": false
+  },
+  {
+    "kanal": "103",
+    "adresse": "3",
+    "geraet": "2kW F",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Brücke",
+    "position": 48,
+    "aktiv": false
+  },
+  {
+    "kanal": "104",
+    "adresse": "4",
+    "geraet": "2kW F",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Brücke",
+    "position": 49,
+    "aktiv": false
+  },
+  {
+    "kanal": "105",
+    "adresse": "5",
+    "geraet": "1,2kW PC",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Brücke",
+    "position": 50,
+    "aktiv": false
+  },
+  {
+    "kanal": "106",
+    "adresse": "6",
+    "geraet": "1,2kW PC",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Brücke",
+    "position": 51,
+    "aktiv": false
+  },
+  {
+    "kanal": "107",
+    "adresse": "43",
+    "geraet": "1,2kW Profil",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Brücke",
+    "position": 52,
+    "aktiv": false
+  },
+  {
+    "kanal": "108",
+    "adresse": "44",
+    "geraet": "2kW F",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Brücke",
+    "position": 53,
+    "aktiv": false
+  },
+  {
+    "kanal": "109",
+    "adresse": "45",
+    "geraet": "1,2kW Profil",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Brücke",
+    "position": 54,
+    "aktiv": false
+  },
+  {
+    "kanal": "671",
+    "adresse": "867-874",
+    "geraet": "Retro Flat Par 18x10W RGBWAUV 8ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Brücke",
+    "position": 55,
+    "aktiv": false
+  },
+  {
+    "kanal": "110",
+    "adresse": "7",
+    "geraet": "2kW F",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Brücke",
+    "position": 56,
+    "aktiv": false
+  },
+  {
+    "kanal": "111",
+    "adresse": "8",
+    "geraet": "1,2kW PC",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Brücke",
+    "position": 57,
+    "aktiv": false
+  },
+  {
+    "kanal": "112",
+    "adresse": "9",
+    "geraet": "1,2kW PC",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Brücke",
+    "position": 58,
+    "aktiv": false
+  },
+  {
+    "kanal": "113",
+    "adresse": "10",
+    "geraet": "2kW F",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Brücke",
+    "position": 59,
+    "aktiv": false
+  },
+  {
+    "kanal": "114",
+    "adresse": "11",
+    "geraet": "2kW F",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Brücke",
+    "position": 60,
+    "aktiv": false
+  },
+  {
+    "kanal": "115",
+    "adresse": "12",
+    "geraet": "2kW F",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Brücke",
+    "position": 61,
+    "aktiv": false
+  },
+  {
+    "kanal": "116",
+    "adresse": "13",
+    "geraet": "1,2kW PC",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Brücke",
+    "position": 62,
+    "aktiv": false
+  },
+  {
+    "kanal": "117",
+    "adresse": "14",
+    "geraet": "1,2kW PC",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Brücke",
+    "position": 63,
+    "aktiv": false
+  },
+  {
+    "kanal": "118",
+    "adresse": "15",
+    "geraet": "1,2kW Profil",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Brücke",
+    "position": 64,
+    "aktiv": false
+  },
+  {
+    "kanal": "131",
+    "adresse": "49",
+    "geraet": "2kW PC",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "1. Galerie links",
+    "position": 65,
+    "aktiv": false
+  },
+  {
+    "kanal": "132",
+    "adresse": "50",
+    "geraet": "2kW PC",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "1. Galerie links",
+    "position": 66,
+    "aktiv": false
+  },
+  {
+    "kanal": "133",
+    "adresse": "51",
+    "geraet": "2kW PC",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "1. Galerie links",
+    "position": 67,
+    "aktiv": false
+  },
+  {
+    "kanal": "134",
+    "adresse": "52",
+    "geraet": "2x PAR",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "1. Galerie links",
+    "position": 68,
+    "aktiv": false
+  },
+  {
+    "kanal": "135",
+    "adresse": "53",
+    "geraet": "2x PAR",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "1. Galerie links",
+    "position": 69,
+    "aktiv": false
+  },
+  {
+    "kanal": "136",
+    "adresse": "54",
+    "geraet": "Profil",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "1. Galerie links",
+    "position": 70,
+    "aktiv": false
+  },
+  {
+    "kanal": "137",
+    "adresse": "46",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Bar 1. Galerie hinten links",
+    "position": 71,
+    "aktiv": false
+  },
+  {
+    "kanal": "138",
+    "adresse": "47",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Bar 1. Galerie hinten links",
+    "position": 72,
+    "aktiv": false
+  },
+  {
+    "kanal": "139",
+    "adresse": "48",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Bar 1. Galerie hinten links",
+    "position": 73,
+    "aktiv": false
+  },
+  {
+    "kanal": "140",
+    "adresse": "22",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Bar 1. Galerie hinten links",
+    "position": 74,
+    "aktiv": false
+  },
+  {
+    "kanal": "141",
+    "adresse": "23",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Bar 1. Galerie hinten links",
+    "position": 75,
+    "aktiv": false
+  },
+  {
+    "kanal": "142",
+    "adresse": "24",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Bar 1. Galerie hinten links",
+    "position": 76,
+    "aktiv": false
+  },
+  {
+    "kanal": "143",
+    "adresse": "139",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Bar 1. Galerie hinten rechts",
+    "position": 77,
+    "aktiv": false
+  },
+  {
+    "kanal": "144",
+    "adresse": "140",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Bar 1. Galerie hinten rechts",
+    "position": 78,
+    "aktiv": false
+  },
+  {
+    "kanal": "145",
+    "adresse": "141",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Bar 1. Galerie hinten rechts",
+    "position": 79,
+    "aktiv": false
+  },
+  {
+    "kanal": "146",
+    "adresse": "142",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Bar 1. Galerie hinten rechts",
+    "position": 80,
+    "aktiv": false
+  },
+  {
+    "kanal": "147",
+    "adresse": "143",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Bar 1. Galerie hinten rechts",
+    "position": 81,
+    "aktiv": false
+  },
+  {
+    "kanal": "148",
+    "adresse": "144",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Bar 1. Galerie hinten rechts",
+    "position": 82,
+    "aktiv": false
+  },
+  {
+    "kanal": "149",
+    "adresse": "55",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "1. Galerie rechts",
+    "position": 83,
+    "aktiv": false
+  },
+  {
+    "kanal": "150",
+    "adresse": "56",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "1. Galerie rechts",
+    "position": 84,
+    "aktiv": false
+  },
+  {
+    "kanal": "151",
+    "adresse": "57",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "1. Galerie rechts",
+    "position": 85,
+    "aktiv": false
+  },
+  {
+    "kanal": "153",
+    "adresse": "59",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "1. Galerie rechts",
+    "position": 86,
+    "aktiv": false
+  },
+  {
+    "kanal": "154",
+    "adresse": "60",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "1. Galerie rechts",
+    "position": 87,
+    "aktiv": false
+  },
+  {
+    "kanal": "161",
+    "adresse": "61",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2. Galerie",
+    "position": 88,
+    "aktiv": false
+  },
+  {
+    "kanal": "162",
+    "adresse": "62",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2. Galerie",
+    "position": 89,
+    "aktiv": false
+  },
+  {
+    "kanal": "163",
+    "adresse": "63",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2. Galerie",
+    "position": 90,
+    "aktiv": false
+  },
+  {
+    "kanal": "164",
+    "adresse": "64",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2. Galerie",
+    "position": 91,
+    "aktiv": false
+  },
+  {
+    "kanal": "165",
+    "adresse": "65",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2. Galerie",
+    "position": 92,
+    "aktiv": false
+  },
+  {
+    "kanal": "166",
+    "adresse": "66",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2. Galerie",
+    "position": 93,
+    "aktiv": false
+  },
+  {
+    "kanal": "167",
+    "adresse": "67",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2. Galerie",
+    "position": 94,
+    "aktiv": false
+  },
+  {
+    "kanal": "168",
+    "adresse": "68",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2. Galerie",
+    "position": 95,
+    "aktiv": false
+  },
+  {
+    "kanal": "169",
+    "adresse": "69",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2. Galerie",
+    "position": 96,
+    "aktiv": false
+  },
+  {
+    "kanal": "170",
+    "adresse": "70",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2. Galerie",
+    "position": 97,
+    "aktiv": false
+  },
+  {
+    "kanal": "171",
+    "adresse": "71",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2. Galerie",
+    "position": 98,
+    "aktiv": false
+  },
+  {
+    "kanal": "172",
+    "adresse": "72",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2. Galerie",
+    "position": 99,
+    "aktiv": false
+  },
+  {
+    "kanal": "181",
+    "adresse": "79",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz 2. Galerie oder MZ",
+    "position": 100,
+    "aktiv": false
+  },
+  {
+    "kanal": "182",
+    "adresse": "80",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz 2. Galerie oder MZ",
+    "position": 101,
+    "aktiv": false
+  },
+  {
+    "kanal": "183",
+    "adresse": "81",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz 2. Galerie oder MZ",
+    "position": 102,
+    "aktiv": false
+  },
+  {
+    "kanal": "184",
+    "adresse": "82",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz 2. Galerie oder MZ",
+    "position": 103,
+    "aktiv": false
+  },
+  {
+    "kanal": "185",
+    "adresse": "83",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz 2. Galerie oder MZ",
+    "position": 104,
+    "aktiv": false
+  },
+  {
+    "kanal": "186",
+    "adresse": "84",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz 2. Galerie oder MZ",
+    "position": 105,
+    "aktiv": false
+  },
+  {
+    "kanal": "187",
+    "adresse": "73",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz 2. Galerie oder MZ",
+    "position": 106,
+    "aktiv": false
+  },
+  {
+    "kanal": "188",
+    "adresse": "74",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz 2. Galerie oder MZ",
+    "position": 107,
+    "aktiv": false
+  },
+  {
+    "kanal": "189",
+    "adresse": "75",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz 2. Galerie oder MZ",
+    "position": 108,
+    "aktiv": false
+  },
+  {
+    "kanal": "190",
+    "adresse": "76",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz 2. Galerie oder MZ",
+    "position": 109,
+    "aktiv": false
+  },
+  {
+    "kanal": "191",
+    "adresse": "77",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz 2. Galerie oder MZ",
+    "position": 110,
+    "aktiv": false
+  },
+  {
+    "kanal": "192",
+    "adresse": "78",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz 2. Galerie oder MZ",
+    "position": 111,
+    "aktiv": false
+  },
+  {
+    "kanal": "193",
+    "adresse": "147",
+    "geraet": "5 KW",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz VB",
+    "position": 112,
+    "aktiv": false
+  },
+  {
+    "kanal": "194",
+    "adresse": "463",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz VB",
+    "position": 113,
+    "aktiv": false
+  },
+  {
+    "kanal": "195",
+    "adresse": "148",
+    "geraet": "5 KW",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz VB",
+    "position": 114,
+    "aktiv": false
+  },
+  {
+    "kanal": "196",
+    "adresse": "476",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Versatz VB",
+    "position": 115,
+    "aktiv": false
+  },
+  {
+    "kanal": "201",
+    "adresse": "97",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2kW F Saal",
+    "position": 116,
+    "aktiv": false
+  },
+  {
+    "kanal": "202",
+    "adresse": "98",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2kW F Saal",
+    "position": 117,
+    "aktiv": false
+  },
+  {
+    "kanal": "203",
+    "adresse": "99",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2kW F Saal",
+    "position": 118,
+    "aktiv": false
+  },
+  {
+    "kanal": "204",
+    "adresse": "100",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2kW F Saal",
+    "position": 119,
+    "aktiv": false
+  },
+  {
+    "kanal": "205",
+    "adresse": "101",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2kW F Saal",
+    "position": 120,
+    "aktiv": false
+  },
+  {
+    "kanal": "206",
+    "adresse": "102",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2kW F Saal",
+    "position": 121,
+    "aktiv": false
+  },
+  {
+    "kanal": "207",
+    "adresse": "149",
+    "geraet": "5 KW",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2kW F Saal",
+    "position": 122,
+    "aktiv": false
+  },
+  {
+    "kanal": "208",
+    "adresse": "103",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2kW F Saal",
+    "position": 123,
+    "aktiv": false
+  },
+  {
+    "kanal": "209",
+    "adresse": "104",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2kW F Saal",
+    "position": 124,
+    "aktiv": false
+  },
+  {
+    "kanal": "210",
+    "adresse": "105",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2kW F Saal",
+    "position": 125,
+    "aktiv": false
+  },
+  {
+    "kanal": "211",
+    "adresse": "106",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2kW F Saal",
+    "position": 126,
+    "aktiv": false
+  },
+  {
+    "kanal": "212",
+    "adresse": "107",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2kW F Saal",
+    "position": 127,
+    "aktiv": false
+  },
+  {
+    "kanal": "213",
+    "adresse": "108",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2kW F Saal",
+    "position": 128,
+    "aktiv": false
+  },
+  {
+    "kanal": "214",
+    "adresse": "150",
+    "geraet": "5 KW",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "2kW F Saal",
+    "position": 129,
+    "aktiv": false
+  },
+  {
+    "kanal": "221",
+    "adresse": "151",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Selecon",
+    "position": 130,
+    "aktiv": false
+  },
+  {
+    "kanal": "222",
+    "adresse": "152",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Selecon",
+    "position": 131,
+    "aktiv": false
+  },
+  {
+    "kanal": "223",
+    "adresse": "153",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Selecon",
+    "position": 132,
+    "aktiv": false
+  },
+  {
+    "kanal": "224",
+    "adresse": "154",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Selecon",
+    "position": 133,
+    "aktiv": false
+  },
+  {
+    "kanal": "225",
+    "adresse": "85",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Selecon",
+    "position": 134,
+    "aktiv": false
+  },
+  {
+    "kanal": "226",
+    "adresse": "86",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Selecon",
+    "position": 135,
+    "aktiv": false
+  },
+  {
+    "kanal": "227",
+    "adresse": "87",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Selecon",
+    "position": 136,
+    "aktiv": false
+  },
+  {
+    "kanal": "228",
+    "adresse": "88",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Selecon",
+    "position": 137,
+    "aktiv": false
+  },
+  {
+    "kanal": "231",
+    "adresse": "155",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Profiler 2kW",
+    "position": 138,
+    "aktiv": false
+  },
+  {
+    "kanal": "232",
+    "adresse": "156",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Profiler 2kW",
+    "position": 139,
+    "aktiv": false
+  },
+  {
+    "kanal": "233",
+    "adresse": "157",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Profiler 2kW",
+    "position": 140,
+    "aktiv": false
+  },
+  {
+    "kanal": "234",
+    "adresse": "158",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Profiler 2kW",
+    "position": 141,
+    "aktiv": false
+  },
+  {
+    "kanal": "235",
+    "adresse": "89",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Profiler 2kW",
+    "position": 142,
+    "aktiv": false
+  },
+  {
+    "kanal": "236",
+    "adresse": "90",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Profiler 2kW",
+    "position": 143,
+    "aktiv": false
+  },
+  {
+    "kanal": "237",
+    "adresse": "91",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Profiler 2kW",
+    "position": 144,
+    "aktiv": false
+  },
+  {
+    "kanal": "238",
+    "adresse": "92",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Profiler 2kW",
+    "position": 145,
+    "aktiv": false
+  },
+  {
+    "kanal": "241",
+    "adresse": "159",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Profiler 2kW",
+    "position": 146,
+    "aktiv": false
+  },
+  {
+    "kanal": "242",
+    "adresse": "160",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Profiler 2kW",
+    "position": 147,
+    "aktiv": false
+  },
+  {
+    "kanal": "243",
+    "adresse": "161",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Profiler 2kW",
+    "position": 148,
+    "aktiv": false
+  },
+  {
+    "kanal": "244",
+    "adresse": "162",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Profiler 2kW",
+    "position": 149,
+    "aktiv": false
+  },
+  {
+    "kanal": "245",
+    "adresse": "93",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Profiler 2kW",
+    "position": 150,
+    "aktiv": false
+  },
+  {
+    "kanal": "246",
+    "adresse": "94",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Profiler 2kW",
+    "position": 151,
+    "aktiv": false
+  },
+  {
+    "kanal": "247",
+    "adresse": "95",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Profiler 2kW",
+    "position": 152,
+    "aktiv": false
+  },
+  {
+    "kanal": "248",
+    "adresse": "96",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Profiler 2kW",
+    "position": 153,
+    "aktiv": false
+  },
+  {
+    "kanal": "271",
+    "adresse": "332-341",
+    "geraet": "S4 LED S2 Lustr QS General",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "ETC Lustre S2",
+    "position": 154,
+    "aktiv": false
+  },
+  {
+    "kanal": "272",
+    "adresse": "342-351",
+    "geraet": "S4 LED S2 Lustr QS General",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "ETC Lustre S2",
+    "position": 155,
+    "aktiv": false
+  },
+  {
+    "kanal": "273",
+    "adresse": "352-361",
+    "geraet": "S4 LED S2 Lustr QS General",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "ETC Lustre S2",
+    "position": 156,
+    "aktiv": false
+  },
+  {
+    "kanal": "274",
+    "adresse": "362-371",
+    "geraet": "S4 LED S2 Lustr QS General",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "ETC Lustre S2",
+    "position": 157,
+    "aktiv": false
+  },
+  {
+    "kanal": "275",
+    "adresse": "372-381",
+    "geraet": "S4 LED S2 Lustr QS General",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "ETC Lustre S2",
+    "position": 158,
+    "aktiv": false
+  },
+  {
+    "kanal": "276",
+    "adresse": "382-391",
+    "geraet": "S4 LED S2 Lustr QS General",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "ETC Lustre S2",
+    "position": 159,
+    "aktiv": false
+  },
+  {
+    "kanal": "277",
+    "adresse": "392-401",
+    "geraet": "S4 LED S2 Lustr QS General",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "ETC Lustre S2",
+    "position": 160,
+    "aktiv": false
+  },
+  {
+    "kanal": "278",
+    "adresse": "402-411",
+    "geraet": "S4 LED S2 Lustr QS General",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "ETC Lustre S2",
+    "position": 161,
+    "aktiv": false
+  },
+  {
+    "kanal": "301",
+    "adresse": "109",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Saaltruss",
+    "position": 162,
+    "aktiv": false
+  },
+  {
+    "kanal": "302",
+    "adresse": "110",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Saaltruss",
+    "position": 163,
+    "aktiv": false
+  },
+  {
+    "kanal": "303",
+    "adresse": "111",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Saaltruss",
+    "position": 164,
+    "aktiv": false
+  },
+  {
+    "kanal": "304",
+    "adresse": "112",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Saaltruss",
+    "position": 165,
+    "aktiv": false
+  },
+  {
+    "kanal": "305",
+    "adresse": "113",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Saaltruss",
+    "position": 166,
+    "aktiv": false
+  },
+  {
+    "kanal": "306",
+    "adresse": "114",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Saaltruss",
+    "position": 167,
+    "aktiv": false
+  },
+  {
+    "kanal": "307",
+    "adresse": "181",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Saaltruss",
+    "position": 168,
+    "aktiv": false
+  },
+  {
+    "kanal": "308",
+    "adresse": "182",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Saaltruss",
+    "position": 169,
+    "aktiv": false
+  },
+  {
+    "kanal": "309",
+    "adresse": "183",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Saaltruss",
+    "position": 170,
+    "aktiv": false
+  },
+  {
+    "kanal": "310",
+    "adresse": "184",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Saaltruss",
+    "position": 171,
+    "aktiv": false
+  },
+  {
+    "kanal": "311",
+    "adresse": "185",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Saaltruss",
+    "position": 172,
+    "aktiv": false
+  },
+  {
+    "kanal": "312",
+    "adresse": "186",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Saaltruss",
+    "position": 173,
+    "aktiv": false
+  },
+  {
+    "kanal": "313",
+    "adresse": "187",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Tontruss F",
+    "position": 174,
+    "aktiv": false
+  },
+  {
+    "kanal": "314",
+    "adresse": "188",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Tontruss F",
+    "position": 175,
+    "aktiv": false
+  },
+  {
+    "kanal": "315",
+    "adresse": "189",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Tontruss F",
+    "position": 176,
+    "aktiv": false
+  },
+  {
+    "kanal": "316",
+    "adresse": "190",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Tontruss F",
+    "position": 177,
+    "aktiv": false
+  },
+  {
+    "kanal": "317",
+    "adresse": "191",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Tontruss F",
+    "position": 178,
+    "aktiv": false
+  },
+  {
+    "kanal": "318",
+    "adresse": "192",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Tontruss F",
+    "position": 179,
+    "aktiv": false
+  },
+  {
+    "kanal": "327",
+    "adresse": "193",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Saaltruss PC",
+    "position": 180,
+    "aktiv": false
+  },
+  {
+    "kanal": "328",
+    "adresse": "194",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Saaltruss PC",
+    "position": 181,
+    "aktiv": false
+  },
+  {
+    "kanal": "329",
+    "adresse": "195",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Saaltruss PC",
+    "position": 182,
+    "aktiv": false
+  },
+  {
+    "kanal": "330",
+    "adresse": "196",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Saaltruss PC",
+    "position": 183,
+    "aktiv": false
+  },
+  {
+    "kanal": "331",
+    "adresse": "197",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Saaltruss PC",
+    "position": 184,
+    "aktiv": false
+  },
+  {
+    "kanal": "332",
+    "adresse": "198",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Saaltruss PC",
+    "position": 185,
+    "aktiv": false
+  },
+  {
+    "kanal": "335",
+    "adresse": "199",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Tontruss",
+    "position": 186,
+    "aktiv": false
+  },
+  {
+    "kanal": "336",
+    "adresse": "200",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Tontruss",
+    "position": 187,
+    "aktiv": false
+  },
+  {
+    "kanal": "337",
+    "adresse": "201",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Tontruss",
+    "position": 188,
+    "aktiv": false
+  },
+  {
+    "kanal": "338",
+    "adresse": "202",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Tontruss",
+    "position": 189,
+    "aktiv": false
+  },
+  {
+    "kanal": "339",
+    "adresse": "203",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Tontruss",
+    "position": 190,
+    "aktiv": false
+  },
+  {
+    "kanal": "340",
+    "adresse": "204",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Tontruss",
+    "position": 191,
+    "aktiv": false
+  },
+  {
+    "kanal": "401",
+    "adresse": "163",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Scheinwerferstand",
+    "position": 192,
+    "aktiv": false
+  },
+  {
+    "kanal": "402",
+    "adresse": "164",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Scheinwerferstand",
+    "position": 193,
+    "aktiv": false
+  },
+  {
+    "kanal": "403",
+    "adresse": "165",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Scheinwerferstand",
+    "position": 194,
+    "aktiv": false
+  },
+  {
+    "kanal": "404",
+    "adresse": "166",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Scheinwerferstand",
+    "position": 195,
+    "aktiv": false
+  },
+  {
+    "kanal": "405",
+    "adresse": "167",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Scheinwerferstand",
+    "position": 196,
+    "aktiv": false
+  },
+  {
+    "kanal": "406",
+    "adresse": "168",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Scheinwerferstand",
+    "position": 197,
+    "aktiv": false
+  },
+  {
+    "kanal": "407",
+    "adresse": "169",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Scheinwerferstand",
+    "position": 198,
+    "aktiv": false
+  },
+  {
+    "kanal": "408",
+    "adresse": "170",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Scheinwerferstand",
+    "position": 199,
+    "aktiv": false
+  },
+  {
+    "kanal": "411",
+    "adresse": "171",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Scheinwerferstand",
+    "position": 200,
+    "aktiv": false
+  },
+  {
+    "kanal": "412",
+    "adresse": "172",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Scheinwerferstand",
+    "position": 201,
+    "aktiv": false
+  },
+  {
+    "kanal": "413",
+    "adresse": "173",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Scheinwerferstand",
+    "position": 202,
+    "aktiv": false
+  },
+  {
+    "kanal": "414",
+    "adresse": "174",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Scheinwerferstand",
+    "position": 203,
+    "aktiv": false
+  },
+  {
+    "kanal": "421",
+    "adresse": "175",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Z-Kabine",
+    "position": 204,
+    "aktiv": false
+  },
+  {
+    "kanal": "422",
+    "adresse": "176",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Z-Kabine",
+    "position": 205,
+    "aktiv": false
+  },
+  {
+    "kanal": "423",
+    "adresse": "177",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Z-Kabine",
+    "position": 206,
+    "aktiv": false
+  },
+  {
+    "kanal": "424",
+    "adresse": "178",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Z-Kabine",
+    "position": 207,
+    "aktiv": false
+  },
+  {
+    "kanal": "425",
+    "adresse": "179",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Z-Kabine",
+    "position": 208,
+    "aktiv": false
+  },
+  {
+    "kanal": "426",
+    "adresse": "180",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Z-Kabine",
+    "position": 209,
+    "aktiv": false
+  },
+  {
+    "kanal": "491",
+    "adresse": "491",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Zusatzdimmer",
+    "position": 210,
+    "aktiv": false
+  },
+  {
+    "kanal": "492",
+    "adresse": "492",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Zusatzdimmer",
+    "position": 211,
+    "aktiv": false
+  },
+  {
+    "kanal": "493",
+    "adresse": "493",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Zusatzdimmer",
+    "position": 212,
+    "aktiv": false
+  },
+  {
+    "kanal": "494",
+    "adresse": "494",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Zusatzdimmer",
+    "position": 213,
+    "aktiv": false
+  },
+  {
+    "kanal": "495",
+    "adresse": "495",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Zusatzdimmer",
+    "position": 214,
+    "aktiv": false
+  },
+  {
+    "kanal": "496",
+    "adresse": "496",
+    "geraet": "Dimmer",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Zusatzdimmer",
+    "position": 215,
+    "aktiv": false
+  },
+  {
+    "kanal": "551",
+    "adresse": "3/283-285",
+    "geraet": "Titan Tube 1: RGB 1 Pixel",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Astera Titantubes",
+    "position": 216,
+    "aktiv": false
+  },
+  {
+    "kanal": "552",
+    "adresse": "3/286-288",
+    "geraet": "Titan Tube 1: RGB 1 Pixel",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Astera Titantubes",
+    "position": 217,
+    "aktiv": false
+  },
+  {
+    "kanal": "553",
+    "adresse": "3/289-291",
+    "geraet": "Titan Tube 1: RGB 1 Pixel",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Astera Titantubes",
+    "position": 218,
+    "aktiv": false
+  },
+  {
+    "kanal": "554",
+    "adresse": "3/292-294",
+    "geraet": "Titan Tube 1: RGB 1 Pixel",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Astera Titantubes",
+    "position": 219,
+    "aktiv": false
+  },
+  {
+    "kanal": "555",
+    "adresse": "3/295-297",
+    "geraet": "Titan Tube 1: RGB 1 Pixel",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Astera Titantubes",
+    "position": 220,
+    "aktiv": false
+  },
+  {
+    "kanal": "556",
+    "adresse": "3/298-300",
+    "geraet": "Titan Tube 1: RGB 1 Pixel",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Astera Titantubes",
+    "position": 221,
+    "aktiv": false
+  },
+  {
+    "kanal": "557",
+    "adresse": "3/301-303",
+    "geraet": "Titan Tube 1: RGB 1 Pixel",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Astera Titantubes",
+    "position": 222,
+    "aktiv": false
+  },
+  {
+    "kanal": "558",
+    "adresse": "3/304-306",
+    "geraet": "Titan Tube 1: RGB 1 Pixel",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Astera Titantubes",
+    "position": 223,
+    "aktiv": false
+  },
+  {
+    "kanal": "561",
+    "adresse": "3/307-309",
+    "geraet": "NYX Bulb 1: RGB 1 Pixel",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Astera NYX Bulbs",
+    "position": 224,
+    "aktiv": false
+  },
+  {
+    "kanal": "562",
+    "adresse": "3/310-312",
+    "geraet": "NYX Bulb 1: RGB 1 Pixel",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Astera NYX Bulbs",
+    "position": 225,
+    "aktiv": false
+  },
+  {
+    "kanal": "563",
+    "adresse": "3/313-315",
+    "geraet": "NYX Bulb 1: RGB 1 Pixel",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Astera NYX Bulbs",
+    "position": 226,
+    "aktiv": false
+  },
+  {
+    "kanal": "564",
+    "adresse": "3/316-318",
+    "geraet": "NYX Bulb 1: RGB 1 Pixel",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Astera NYX Bulbs",
+    "position": 227,
+    "aktiv": false
+  },
+  {
+    "kanal": "565",
+    "adresse": "3/335-337",
+    "geraet": "NYX Bulb 1: RGB 1 Pixel",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Astera NYX Bulbs",
+    "position": 228,
+    "aktiv": false
+  },
+  {
+    "kanal": "566",
+    "adresse": "3/338-340",
+    "geraet": "NYX Bulb 1: RGB 1 Pixel",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Astera NYX Bulbs",
+    "position": 229,
+    "aktiv": false
+  },
+  {
+    "kanal": "567",
+    "adresse": "3/497-499",
+    "geraet": "NYX Bulb 1: RGB 1 Pixel",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Astera NYX Bulbs",
+    "position": 230,
+    "aktiv": false
+  },
+  {
+    "kanal": "568",
+    "adresse": "NYX",
+    "geraet": "Bulb 1: RGB 1 Pixel",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Astera NYX Bulbs",
+    "position": 231,
+    "aktiv": false
+  },
+  {
+    "kanal": "615",
+    "adresse": "412-417",
+    "geraet": "CuePix Panel 6ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "CuePix Panel",
+    "position": 232,
+    "aktiv": false
+  },
+  {
+    "kanal": "616",
+    "adresse": "481-486",
+    "geraet": "CuePix Panel 6ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "CuePix Panel",
+    "position": 233,
+    "aktiv": false
+  },
+  {
+    "kanal": "620",
+    "adresse": "2/273-280",
+    "geraet": "Flat Pro Outdoor Par Can 8ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Cameo Flat Pro",
+    "position": 234,
+    "aktiv": false
+  },
+  {
+    "kanal": "621",
+    "adresse": "2/177-184",
+    "geraet": "Flat Pro Outdoor Par Can 8ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Cameo Flat Pro",
+    "position": 235,
+    "aktiv": false
+  },
+  {
+    "kanal": "622",
+    "adresse": "2/185-192",
+    "geraet": "Flat Pro Outdoor Par Can 8ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Cameo Flat Pro",
+    "position": 236,
+    "aktiv": false
+  },
+  {
+    "kanal": "624",
+    "adresse": "2/201-208",
+    "geraet": "Flat Pro Outdoor Par Can 8ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Cameo Flat Pro",
+    "position": 237,
+    "aktiv": false
+  },
+  {
+    "kanal": "625",
+    "adresse": "2/209-216",
+    "geraet": "Flat Pro Outdoor Par Can 8ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Cameo Flat Pro",
+    "position": 238,
+    "aktiv": false
+  },
+  {
+    "kanal": "641",
+    "adresse": "2/225-232",
+    "geraet": "NanoPIX 1440HP 7ch+control",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "LDDE NanoPix",
+    "position": 239,
+    "aktiv": false
+  },
+  {
+    "kanal": "642",
+    "adresse": "2/233-240",
+    "geraet": "NanoPIX 1440HP 7ch+control",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "LDDE NanoPix",
+    "position": 240,
+    "aktiv": false
+  },
+  {
+    "kanal": "643",
+    "adresse": "2/241-248",
+    "geraet": "NanoPIX 1440HP 7ch+control",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "LDDE NanoPix",
+    "position": 241,
+    "aktiv": false
+  },
+  {
+    "kanal": "644",
+    "adresse": "2/249-256",
+    "geraet": "NanoPIX 1440HP 7ch+control",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "LDDE NanoPix",
+    "position": 242,
+    "aktiv": false
+  },
+  {
+    "kanal": "645",
+    "adresse": "2/257-264",
+    "geraet": "NanoPIX 1440HP 7ch+control",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "LDDE NanoPix",
+    "position": 243,
+    "aktiv": false
+  },
+  {
+    "kanal": "646",
+    "adresse": "2/265-272",
+    "geraet": "NanoPIX 1440HP 7ch+control",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "LDDE NanoPix",
+    "position": 244,
+    "aktiv": false
+  },
+  {
+    "kanal": "651",
+    "adresse": "2/379-387",
+    "geraet": "CL PixBar 650 Pro 9ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "CL PixBar 650 Pro",
+    "position": 245,
+    "aktiv": false
+  },
+  {
+    "kanal": "652",
+    "adresse": "2/388-396",
+    "geraet": "CL PixBar 650 Pro 9ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "CL PixBar 650 Pro",
+    "position": 246,
+    "aktiv": false
+  },
+  {
+    "kanal": "653",
+    "adresse": "2/397-405",
+    "geraet": "CL PixBar 650 Pro 9ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "CL PixBar 650 Pro",
+    "position": 247,
+    "aktiv": false
+  },
+  {
+    "kanal": "654",
+    "adresse": "2/406-414",
+    "geraet": "CL PixBar 650 Pro 9ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "CL PixBar 650 Pro",
+    "position": 248,
+    "aktiv": false
+  },
+  {
+    "kanal": "655",
+    "adresse": "2/415-423",
+    "geraet": "CL PixBar 650 Pro 9ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "CL PixBar 650 Pro",
+    "position": 249,
+    "aktiv": false
+  },
+  {
+    "kanal": "656",
+    "adresse": "2/424-432",
+    "geraet": "CL PixBar 650 Pro 9ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "CL PixBar 650 Pro",
+    "position": 250,
+    "aktiv": false
+  },
+  {
+    "kanal": "657",
+    "adresse": "2/433-441",
+    "geraet": "CL PixBar 650 Pro 9ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "CL PixBar 650 Pro",
+    "position": 251,
+    "aktiv": false
+  },
+  {
+    "kanal": "658",
+    "adresse": "2/442-450",
+    "geraet": "CL PixBar 650 Pro 9ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "CL PixBar 650 Pro",
+    "position": 252,
+    "aktiv": false
+  },
+  {
+    "kanal": "661",
+    "adresse": "3/319-334",
+    "geraet": "NanoPix CYC 8 16b 16ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "LDDE CYC8",
+    "position": 253,
+    "aktiv": false
+  },
+  {
+    "kanal": "662",
+    "adresse": "3/385-400",
+    "geraet": "NanoPix CYC 8 16b 16ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "LDDE CYC8",
+    "position": 254,
+    "aktiv": false
+  },
+  {
+    "kanal": "663",
+    "adresse": "3/401-416",
+    "geraet": "NanoPix CYC 8 16b 16ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "LDDE CYC8",
+    "position": 255,
+    "aktiv": false
+  },
+  {
+    "kanal": "664",
+    "adresse": "3/417-432",
+    "geraet": "NanoPix CYC 8 16b 16ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "LDDE CYC8",
+    "position": 256,
+    "aktiv": false
+  },
+  {
+    "kanal": "665",
+    "adresse": "3/433-448",
+    "geraet": "NanoPix CYC 8 16b 16ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "LDDE CYC8",
+    "position": 257,
+    "aktiv": false
+  },
+  {
+    "kanal": "666",
+    "adresse": "3/449-464",
+    "geraet": "NanoPix CYC 8 16b 16ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "LDDE CYC8",
+    "position": 258,
+    "aktiv": false
+  },
+  {
+    "kanal": "667",
+    "adresse": "3/465-480",
+    "geraet": "NanoPix CYC 8 16b 16ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "LDDE CYC8",
+    "position": 259,
+    "aktiv": false
+  },
+  {
+    "kanal": "668",
+    "adresse": "3/481-496",
+    "geraet": "NanoPix CYC 8 16b 16ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "LDDE CYC8",
+    "position": 260,
+    "aktiv": false
+  },
+  {
+    "kanal": "681",
+    "adresse": "1/237-240",
+    "geraet": "Ape Stick 4ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "ApeLabs Sticks",
+    "position": 261,
+    "aktiv": false
+  },
+  {
+    "kanal": "682",
+    "adresse": "1/241-244",
+    "geraet": "Ape Stick 4ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "ApeLabs Sticks",
+    "position": 262,
+    "aktiv": false
+  },
+  {
+    "kanal": "683",
+    "adresse": "1/245-248",
+    "geraet": "Ape Stick 4ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "ApeLabs Sticks",
+    "position": 263,
+    "aktiv": false
+  },
+  {
+    "kanal": "684",
+    "adresse": "1/249-252",
+    "geraet": "Ape Stick 4ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "ApeLabs Sticks",
+    "position": 264,
+    "aktiv": false
+  },
+  {
+    "kanal": "685",
+    "adresse": "1/253-256",
+    "geraet": "Ape Stick 4ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "ApeLabs Sticks",
+    "position": 265,
+    "aktiv": false
+  },
+  {
+    "kanal": "686",
+    "adresse": "221-224",
+    "geraet": "Ape Stick 4ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "ApeLabs Sticks",
+    "position": 266,
+    "aktiv": false
+  },
+  {
+    "kanal": "687",
+    "adresse": "225-228",
+    "geraet": "Ape Stick 4ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "ApeLabs Sticks",
+    "position": 267,
+    "aktiv": false
+  },
+  {
+    "kanal": "691",
+    "adresse": "262-265",
+    "geraet": "ApeLight Maxi 4ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "ApeLabs Maxi",
+    "position": 268,
+    "aktiv": false
+  },
+  {
+    "kanal": "692",
+    "adresse": "1/266-269",
+    "geraet": "ApeLight Maxi 4ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "ApeLabs Maxi",
+    "position": 269,
+    "aktiv": false
+  },
+  {
+    "kanal": "693",
+    "adresse": "1/270-273",
+    "geraet": "ApeLight Maxi 4ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "ApeLabs Maxi",
+    "position": 270,
+    "aktiv": false
+  },
+  {
+    "kanal": "694",
+    "adresse": "1/320-323",
+    "geraet": "ApeLight Maxi 4ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "ApeLabs Maxi",
+    "position": 271,
+    "aktiv": false
+  },
+  {
+    "kanal": "695",
+    "adresse": "1/324-327",
+    "geraet": "ApeLight Maxi 4ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "ApeLabs Maxi",
+    "position": 272,
+    "aktiv": false
+  },
+  {
+    "kanal": "696",
+    "adresse": "1/328-331",
+    "geraet": "ApeLight Maxi 4ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "ApeLabs Maxi",
+    "position": 273,
+    "aktiv": false
+  },
+  {
+    "kanal": "701",
+    "adresse": "1209-1230",
+    "geraet": "Robin LEDBeam 350 M1",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Robin LEDBeam 350",
+    "position": 274,
+    "aktiv": false
+  },
+  {
+    "kanal": "702",
+    "adresse": "1231-1252",
+    "geraet": "Robin LEDBeam 350 M1",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Robin LEDBeam 350",
+    "position": 275,
+    "aktiv": false
+  },
+  {
+    "kanal": "703",
+    "adresse": "1253-1274",
+    "geraet": "Robin LEDBeam 350 M1",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Robin LEDBeam 350",
+    "position": 276,
+    "aktiv": false
+  },
+  {
+    "kanal": "704",
+    "adresse": "1275-1296",
+    "geraet": "Robin LEDBeam 350 M1",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Robin LEDBeam 350",
+    "position": 277,
+    "aktiv": false
+  },
+  {
+    "kanal": "705",
+    "adresse": "2/89-110",
+    "geraet": "A8 Standard Standard RGB16 M16",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "A8 Standard",
+    "position": 278,
+    "aktiv": false
+  },
+  {
+    "kanal": "706",
+    "adresse": "623-644",
+    "geraet": "A8 Standard Standard RGB16 M16",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "A8 Standard",
+    "position": 279,
+    "aktiv": false
+  },
+  {
+    "kanal": "707",
+    "adresse": "645-666",
+    "geraet": "A8 Standard Standard RGB16 M16",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "A8 Standard",
+    "position": 280,
+    "aktiv": false
+  },
+  {
+    "kanal": "708",
+    "adresse": "667-688",
+    "geraet": "A8 Standard Standard RGB16 M16",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "A8 Standard",
+    "position": 281,
+    "aktiv": false
+  },
+  {
+    "kanal": "709",
+    "adresse": "3/341-362",
+    "geraet": "Robin LEDBeam 350 M1",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "A8 Standard",
+    "position": 282,
+    "aktiv": false
+  },
+  {
+    "kanal": "710",
+    "adresse": "3/363-384",
+    "geraet": "Robin LEDBeam 350 M1",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "A8 Standard",
+    "position": 283,
+    "aktiv": false
+  },
+  {
+    "kanal": "711",
+    "adresse": "823-844",
+    "geraet": "A8 Standard Standard RGB16 M16",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "A8 Standard",
+    "position": 284,
+    "aktiv": false
+  },
+  {
+    "kanal": "712",
+    "adresse": "579-600",
+    "geraet": "A8 Standard Standard RGB16 M16",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "A8 Standard",
+    "position": 285,
+    "aktiv": false
+  },
+  {
+    "kanal": "713",
+    "adresse": "801-822",
+    "geraet": "A8 Standard Standard RGB16 M16",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "A8 Standard",
+    "position": 286,
+    "aktiv": false
+  },
+  {
+    "kanal": "714",
+    "adresse": "2/333-354",
+    "geraet": "A8 Standard Standard RGB16 M16",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "A8 Standard",
+    "position": 287,
+    "aktiv": false
+  },
+  {
+    "kanal": "721",
+    "adresse": "2/1-5",
+    "geraet": "Rush Par 2 RGBW Zoom 5ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Martin Rush Par",
+    "position": 288,
+    "aktiv": false
+  },
+  {
+    "kanal": "722",
+    "adresse": "2/6-10",
+    "geraet": "Rush Par 2 RGBW Zoom 5ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Martin Rush Par",
+    "position": 289,
+    "aktiv": false
+  },
+  {
+    "kanal": "723",
+    "adresse": "2/11-15",
+    "geraet": "Rush Par 2 RGBW Zoom 5ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Martin Rush Par",
+    "position": 290,
+    "aktiv": false
+  },
+  {
+    "kanal": "724",
+    "adresse": "2/16-20",
+    "geraet": "Rush Par 2 RGBW Zoom 5ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Martin Rush Par",
+    "position": 291,
+    "aktiv": false
+  },
+  {
+    "kanal": "725",
+    "adresse": "2/21-25",
+    "geraet": "Rush Par 2 RGBW Zoom 5ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Martin Rush Par",
+    "position": 292,
+    "aktiv": false
+  },
+  {
+    "kanal": "726",
+    "adresse": "2/26-30",
+    "geraet": "Rush Par 2 RGBW Zoom 5ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Martin Rush Par",
+    "position": 293,
+    "aktiv": false
+  },
+  {
+    "kanal": "727",
+    "adresse": "2/31-35",
+    "geraet": "Rush Par 2 RGBW Zoom 5ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Martin Rush Par",
+    "position": 294,
+    "aktiv": false
+  },
+  {
+    "kanal": "728",
+    "adresse": "2/36-40",
+    "geraet": "Rush Par 2 RGBW Zoom 5ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Martin Rush Par",
+    "position": 295,
+    "aktiv": false
+  },
+  {
+    "kanal": "729",
+    "adresse": "2/46-50",
+    "geraet": "Rush Par 2 RGBW Zoom 5ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Martin Rush Par",
+    "position": 296,
+    "aktiv": false
+  },
+  {
+    "kanal": "730",
+    "adresse": "2/51-55",
+    "geraet": "Rush Par 2 RGBW Zoom 5ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Martin Rush Par",
+    "position": 297,
+    "aktiv": false
+  },
+  {
+    "kanal": "731",
+    "adresse": "2/56-60",
+    "geraet": "Rush Par 2 RGBW Zoom 5ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Martin Rush Par",
+    "position": 298,
+    "aktiv": false
+  },
+  {
+    "kanal": "732",
+    "adresse": "2/61-65",
+    "geraet": "Rush Par 2 RGBW Zoom 5ch",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Martin Rush Par",
+    "position": 299,
+    "aktiv": false
+  },
+  {
+    "kanal": "801",
+    "adresse": "3/1-50",
+    "geraet": "Opus SP5 Extended",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Robe Opus / P12 Profile",
+    "position": 300,
+    "aktiv": false
+  },
+  {
+    "kanal": "802",
+    "adresse": "3/51-100",
+    "geraet": "Opus SP5 Extended",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Robe Opus / P12 Profile",
+    "position": 301,
+    "aktiv": false
+  },
+  {
+    "kanal": "803",
+    "adresse": "3/101-142",
+    "geraet": "P12 Profile HC M1",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Robe Opus / P12 Profile",
+    "position": 302,
+    "aktiv": false
+  },
+  {
+    "kanal": "804",
+    "adresse": "3/143-184",
+    "geraet": "P12 Profile HC M1",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "Robe Opus / P12 Profile",
+    "position": 303,
+    "aktiv": false
+  }
+]

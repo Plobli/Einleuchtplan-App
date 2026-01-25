@@ -2,32 +2,64 @@
   <div class="show-detail-container">
     <header class="header">
       <div class="header-left">
-        <button @click="$router.push('/')" class="btn-back">← Zurück</button>
+        <button @click="$router.push('/')" class="btn-back">Zurück</button>
         <div v-if="show">
           <h1>{{ show.name }}</h1>
           <p class="show-meta">
-            <span v-if="show.venue">📍 {{ show.venue }}</span>
-            <span v-if="show.date">📅 {{ formatDate(show.date) }}</span>
+            <span v-if="show.venue">{{ show.venue }}</span>
+            <span v-if="show.date">{{ formatDate(show.date) }}</span>
           </p>
         </div>
       </div>
       <div class="header-actions">
         <div v-if="activeUsers.length > 0" class="active-users">
-          👥 {{ activeUsers.length }} Online
+          {{ activeUsers.length }} Online
         </div>
         <button @click="showImportModal = true" class="btn-secondary">
-          📥 Import
+          Import
         </button>
         <button @click="exportJSON" class="btn-secondary">
-          💾 Export JSON
+          Export JSON
         </button>
         <button @click="exportPDF" class="btn-secondary">
-          📄 Export PDF
+          Export PDF
+        </button>
+        <button @click="deleteShow" class="btn-danger">
+          In Papierkorb
         </button>
       </div>
     </header>
 
     <div class="content">
+      <!-- Aufbau-Informationen -->
+      <div class="aufbau-section">
+        <h2>Aufbau</h2>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Portalbrücke Höhe:</label>
+            <input v-model="show.portalbruecke" type="text" @blur="updateShowField('portalbruecke')" />
+          </div>
+          <div class="form-group">
+            <label>Portale Auszug:</label>
+            <input v-model="show.portale" type="text" @blur="updateShowField('portale')" />
+          </div>
+          <div class="form-group">
+            <label>SB-Tor:</label>
+            <input v-model="show.sbtor" type="text" @blur="updateShowField('sbtor')" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Höhe Züge:</label>
+          <textarea v-model="show.zuege" @blur="updateShowField('zuege')" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Weitere Aufbaunotizen:</label>
+          <textarea v-model="show.aufbau" @blur="updateShowField('aufbau')" rows="5"></textarea>
+        </div>
+      </div>
+
+      <h2 style="margin-top: var(--space-8)">Festverhang</h2>
+
       <div class="toolbar">
         <input 
           v-model="searchQuery" 
@@ -36,8 +68,8 @@
           class="search-input"
         />
         <div class="stats">
-          📊 {{ filteredChannels.length }} von {{ channels.length }} Channels
-          | ✅ {{ activeChannelsCount }} aktiv
+          {{ filteredChannels.length }} von {{ channels.length }} Channels
+          | {{ activeChannelsCount }} aktiv
         </div>
       </div>
 
@@ -47,80 +79,90 @@
         <table class="channels-table">
           <thead>
             <tr>
-              <th>✓</th>
-              <th>Kanal</th>
-              <th>Adresse</th>
-              <th>Gerät</th>
-              <th>Farbe</th>
-              <th>Beschreibung</th>
-              <th>Aktionen</th>
+              <th style="width: 50px">✓</th>
+              <th style="width: 100px">Kanal</th>
+              <th style="width: 100px">Adresse</th>
+              <th style="width: 200px">Gerät</th>
+              <th style="width: 80px">Farbe</th>
+              <th>Beschreibung / Position</th>
+              <th style="width: 80px">Aktionen</th>
             </tr>
           </thead>
           <tbody>
-            <tr 
-              v-for="channel in filteredChannels" 
-              :key="channel.id"
-              :class="{ 'active-row': channel.aktiv, 'editing-row': editingChannelId === channel.id }"
-            >
-              <td>
-                <input 
-                  type="checkbox" 
-                  v-model="channel.aktiv"
-                  @change="updateChannel(channel, 'aktiv', channel.aktiv)"
-                />
-              </td>
-              <td class="channel-number">{{ channel.kanal }}</td>
-              <td>
-                <input 
-                  v-model="channel.adresse"
-                  @blur="updateChannel(channel, 'adresse', channel.adresse)"
-                  @focus="startEditing(channel.id)"
-                  @input="handleTyping(channel.id, 'adresse')"
-                  class="cell-input"
-                />
-              </td>
-              <td>
-                <input 
-                  v-model="channel.geraet"
-                  @blur="updateChannel(channel, 'geraet', channel.geraet)"
-                  @focus="startEditing(channel.id)"
-                  @input="handleTyping(channel.id, 'geraet')"
-                  class="cell-input"
-                />
-              </td>
-              <td>
-                <select 
-                  v-model="channel.farbe"
-                  @change="updateChannel(channel, 'farbe', channel.farbe)"
-                  @focus="startEditing(channel.id)"
-                  class="cell-select"
-                >
-                  <option value="NC">NC</option>
-                  <option value="200">200</option>
-                  <option value="201">201</option>
-                  <option value="202">202</option>
-                </select>
-              </td>
-              <td>
-                <input 
-                  v-model="channel.beschreibung"
-                  @blur="updateChannel(channel, 'beschreibung', channel.beschreibung)"
-                  @focus="startEditing(channel.id)"
-                  @input="handleTyping(channel.id, 'beschreibung')"
-                  class="cell-input"
-                  placeholder="Position/Notizen"
-                />
-              </td>
-              <td>
-                <button 
-                  @click="showHistory(channel)"
-                  class="btn-icon"
-                  title="Änderungshistorie"
-                >
-                  📜
-                </button>
-              </td>
-            </tr>
+            <template v-for="(group, index) in channelsByCategory" :key="index">
+              <!-- Kategorie-Zeile -->
+              <tr class="category-row">
+                <td colspan="7">
+                  <span class="category-name">{{ group.category }}</span>
+                </td>
+              </tr>
+              <!-- Channel-Zeilen -->
+              <tr 
+                v-for="channel in group.channels" 
+                :key="channel.id"
+                :class="{ 'active-row': channel.aktiv, 'editing-row': editingChannelId === channel.id }"
+              >
+                <td>
+                  <input 
+                    type="checkbox" 
+                    v-model="channel.aktiv"
+                    @change="updateChannel(channel, 'aktiv', channel.aktiv)"
+                  />
+                </td>
+                <td class="channel-number">{{ channel.kanal }}</td>
+                <td>
+                  <input 
+                    v-model="channel.adresse"
+                    @blur="updateChannel(channel, 'adresse', channel.adresse)"
+                    @focus="startEditing(channel.id)"
+                    @input="handleTyping(channel.id, 'adresse')"
+                    class="cell-input"
+                  />
+                </td>
+                <td>
+                  <input 
+                    v-model="channel.geraet"
+                    @blur="updateChannel(channel, 'geraet', channel.geraet)"
+                    @focus="startEditing(channel.id)"
+                    @input="handleTyping(channel.id, 'geraet')"
+                    class="cell-input"
+                  />
+                </td>
+                <td>
+                  <select 
+                    v-model="channel.farbe"
+                    @change="updateChannel(channel, 'farbe', channel.farbe)"
+                    @focus="startEditing(channel.id)"
+                    class="cell-select"
+                  >
+                    <option value="NC">NC</option>
+                    <option value="200">200</option>
+                    <option value="201">201</option>
+                    <option value="202">202</option>
+                  </select>
+                </td>
+                <td class="beschreibung-cell">
+                  <textarea 
+                    v-model="channel.beschreibung"
+                    @blur="updateChannel(channel, 'beschreibung', channel.beschreibung)"
+                    @focus="startEditing(channel.id)"
+                    @input="handleTyping(channel.id, 'beschreibung')"
+                    class="cell-textarea"
+                    placeholder="Position/Notizen"
+                    rows="1"
+                  ></textarea>
+                </td>
+                <td>
+                  <button 
+                    @click="showHistory(channel)"
+                    class="btn-icon"
+                    title="Änderungshistorie"
+                  >
+                    📜
+                  </button>
+                </td>
+              </tr>
+            </template>
           </tbody>
         </table>
       </div>
@@ -172,7 +214,7 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useShowStore } from '../stores/show'
 import { getSocket } from '../api/websocket'
 import api from '../api'
@@ -180,6 +222,7 @@ import jsPDF from 'jspdf'
 import 'jspdf-autotable'
 
 const route = useRoute()
+const router = useRouter()
 const showStore = useShowStore()
 
 const show = ref(null)
@@ -215,6 +258,14 @@ onUnmounted(() => {
 const loadShow = async () => {
   await showStore.fetchShow(route.params.id)
   show.value = showStore.currentShow
+}
+
+const updateShowField = async (field) => {
+  try {
+    await showStore.updateShow(route.params.id, { [field]: show.value[field] })
+  } catch (error) {
+    console.error('Fehler beim Speichern:', error)
+  }
 }
 
 const loadChannels = async () => {
@@ -258,8 +309,26 @@ const filteredChannels = computed(() => {
     c.adresse?.toLowerCase().includes(query) ||
     c.geraet?.toLowerCase().includes(query) ||
     c.farbe?.toLowerCase().includes(query) ||
-    c.beschreibung?.toLowerCase().includes(query)
+    c.beschreibung?.toLowerCase().includes(query) ||
+    c.kategorie?.toLowerCase().includes(query)
   )
+})
+
+const channelsByCategory = computed(() => {
+  const grouped = {}
+  
+  filteredChannels.value.forEach(channel => {
+    const category = channel.kategorie || 'Ohne Kategorie'
+    if (!grouped[category]) {
+      grouped[category] = []
+    }
+    grouped[category].push(channel)
+  })
+  
+  return Object.keys(grouped).map(category => ({
+    category,
+    channels: grouped[category].sort((a, b) => a.position - b.position)
+  }))
 })
 
 const activeChannelsCount = computed(() => {
@@ -388,6 +457,16 @@ const formatDateTime = (date) => {
   if (!date) return ''
   return new Date(date).toLocaleString('de-DE')
 }
+
+const deleteShow = async () => {
+  if (!confirm(`Show "${show.value.name}" wirklich in den Papierkorb verschieben?`)) return
+  try {
+    await showStore.deleteShow(route.params.id)
+    router.push('/')
+  } catch (error) {
+    alert('Fehler beim Löschen: ' + error.message)
+  }
+}
 </script>
 
 <style scoped>
@@ -464,10 +543,78 @@ const formatDateTime = (date) => {
   background: var(--color-surface-muted);
 }
 
+.btn-danger {
+  background: var(--color-danger);
+  color: white;
+  border: none;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: var(--text-sm);
+}
+
+.btn-danger:hover {
+  background: var(--color-danger-hover);
+}
+
 .content {
   max-width: 1400px;
   margin: 0 auto;
   padding: var(--space-6);
+}
+
+.aufbau-section {
+  background: white;
+  padding: var(--space-6);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-6);
+}
+
+.aufbau-section h2 {
+  margin: 0 0 var(--space-5) 0;
+  font-size: var(--text-lg);
+  color: var(--color-text-primary);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.form-group {
+  margin-bottom: var(--space-4);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-weight: var(--font-medium);
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: var(--space-3);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-base);
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
 }
 
 .toolbar {
@@ -520,10 +667,30 @@ const formatDateTime = (date) => {
 .channels-table td {
   padding: var(--space-2);
   border-bottom: 1px solid var(--color-border-light);
+  vertical-align: top;
 }
 
-.channels-table tr:hover {
+.channels-table tr:hover:not(.category-row) {
   background: var(--color-surface-subtle);
+}
+
+.category-row {
+  background: var(--color-surface-muted) !important;
+  font-weight: var(--font-semibold);
+}
+
+.category-row:hover {
+  background: var(--color-border-light) !important;
+}
+
+.category-row td {
+  padding: var(--space-4) var(--space-3);
+}
+
+.category-name {
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--color-text-primary);
 }
 
 .active-row {
@@ -549,10 +716,28 @@ const formatDateTime = (date) => {
   background: transparent;
 }
 
-.cell-input:focus, .cell-select:focus {
+.cell-textarea {
+  width: 100%;
+  padding: var(--space-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  background: transparent;
+  resize: vertical;
+  min-height: 32px;
+  font-family: inherit;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.cell-input:focus, .cell-select:focus, .cell-textarea:focus {
   outline: none;
   border-color: var(--color-primary);
   background: white;
+}
+
+.beschreibung-cell {
+  max-width: 400px;
 }
 
 .btn-icon {

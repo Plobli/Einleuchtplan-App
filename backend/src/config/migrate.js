@@ -18,7 +18,13 @@ CREATE TABLE IF NOT EXISTS shows (
     name VARCHAR(255) NOT NULL,
     venue VARCHAR(255),
     date DATE,
+    portalbruecke VARCHAR(255),
+    portale VARCHAR(255),
+    sbtor VARCHAR(255),
+    zuege TEXT,
+    aufbau TEXT,
     created_by INTEGER REFERENCES users(id),
+    deleted_at TIMESTAMP,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -32,6 +38,7 @@ CREATE TABLE IF NOT EXISTS channels (
     geraet VARCHAR(255),
     farbe VARCHAR(10),
     beschreibung TEXT,
+    kategorie VARCHAR(255),
     aktiv BOOLEAN DEFAULT false,
     position INTEGER NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -55,6 +62,33 @@ CREATE INDEX IF NOT EXISTS idx_channels_show_id ON channels(show_id);
 CREATE INDEX IF NOT EXISTS idx_channels_kanal ON channels(kanal);
 CREATE INDEX IF NOT EXISTS idx_channel_history_channel_id ON channel_history(channel_id);
 CREATE INDEX IF NOT EXISTS idx_channel_history_changed_at ON channel_history(changed_at);
+
+-- Add deleted_at column if not exists
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name='shows' AND column_name='deleted_at') THEN
+        ALTER TABLE shows ADD COLUMN deleted_at TIMESTAMP;
+    END IF;
+    
+    -- Add aufbau fields if not exist
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name='shows' AND column_name='portalbruecke') THEN
+        ALTER TABLE shows ADD COLUMN portalbruecke VARCHAR(255);
+        ALTER TABLE shows ADD COLUMN portale VARCHAR(255);
+        ALTER TABLE shows ADD COLUMN sbtor VARCHAR(255);
+        ALTER TABLE shows ADD COLUMN zuege TEXT;
+        ALTER TABLE shows ADD COLUMN aufbau TEXT;
+    END IF;
+    
+    -- Add kategorie to channels if not exists
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name='channels' AND column_name='kategorie') THEN
+        ALTER TABLE channels ADD COLUMN kategorie VARCHAR(255);
+    END IF;
+END $$;
+
+CREATE INDEX IF NOT EXISTS idx_shows_deleted_at ON shows(deleted_at);
 
 -- Update timestamp function
 CREATE OR REPLACE FUNCTION update_updated_at_column()

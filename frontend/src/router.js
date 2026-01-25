@@ -14,6 +14,12 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/trash',
+    name: 'Trash',
+    component: () => import('./views/Trash.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
     path: '/show/:id',
     name: 'ShowDetail',
     component: () => import('./views/ShowDetail.vue'),

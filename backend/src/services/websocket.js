@@ -117,12 +117,16 @@ export const setupWebSocket = (io) => {
 
 async function getActiveUsers(showId) {
     const members = await redisClient.sMembers(`show:${showId}:users`);
-    return members.map(m => {
+    const uniqueUsers = new Map();
+    
+    for (const m of members) {
         const user = JSON.parse(m);
-        return {
+        uniqueUsers.set(user.id, {
             id: user.id,
             email: user.email,
             name: user.name
-        };
-    });
+        });
+    }
+    
+    return Array.from(uniqueUsers.values());
 }

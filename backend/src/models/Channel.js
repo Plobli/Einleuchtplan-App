@@ -2,11 +2,11 @@ import pool from '../config/database.js';
 
 export const Channel = {
     async create(showId, channelData) {
-        const { kanal, adresse, geraet, farbe, beschreibung, aktiv, position } = channelData;
+        const { kanal, adresse, geraet, farbe, beschreibung, kategorie, aktiv, position } = channelData;
         const result = await pool.query(
-            `INSERT INTO channels (show_id, kanal, adresse, geraet, farbe, beschreibung, aktiv, position)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
-            [showId, kanal, adresse, geraet, farbe, beschreibung, aktiv || false, position]
+            `INSERT INTO channels (show_id, kanal, adresse, geraet, farbe, beschreibung, kategorie, aktiv, position)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
+            [showId, kanal, adresse, geraet, farbe, beschreibung, kategorie, aktiv || false, position]
         );
         return result.rows[0];
     },
@@ -19,10 +19,10 @@ export const Channel = {
 
             for (const channel of channels) {
                 const result = await client.query(
-                    `INSERT INTO channels (show_id, kanal, adresse, geraet, farbe, beschreibung, aktiv, position)
-                     VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
+                    `INSERT INTO channels (show_id, kanal, adresse, geraet, farbe, beschreibung, kategorie, aktiv, position)
+                     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
                     [showId, channel.kanal, channel.adresse, channel.geraet, channel.farbe, 
-                     channel.beschreibung, channel.aktiv || false, channel.position]
+                     channel.beschreibung, channel.kategorie, channel.aktiv || false, channel.position]
                 );
                 insertedChannels.push(result.rows[0]);
             }

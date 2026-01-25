@@ -43,7 +43,7 @@ services:
       redis:
         condition: service_healthy
     environment:
-      NODE_ENV: development
+      NODE_ENV: production
       PORT: 3000
       DB_HOST: postgres
       DB_PORT: 5432
@@ -54,7 +54,7 @@ services:
       REDIS_PORT: 6379
       JWT_SECRET: WiekE3OqiIVcXWu0ZQ5rYZKj17/XySKlvOuV/+066Wg=
       JWT_EXPIRES_IN: 7d
-      CORS_ORIGIN: http://159.195.30.23:5173
+      CORS_ORIGIN: https://theater.cfrlab.de
     ports:
       - "127.0.0.1:3006:3000"
     volumes:
@@ -67,19 +67,14 @@ services:
     restart: unless-stopped
     depends_on:
       - backend
-    ports:
-      - "127.0.0.1:5174:5173"
     volumes:
-      - ./frontend/src:/app/src
-      - ./frontend/public:/app/public
-      - /app/node_modules
-    environment:
-      VITE_API_URL: http://159.195.30.23:3000
-      VITE_WS_URL: ws://159.195.30.23:3000
+      - frontend_dist:/app/dist
+
 
 volumes:
   postgres_data:
   redis_data:
+  frontend_dist:
 
 networks:
   default:

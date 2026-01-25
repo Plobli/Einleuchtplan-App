@@ -1,8 +1,9 @@
 <template>
   <div class="shows-container">
     <header class="header">
-      <h1>🎭 Meine Shows</h1>
+      <h1>Meine Shows</h1>
       <div class="header-actions">
+        <button @click="$router.push('/trash')" class="btn-secondary">Papierkorb</button>
         <span class="user-info">{{ authStore.user?.name }}</span>
         <button @click="authStore.logout()" class="btn-secondary">Abmelden</button>
       </div>
@@ -11,7 +12,7 @@
     <div class="content">
       <div class="toolbar">
         <button @click="showCreateModal = true" class="btn-primary">
-          ➕ Neue Show erstellen
+          Neue Show erstellen
         </button>
       </div>
 
@@ -32,10 +33,10 @@
           @click="$router.push(`/show/${show.id}`)"
         >
           <h3>{{ show.name }}</h3>
-          <p class="venue">📍 {{ show.venue || 'Kein Venue' }}</p>
-          <p class="date">📅 {{ formatDate(show.date) }}</p>
-          <p class="channels">💡 {{ show.channel_count }} Channels</p>
-          <p class="creator">👤 {{ show.creator_name }}</p>
+          <p class="venue">{{ show.venue || 'Kein Venue' }}</p>
+          <p class="date">{{ formatDate(show.date) }}</p>
+          <p class="channels">{{ show.channel_count }} Channels</p>
+          <p class="creator">{{ show.creator_name }}</p>
         </div>
       </div>
     </div>
@@ -99,7 +100,7 @@ const loadShows = async () => {
 
 const createShow = async () => {
   try {
-    await showStore.createShow(newShow.value)
+    await showStore.createShow({ ...newShow.value, createDefaultChannels: true })
     showCreateModal.value = false
     newShow.value = { name: '', venue: '', date: '' }
     await loadShows()

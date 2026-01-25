@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <div class="login-card">
-      <h1>🎭 Theater-Einleuchtplan</h1>
+      <h1>Theater-Einleuchtplan</h1>
       <p class="subtitle">{{ isRegister ? 'Neuen Account erstellen' : 'Anmelden' }}</p>
 
       <form @submit.prevent="handleSubmit">
@@ -97,7 +97,7 @@ const handleSubmit = async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #f5f5f5;
   padding: var(--space-4);
 }
 

@@ -70,6 +70,34 @@ export const useShowStore = defineStore('show', {
       }
     },
 
+    async fetchTrashedShows() {
+      this.loading = true
+      try {
+        const response = await api.get('/api/shows/trash')
+        return response.data
+      } catch (error) {
+        this.error = error.response?.data || error
+      } finally {
+        this.loading = false
+      }
+    },
+
+    async restoreShow(id) {
+      try {
+        await api.post(`/api/shows/${id}/restore`)
+      } catch (error) {
+        throw error.response?.data || error
+      }
+    },
+
+    async permanentDeleteShow(id) {
+      try {
+        await api.delete(`/api/shows/${id}/permanent`)
+      } catch (error) {
+        throw error.response?.data || error
+      }
+    },
+
     async fetchChannels(showId) {
       this.loading = true
       try {

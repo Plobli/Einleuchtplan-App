@@ -16,8 +16,23 @@ export const Show = {
             FROM shows s
             LEFT JOIN users u ON s.created_by = u.id
             LEFT JOIN channels c ON s.id = c.show_id
+            WHERE s.deleted_at IS NULL
             GROUP BY s.id, u.name
             ORDER BY s.created_at DESC
+        `);
+        return result.rows;
+    },
+
+    async findTrashed(userId) {
+        const result = await pool.query(`
+            SELECT s.*, u.name as creator_name,
+                   COUNT(c.id) as channel_count
+            FROM shows s
+            LEFT JOIN users u ON s.created_by = u.id
+            LEFT JOIN channels c ON s.id = c.show_id
+            WHERE s.deleted_at IS NOT NULL
+            GROUP BY s.id, u.name
+            ORDER BY s.deleted_at DESC
         `);
         return result.rows;
     },
@@ -40,17 +55,17 @@ export const Show = {
         const values = [];
         let paramCount = 1;
 
-        if (data.name !== undefined) {
-            fields.push(`name = $${paramCount++}`);
-            values.push(data.name);
+        const allowedFields = ['name', 'venue', 'date', 'portalbruecke', 'portale', 'sbtor', 'zuege', 'aufbau'];
+        
+        for (const field of allowedFields) {
+            if (data[field] !== undefined) {
+                fields.push(`${field} = $${paramCount++}`);
+                values.push(data[field]);
+            }
         }
-        if (data.venue !== undefined) {
-            fields.push(`venue = $${paramCount++}`);
-            values.push(data.venue);
-        }
-        if (data.date !== undefined) {
-            fields.push(`date = $${paramCount++}`);
-            values.push(data.date);
+
+        if (fields.length === 0) {
+            return this.findById(id);
         }
 
         values.push(id);
@@ -64,5 +79,13 @@ export const Show = {
 
     async delete(id) {
         await pool.query('DELETE FROM shows WHERE id = $1', [id]);
+    },
+
+    async softDelete(id) {
+        await pool.query('UPDATE shows SET deleted_at = CURRENT_TIMESTAMP WHERE id = $1', [id]);
+    },
+
+    async restore(id) {
+        await pool.query('UPDATE shows SET deleted_at = NULL WHERE id = $1', [id]);
     }
 };

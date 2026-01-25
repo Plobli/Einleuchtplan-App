@@ -3,11 +3,10 @@ FROM node:20-alpine
 WORKDIR /app
 
 COPY package*.json ./
-
 RUN npm install
 
 COPY . .
+RUN npm run build
 
-EXPOSE 5173
-
-CMD ["npm", "run", "dev"]
+# Keep container running so volume is accessible
+CMD ["tail", "-f", "/dev/null"]
