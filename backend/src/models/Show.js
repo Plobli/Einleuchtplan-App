@@ -50,13 +50,17 @@ export const Show = {
         return result.rows[0];
     },
 
-    async update(id, data) {
+    async update(id, data, userId) {
         const fields = [];
         const values = [];
         let paramCount = 1;
 
         const allowedFields = ['name', 'venue', 'date', 'portalbruecke', 'portale', 'sbtor', 'zuege', 'aufbau'];
-        
+
+        // Get current values for history
+        const current = await pool.query('SELECT * FROM shows WHERE id = $1', [id]);
+        const currentShow = current.rows[0];
+
         for (const field of allowedFields) {
             if (data[field] !== undefined) {
                 fields.push(`${field} = $${paramCount++}`);
@@ -74,7 +78,53 @@ export const Show = {
             `UPDATE shows SET ${fields.join(', ')} WHERE id = $${paramCount} RETURNING *`,
             values
         );
+
+        // Record history for changed fields
+        for (const field of allowedFields) {
+            if (data[field] !== undefined && currentShow) {
+                const oldVal = String(currentShow[field] ?? '');
+                const newVal = String(data[field] ?? '');
+                if (oldVal !== newVal) {
+                    await pool.query(
+                        `INSERT INTO show_history (show_id, user_id, field_name, old_value, new_value)
+                         VALUES ($1, $2, $3, $4, $5)`,
+                        [id, userId || null, field, oldVal, newVal]
+                    );
+                }
+            }
+        }
+
         return result.rows[0];
+    },
+
+    async getHistory(showId, limit = 50) {
+        const result = await pool.query(
+            `SELECT h.*, u.name as user_name
+             FROM show_history h
+             LEFT JOIN users u ON h.user_id = u.id
+             WHERE h.show_id = $1
+             ORDER BY h.changed_at DESC
+             LIMIT $2`,
+            [showId, limit]
+        );
+        return result.rows;
+    },
+
+    async revert(historyId) {
+        const histResult = await pool.query(
+            'SELECT * FROM show_history WHERE id = $1', [historyId]
+        );
+        const entry = histResult.rows[0];
+        if (!entry) throw new Error('History entry not found');
+
+        const allowedFields = ['name', 'venue', 'date', 'portalbruecke', 'portale', 'sbtor', 'zuege', 'aufbau'];
+        if (!allowedFields.includes(entry.field_name)) throw new Error('Invalid field');
+
+        await pool.query(
+            `UPDATE shows SET ${entry.field_name} = $1 WHERE id = $2`,
+            [entry.old_value, entry.show_id]
+        );
+        return entry.show_id;
     },
 
     async delete(id) {

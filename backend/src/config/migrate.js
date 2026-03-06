@@ -82,9 +82,25 @@ BEGIN
     END IF;
     
     -- Add kategorie to channels if not exists
-    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns
                    WHERE table_name='channels' AND column_name='kategorie') THEN
         ALTER TABLE channels ADD COLUMN kategorie VARCHAR(255);
+    END IF;
+
+    -- Add show_history table if not exists
+    IF NOT EXISTS (SELECT 1 FROM information_schema.tables
+                   WHERE table_name='show_history') THEN
+        CREATE TABLE show_history (
+            id SERIAL PRIMARY KEY,
+            show_id INTEGER REFERENCES shows(id) ON DELETE CASCADE,
+            user_id INTEGER REFERENCES users(id),
+            field_name VARCHAR(50) NOT NULL,
+            old_value TEXT,
+            new_value TEXT,
+            changed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+        CREATE INDEX idx_show_history_show_id ON show_history(show_id);
+        CREATE INDEX idx_show_history_changed_at ON show_history(changed_at);
     END IF;
 END $$;
 

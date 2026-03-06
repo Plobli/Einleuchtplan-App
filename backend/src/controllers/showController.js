@@ -90,13 +90,31 @@ export const updateShow = async (req, res, next) => {
         if (zuege !== undefined) updateData.zuege = zuege || null;
         if (aufbau !== undefined) updateData.aufbau = aufbau || null;
         
-        const show = await Show.update(req.params.id, updateData);
+        const show = await Show.update(req.params.id, updateData, req.user.id);
         
         if (!show) {
             return res.status(404).json({ error: 'Show not found' });
         }
         
         res.json(show);
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const getShowHistory = async (req, res, next) => {
+    try {
+        const history = await Show.getHistory(req.params.id, 50);
+        res.json(history);
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const revertShowChange = async (req, res, next) => {
+    try {
+        await Show.revert(req.params.historyId);
+        res.status(204).send();
     } catch (error) {
         next(error);
     }

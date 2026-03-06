@@ -452,6 +452,46 @@ const buildPDF = () => {
   metaLine.push(`Stand: ${formatDate(new Date().toISOString())}`)
   doc.text(metaLine.join('   '), 14, 22)
 
+  let currentY = 30
+
+  // Aufbaufelder (nur K1)
+  if (show.value.venue === 'K1') {
+    const k1Fields = [
+      ['Portalbrücke Höhe', show.value.portalbruecke],
+      ['Portale Auszug', show.value.portale],
+      ['SB-Tor', show.value.sbtor],
+      ['Höhe Züge', show.value.zuege],
+    ].filter(([, v]) => v && v.trim())
+
+    if (k1Fields.length > 0) {
+      doc.setFontSize(11)
+      doc.setFont(undefined, 'bold')
+      doc.text('Aufbau', 14, currentY)
+      doc.setFont(undefined, 'normal')
+      doc.setFontSize(9)
+      currentY += 6
+      for (const [label, value] of k1Fields) {
+        const lines = doc.splitTextToSize(`${label}: ${value}`, 180)
+        doc.text(lines, 14, currentY)
+        currentY += lines.length * 5
+      }
+      currentY += 4
+    }
+  }
+
+  // Aufbaunotizen
+  if (show.value.aufbau && show.value.aufbau.trim()) {
+    doc.setFontSize(11)
+    doc.setFont(undefined, 'bold')
+    doc.text('Aufbaunotizen', 14, currentY)
+    doc.setFont(undefined, 'normal')
+    doc.setFontSize(9)
+    currentY += 6
+    const lines = doc.splitTextToSize(show.value.aufbau, 180)
+    doc.text(lines, 14, currentY)
+    currentY += lines.length * 5 + 6
+  }
+
   const tableData = channels.value
     .filter(c => c.beschreibung && c.beschreibung.trim() !== '')
     .map(c => [c.kanal, c.adresse, c.geraet, c.farbe, c.beschreibung])
@@ -459,7 +499,7 @@ const buildPDF = () => {
   doc.autoTable({
     head: [['Kanal', 'Adresse', 'Gerät', 'Farbe', 'Beschreibung']],
     body: tableData,
-    startY: 30,
+    startY: currentY,
     styles: { fontSize: 8 }
   })
 
