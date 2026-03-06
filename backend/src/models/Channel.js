@@ -67,7 +67,7 @@ export const Channel = {
             const values = [];
             let paramCount = 1;
 
-            const updatableFields = ['adresse', 'geraet', 'farbe', 'beschreibung', 'aktiv'];
+            const updatableFields = ['adresse', 'geraet', 'farbe', 'beschreibung', 'aktiv', 'position', 'kanal'];
 
             for (const field of updatableFields) {
                 if (data[field] !== undefined) {
@@ -83,8 +83,9 @@ export const Channel = {
                 values
             );
 
-            // Record history for changed fields
-            for (const field of updatableFields) {
+            // Record history for changed fields (not for position/kanal)
+            const historyFields = ['adresse', 'geraet', 'farbe', 'beschreibung', 'aktiv'];
+            for (const field of historyFields) {
                 if (data[field] !== undefined) {
                     const oldVal = currentChannel ? String(currentChannel[field] ?? '') : '';
                     const newVal = String(data[field] ?? '');
