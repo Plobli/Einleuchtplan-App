@@ -9,7 +9,9 @@ import {
     restoreShow,
     permanentDeleteShow,
     importChannels,
-    exportShowAsJSON
+    exportShowAsJSON,
+    getShowHistory,
+    revertShowChange
 } from '../controllers/showController.js';
 
 const router = express.Router();
@@ -25,5 +27,7 @@ router.delete('/:id/permanent', permanentDeleteShow);
 router.post('/:id/import', importChannels);
 router.post('/:id/channels', importChannels); // Alias für Channel-Erstellung
 router.get('/:id/export/json', exportShowAsJSON);
+router.get('/:id/history', getShowHistory);
+router.post('/:id/revert/:historyId', revertShowChange);
 
 export default router;

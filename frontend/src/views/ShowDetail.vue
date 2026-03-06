@@ -194,10 +194,11 @@
       <div v-if="historyLoading" class="history-loading">Lädt...</div>
       <div v-else-if="history.length === 0" class="history-empty">Keine Änderungen</div>
       <ul v-else class="history-list">
-        <li v-for="entry in history" :key="entry.id" class="history-entry">
+        <li v-for="entry in history" :key="entry._type + '-' + entry.id" class="history-entry">
           <div class="history-meta">
-            <span class="history-kanal">Kanal {{ entry.kanal }}</span>
-            <span class="history-field">{{ fieldLabel(entry.field_name) }}</span>
+            <span class="history-kanal" v-if="entry._type === 'channel'">Kanal {{ entry.kanal }}</span>
+            <span class="history-kanal history-kanal-show" v-else>Show</span>
+            <span class="history-field">{{ fieldLabel(entry.field_name, entry._type) }}</span>
             <span class="history-time">{{ formatDateTime(entry.changed_at) }}</span>
             <span v-if="entry.user_name" class="history-user">{{ entry.user_name }}</span>
           </div>
@@ -522,33 +523,52 @@ const closePdfPreview = () => {
   pdfPreviewUrl.value = null
 }
 
+const loadHistory = async () => {
+  historyLoading.value = true
+  try {
+    const [channelRes, showRes] = await Promise.all([
+      api.get(`/api/channels/show/${route.params.id}/history`),
+      api.get(`/api/shows/${route.params.id}/history`)
+    ])
+    const channelEntries = channelRes.data.map(e => ({ ...e, _type: 'channel' }))
+    const showEntries = showRes.data.map(e => ({ ...e, _type: 'show' }))
+    const merged = [...channelEntries, ...showEntries]
+    merged.sort((a, b) => new Date(b.changed_at) - new Date(a.changed_at))
+    history.value = merged.slice(0, 50)
+  } catch (e) {
+    alert('Fehler beim Laden des Verlaufs')
+  } finally {
+    historyLoading.value = false
+  }
+}
+
 const toggleHistory = async () => {
   showHistory.value = !showHistory.value
   if (showHistory.value) {
-    historyLoading.value = true
-    try {
-      const res = await api.get(`/api/channels/show/${route.params.id}/history`)
-      history.value = res.data
-    } catch (e) {
-      alert('Fehler beim Laden des Verlaufs')
-    } finally {
-      historyLoading.value = false
-    }
+    await loadHistory()
   }
 }
 
 const revert = async (entry) => {
   try {
-    await api.post(`/api/channels/revert/${entry.id}`)
-    await loadChannels()
-    const res = await api.get(`/api/channels/show/${route.params.id}/history`)
-    history.value = res.data
+    if (entry._type === 'show') {
+      await api.post(`/api/shows/${route.params.id}/revert/${entry.id}`)
+      await loadShow()
+    } else {
+      await api.post(`/api/channels/revert/${entry.id}`)
+      await loadChannels()
+    }
+    await loadHistory()
   } catch (e) {
     alert('Fehler beim Rückgängigmachen')
   }
 }
 
-const fieldLabel = (field) => {
+const fieldLabel = (field, type) => {
+  if (type === 'show') {
+    const labels = { name: 'Name', venue: 'Bühne', date: 'Datum', portalbruecke: 'Portalbrücke', portale: 'Portale', sbtor: 'SB-Tor', zuege: 'Höhe Züge', aufbau: 'Aufbaunotizen' }
+    return labels[field] || field
+  }
   const labels = { adresse: 'Adresse', geraet: 'Gerät', farbe: 'Farbe', beschreibung: 'Beschreibung', aktiv: 'Aktiv' }
   return labels[field] || field
 }
@@ -1100,6 +1120,10 @@ const deleteShow = async () => {
   font-weight: 600;
   color: var(--color-primary);
   font-size: var(--text-sm);
+}
+
+.history-kanal-show {
+  color: var(--color-text-secondary);
 }
 
 .history-field {
