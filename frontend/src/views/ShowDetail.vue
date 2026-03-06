@@ -218,11 +218,12 @@
         <div class="modal-actions pdf-modal-header">
           <h2>PDF Vorschau</h2>
           <div style="display: flex; gap: var(--space-3);">
+            <button @click="printPDF" class="btn-secondary">Drucken</button>
             <button @click="downloadPDF" class="btn-primary">Herunterladen</button>
             <button @click="closePdfPreview" class="btn-secondary">Schließen</button>
           </div>
         </div>
-        <iframe :src="pdfPreviewUrl" class="pdf-iframe"></iframe>
+        <iframe ref="pdfIframe" :src="pdfPreviewUrl" class="pdf-iframe"></iframe>
       </div>
     </div>
 
@@ -272,6 +273,7 @@ const newCategoryName = ref('')
 const zuegeTextarea = ref(null)
 const aufbauTextarea = ref(null)
 const pdfPreviewUrl = ref(null)
+const pdfIframe = ref(null)
 const showHistory = ref(false)
 const history = ref([])
 const historyLoading = ref(false)
@@ -291,9 +293,17 @@ onUnmounted(() => {
   }
 })
 
+const toSlug = (name) => name.toLowerCase().replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '')
+
 const loadShow = async () => {
   await showStore.fetchShow(route.params.id)
   show.value = showStore.currentShow
+  if (show.value?.name) {
+    const slug = toSlug(show.value.name)
+    if (route.params.slug !== slug) {
+      router.replace({ name: 'ShowDetail', params: { id: route.params.id, slug } })
+    }
+  }
 }
 
 const updateShowField = async (field) => {
@@ -521,6 +531,12 @@ const downloadPDF = () => {
 const closePdfPreview = () => {
   if (pdfPreviewUrl.value) URL.revokeObjectURL(pdfPreviewUrl.value)
   pdfPreviewUrl.value = null
+}
+
+const printPDF = () => {
+  if (pdfIframe.value?.contentWindow) {
+    pdfIframe.value.contentWindow.print()
+  }
 }
 
 const loadHistory = async () => {
