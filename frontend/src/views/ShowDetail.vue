@@ -105,50 +105,61 @@
                 </td>
               </tr>
               <!-- Channel-Zeilen -->
-              <tr 
-                v-for="channel in group.channels" 
-                :key="channel.id"
-              >
-                <td class="channel-number">{{ channel.kanal }}</td>
-                <td>
-                  <input 
-                    v-model="channel.adresse"
-                    @blur="updateChannel(channel, 'adresse', channel.adresse)"
-                    @input="handleTyping(channel.id, 'adresse')"
-                    class="cell-input"
-                  />
-                </td>
-                <td>
-                  <input 
-                    v-model="channel.geraet"
-                    @blur="updateChannel(channel, 'geraet', channel.geraet)"
-                    @input="handleTyping(channel.id, 'geraet')"
-                    class="cell-input"
-                  />
-                </td>
-                <td>
-                  <select 
-                    v-model="channel.farbe"
-                    @change="updateChannel(channel, 'farbe', channel.farbe)"
-                    class="cell-select"
-                  >
-                    <option value="NC">NC</option>
-                    <option value="200">200</option>
-                    <option value="201">201</option>
-                    <option value="202">202</option>
-                  </select>
-                </td>
-                <td class="beschreibung-cell">
-                  <textarea 
-                    v-model="channel.beschreibung"
-                    @blur="updateChannel(channel, 'beschreibung', channel.beschreibung)"
-                    @input="handleTyping(channel.id, 'beschreibung')"
-                    class="cell-textarea"
-                    placeholder="Position/Notizen"
-                    rows="1"
-                  ></textarea>
-                </td>
-              </tr>
+              <template v-for="channel in group.channels" :key="channel.id">
+                <tr>
+                  <td>
+                    <input
+                      v-model="channel.kanal"
+                      @blur="updateChannel(channel, 'kanal', channel.kanal)"
+                      @input="handleTyping(channel.id, 'kanal')"
+                      class="cell-input channel-number-input"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      v-model="channel.adresse"
+                      @blur="updateChannel(channel, 'adresse', channel.adresse)"
+                      @input="handleTyping(channel.id, 'adresse')"
+                      class="cell-input"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      v-model="channel.geraet"
+                      @blur="updateChannel(channel, 'geraet', channel.geraet)"
+                      @input="handleTyping(channel.id, 'geraet')"
+                      class="cell-input"
+                    />
+                  </td>
+                  <td>
+                    <select
+                      v-model="channel.farbe"
+                      @change="updateChannel(channel, 'farbe', channel.farbe)"
+                      class="cell-select"
+                    >
+                      <option value="NC">NC</option>
+                      <option value="200">200</option>
+                      <option value="201">201</option>
+                      <option value="202">202</option>
+                    </select>
+                  </td>
+                  <td class="beschreibung-cell">
+                    <textarea
+                      v-model="channel.beschreibung"
+                      @blur="updateChannel(channel, 'beschreibung', channel.beschreibung)"
+                      @input="handleTyping(channel.id, 'beschreibung')"
+                      class="cell-textarea"
+                      placeholder="Position/Notizen"
+                      rows="1"
+                    ></textarea>
+                  </td>
+                </tr>
+                <tr class="insert-row">
+                  <td colspan="5" class="insert-cell">
+                    <button @click="insertChannelAfter(channel)" class="btn-insert-row">+ Zeile einfügen</button>
+                  </td>
+                </tr>
+              </template>
             </template>
             <!-- Neue Kategorie hinzufügen -->
             <tr>
@@ -531,22 +542,32 @@ const deleteChannel = async (channelId) => {
 
 const addChannelToCategory = async (categoryName) => {
   try {
-    const maxPosition = Math.max(...channels.value.map(c => c.position || 0), 0)
-    const newChannel = {
-      kanal: '',
-      adresse: '',
-      geraet: '',
-      farbe: 'NC',
-      beschreibung: '',
-      kategorie: categoryName,
-      position: maxPosition + 1,
-      aktiv: false
-    }
-    
-    const response = await api.post(`/api/shows/${show.value.id}/channels`, newChannel)
-    channels.value.push(response.data)
+    const maxPosition = Math.max(...channels.value.map(c => c.position ?? 0), 0)
+    await api.post(`/api/shows/${show.value.id}/channels`, {
+      kanal: '', adresse: '', geraet: '', farbe: 'NC', beschreibung: '',
+      kategorie: categoryName, position: maxPosition + 1, aktiv: false
+    })
+    await loadChannels()
   } catch (error) {
     alert('Fehler beim Hinzufügen')
+  }
+}
+
+const insertChannelAfter = async (channel) => {
+  try {
+    const insertPos = channel.position + 1
+    // Shift all channels at or after insertPos up by 1
+    const toShift = channels.value.filter(c => (c.position ?? 0) >= insertPos)
+    for (const c of toShift) {
+      await showStore.updateChannel(c.id, { position: (c.position ?? 0) + 1 })
+    }
+    await api.post(`/api/shows/${show.value.id}/channels`, {
+      kanal: '', adresse: '', geraet: '', farbe: 'NC', beschreibung: '',
+      kategorie: channel.kategorie, position: insertPos, aktiv: false
+    })
+    await loadChannels()
+  } catch (error) {
+    alert('Fehler beim Einfügen')
   }
 }
 
@@ -831,8 +852,44 @@ const deleteShow = async () => {
   color: var(--color-text-primary);
 }
 
-.channel-number {
+.channel-number-input {
   font-weight: 600;
+  color: var(--color-primary);
+  width: 90px;
+}
+
+.insert-row td {
+  padding: 0;
+  border: none;
+  height: 4px;
+}
+
+.insert-row:hover td {
+  height: auto;
+}
+
+.insert-cell {
+  text-align: center;
+}
+
+.btn-insert-row {
+  display: none;
+  background: none;
+  border: 1px dashed var(--color-border-default);
+  width: 100%;
+  padding: var(--space-1) 0;
+  cursor: pointer;
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.insert-row:hover .btn-insert-row {
+  display: block;
+}
+
+.btn-insert-row:hover {
+  border-color: var(--color-primary);
   color: var(--color-primary);
 }
 
