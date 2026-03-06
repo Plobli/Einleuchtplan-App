@@ -30,34 +30,42 @@ export const getShowById = async (req, res, next) => {
 
 export const createShow = async (req, res, next) => {
     try {
-        const { name, venue, date, createDefaultChannels } = req.body;
+        const { name, venue, date, channelTemplate } = req.body;
 
         if (!name) {
-            return res.status(400).json({ 
+            return res.status(400).json({
                 error: 'Missing required field',
-                message: 'Show name is required' 
+                message: 'Show name is required'
             });
         }
 
         // Convert empty strings to null for optional fields
         const show = await Show.create(
-            name, 
-            venue || null, 
-            date || null, 
+            name,
+            venue || null,
+            date || null,
             req.user.id
         );
 
-        // Create default channels if requested
-        if (createDefaultChannels) {
+        // Create channels from template if requested
+        if (channelTemplate && channelTemplate !== 'none') {
             try {
-                const defaultChannelsPath = join(__dirname, '../data/default-channels.json');
-                const channelsData = JSON.parse(await readFile(defaultChannelsPath, 'utf-8'));
-                
+                let channelsPath;
+                if (channelTemplate === 'k1') {
+                    channelsPath = join(__dirname, '../data/default-channels.json');
+                } else if (channelTemplate === 'kasino') {
+                    channelsPath = join(__dirname, '../data/kasino-channels.json');
+                } else {
+                    throw new Error('Unknown template: ' + channelTemplate);
+                }
+
+                const channelsData = JSON.parse(await readFile(channelsPath, 'utf-8'));
+
                 for (const channelData of channelsData) {
                     await Channel.create(show.id, channelData);
                 }
             } catch (error) {
-                console.error('Error creating default channels:', error);
+                console.error('Error creating channels from template:', error);
                 // Continue even if channel creation fails
             }
         }
@@ -132,28 +140,54 @@ export const permanentDeleteShow = async (req, res, next) => {
 
 export const importChannels = async (req, res, next) => {
     try {
-        const { channels } = req.body;
         const showId = req.params.id;
+        
+        // Check if it's a single channel or bulk import
+        if (Array.isArray(req.body)) {
+            // Bulk import (array of channels)
+            const channels = req.body;
+            
+            // Delete existing channels
+            const existingChannels = await Channel.findByShowId(showId);
+            for (const channel of existingChannels) {
+                await Channel.delete(channel.id);
+            }
 
-        if (!Array.isArray(channels)) {
-            return res.status(400).json({ 
-                error: 'Invalid format',
-                message: 'Channels must be an array' 
+            // Import new channels
+            const imported = await Channel.bulkCreate(showId, channels);
+            return res.json({ 
+                message: 'Channels imported successfully',
+                count: imported.length 
             });
-        }
+        } else if (req.body.channels) {
+            // Legacy format: { channels: [...] }
+            const channels = req.body.channels;
+            
+            if (!Array.isArray(channels)) {
+                return res.status(400).json({ 
+                    error: 'Invalid format',
+                    message: 'Channels must be an array' 
+                });
+            }
 
-        // Delete existing channels
-        const existingChannels = await Channel.findByShowId(showId);
-        for (const channel of existingChannels) {
-            await Channel.delete(channel.id);
-        }
+            // Delete existing channels
+            const existingChannels = await Channel.findByShowId(showId);
+            for (const channel of existingChannels) {
+                await Channel.delete(channel.id);
+            }
 
-        // Import new channels
-        const imported = await Channel.bulkCreate(showId, channels);
-        res.json({ 
-            message: 'Channels imported successfully',
-            count: imported.length 
-        });
+            // Import new channels
+            const imported = await Channel.bulkCreate(showId, channels);
+            return res.json({ 
+                message: 'Channels imported successfully',
+                count: imported.length 
+            });
+        } else {
+            // Single channel creation
+            const channelData = req.body;
+            const newChannel = await Channel.create(showId, channelData);
+            return res.status(201).json(newChannel);
+        }
     } catch (error) {
         next(error);
     }

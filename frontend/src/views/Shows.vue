@@ -58,6 +58,14 @@
             <label>Datum</label>
             <input v-model="newShow.date" type="date" />
           </div>
+          <div class="form-group">
+            <label>Bühnen-Standard</label>
+            <select v-model="newShow.channelTemplate">
+              <option value="none">Leerer Plan</option>
+              <option value="k1">K1 Standard</option>
+              <option value="kasino">Kasino Standard</option>
+            </select>
+          </div>
           <div class="modal-actions">
             <button type="button" @click="showCreateModal = false" class="btn-secondary">
               Abbrechen
@@ -84,7 +92,8 @@ const showCreateModal = ref(false)
 const newShow = ref({
   name: '',
   venue: '',
-  date: ''
+  date: '',
+  channelTemplate: 'none'
 })
 
 onMounted(async () => {
@@ -100,9 +109,9 @@ const loadShows = async () => {
 
 const createShow = async () => {
   try {
-    await showStore.createShow({ ...newShow.value, createDefaultChannels: true })
+    await showStore.createShow(newShow.value)
     showCreateModal.value = false
-    newShow.value = { name: '', venue: '', date: '' }
+    newShow.value = { name: '', venue: '', date: '', channelTemplate: 'none' }
     await loadShows()
   } catch (error) {
     alert('Fehler beim Erstellen: ' + error.message)
@@ -254,11 +263,15 @@ const formatDate = (date) => {
   font-weight: 500;
 }
 
-.form-group input {
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group select {
   width: 100%;
   padding: var(--space-3);
   border: 1px solid var(--color-border-default);
   border-radius: var(--radius-sm);
+  background: white;
+  cursor: pointer;
 }
 
 .modal-actions {

@@ -30,7 +30,7 @@
       </div>
     </header>
 
-    <div class="content">
+    <div class="content" v-if="show">
       <!-- Aufbau-Informationen -->
       <div class="aufbau-section">
         <h2>Aufbau</h2>

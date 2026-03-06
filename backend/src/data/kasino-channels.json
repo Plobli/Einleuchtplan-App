@@ -1,0 +1,532 @@
+[
+  {
+    "kanal": "1",
+    "adresse": "",
+    "geraet": "2x650W",
+    "farbe": "NC",
+    "beschreibung": "Saal",
+    "kategorie": "",
+    "position": 0,
+    "aktiv": false
+  },
+  {
+    "kanal": "2",
+    "adresse": "",
+    "geraet": "2x650W",
+    "farbe": "NC",
+    "beschreibung": "Saal",
+    "kategorie": "",
+    "position": 1,
+    "aktiv": false
+  },
+  {
+    "kanal": "3",
+    "adresse": "",
+    "geraet": "2x650W",
+    "farbe": "NC",
+    "beschreibung": "Saal",
+    "kategorie": "",
+    "position": 2,
+    "aktiv": false
+  },
+  {
+    "kanal": "4",
+    "adresse": "",
+    "geraet": "2x650W",
+    "farbe": "NC",
+    "beschreibung": "Treppe",
+    "kategorie": "",
+    "position": 3,
+    "aktiv": false
+  },
+  {
+    "kanal": "5",
+    "adresse": "",
+    "geraet": "2x650W",
+    "farbe": "NC",
+    "beschreibung": "Saaltür",
+    "kategorie": "",
+    "position": 4,
+    "aktiv": false
+  },
+  {
+    "kanal": "6",
+    "adresse": "",
+    "geraet": "2x650W",
+    "farbe": "NC",
+    "beschreibung": "Nische",
+    "kategorie": "",
+    "position": 5,
+    "aktiv": false
+  },
+  {
+    "kanal": "7",
+    "adresse": "",
+    "geraet": "1,2KW",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 6,
+    "aktiv": false
+  },
+  {
+    "kanal": "8",
+    "adresse": "",
+    "geraet": "1,2KW",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 7,
+    "aktiv": false
+  },
+  {
+    "kanal": "9",
+    "adresse": "",
+    "geraet": "650W Profil",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 8,
+    "aktiv": false
+  },
+  {
+    "kanal": "10",
+    "adresse": "",
+    "geraet": "1,2KW",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 9,
+    "aktiv": false
+  },
+  {
+    "kanal": "11",
+    "adresse": "",
+    "geraet": "1,2KW",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 10,
+    "aktiv": false
+  },
+  {
+    "kanal": "12",
+    "adresse": "",
+    "geraet": "650W Profil",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 11,
+    "aktiv": false
+  },
+  {
+    "kanal": "13",
+    "adresse": "",
+    "geraet": "1,2KW",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 12,
+    "aktiv": false
+  },
+  {
+    "kanal": "14",
+    "adresse": "",
+    "geraet": "1,2KW",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 13,
+    "aktiv": false
+  },
+  {
+    "kanal": "15",
+    "adresse": "",
+    "geraet": "650W",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 14,
+    "aktiv": false
+  },
+  {
+    "kanal": "16",
+    "adresse": "",
+    "geraet": "1,2KW PC",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 15,
+    "aktiv": false
+  },
+  {
+    "kanal": "17",
+    "adresse": "",
+    "geraet": "1,2KW PC",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 16,
+    "aktiv": false
+  },
+  {
+    "kanal": "18",
+    "adresse": "",
+    "geraet": "650W",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 17,
+    "aktiv": false
+  },
+  {
+    "kanal": "19",
+    "adresse": "",
+    "geraet": "650W",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 18,
+    "aktiv": false
+  },
+  {
+    "kanal": "20",
+    "adresse": "",
+    "geraet": "1,2KW PC",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 19,
+    "aktiv": false
+  },
+  {
+    "kanal": "21",
+    "adresse": "",
+    "geraet": "1,2KW PC",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 20,
+    "aktiv": false
+  },
+  {
+    "kanal": "22",
+    "adresse": "",
+    "geraet": "650W",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 21,
+    "aktiv": false
+  },
+  {
+    "kanal": "23",
+    "adresse": "",
+    "geraet": "2xPAR",
+    "farbe": "NC",
+    "beschreibung": "Nische Fenster",
+    "kategorie": "",
+    "position": 22,
+    "aktiv": false
+  },
+  {
+    "kanal": "24",
+    "adresse": "",
+    "geraet": "4xPIN Spott",
+    "farbe": "NC",
+    "beschreibung": "Auf Spiegelkugel",
+    "kategorie": "",
+    "position": 23,
+    "aktiv": false
+  },
+  {
+    "kanal": "25",
+    "adresse": "",
+    "geraet": "Spiegelkugel",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 24,
+    "aktiv": false
+  },
+  {
+    "kanal": "26",
+    "adresse": "",
+    "geraet": "2xCP64",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 25,
+    "aktiv": false
+  },
+  {
+    "kanal": "27",
+    "adresse": "",
+    "geraet": "2xCP64",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 26,
+    "aktiv": false
+  },
+  {
+    "kanal": "28",
+    "adresse": "",
+    "geraet": "2xCP64",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 27,
+    "aktiv": false
+  },
+  {
+    "kanal": "29",
+    "adresse": "",
+    "geraet": "2xCP64",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 28,
+    "aktiv": false
+  },
+  {
+    "kanal": "30",
+    "adresse": "",
+    "geraet": "Bühnen Vers.",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 29,
+    "aktiv": false
+  },
+  {
+    "kanal": "31",
+    "adresse": "",
+    "geraet": "Bühnen Vers.",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 30,
+    "aktiv": false
+  },
+  {
+    "kanal": "32",
+    "adresse": "",
+    "geraet": "1,2KW Profil",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 31,
+    "aktiv": false
+  },
+  {
+    "kanal": "41",
+    "adresse": "",
+    "geraet": "LED PAR alt",
+    "farbe": "NC",
+    "beschreibung": "Decke über Saal (2x SWZ)",
+    "kategorie": "",
+    "position": 32,
+    "aktiv": false
+  },
+  {
+    "kanal": "42",
+    "adresse": "",
+    "geraet": "LED PAR alt",
+    "farbe": "NC",
+    "beschreibung": "Decke über Saal (2x SWZ)",
+    "kategorie": "",
+    "position": 33,
+    "aktiv": false
+  },
+  {
+    "kanal": "43",
+    "adresse": "",
+    "geraet": "LED PAR alt",
+    "farbe": "NC",
+    "beschreibung": "Decke über Bühne (2x SWZ)",
+    "kategorie": "",
+    "position": 34,
+    "aktiv": false
+  },
+  {
+    "kanal": "44",
+    "adresse": "",
+    "geraet": "LED PAR alt",
+    "farbe": "NC",
+    "beschreibung": "Decke über Bühne (2x SWZ)",
+    "kategorie": "",
+    "position": 35,
+    "aktiv": false
+  },
+  {
+    "kanal": "51",
+    "adresse": "",
+    "geraet": "LED Retro",
+    "farbe": "NC",
+    "beschreibung": "Saal",
+    "kategorie": "",
+    "position": 36,
+    "aktiv": false
+  },
+  {
+    "kanal": "52",
+    "adresse": "",
+    "geraet": "LED Retro",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 37,
+    "aktiv": false
+  },
+  {
+    "kanal": "53",
+    "adresse": "",
+    "geraet": "LED Retro",
+    "farbe": "NC",
+    "beschreibung": "Saal",
+    "kategorie": "",
+    "position": 38,
+    "aktiv": false
+  },
+  {
+    "kanal": "54",
+    "adresse": "",
+    "geraet": "LED Retro",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 39,
+    "aktiv": false
+  },
+  {
+    "kanal": "55",
+    "adresse": "",
+    "geraet": "LED Retro",
+    "farbe": "NC",
+    "beschreibung": "Bühne RL",
+    "kategorie": "",
+    "position": 40,
+    "aktiv": false
+  },
+  {
+    "kanal": "56",
+    "adresse": "",
+    "geraet": "LED Retro",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 41,
+    "aktiv": false
+  },
+  {
+    "kanal": "61",
+    "adresse": "",
+    "geraet": "Cameo",
+    "farbe": "NC",
+    "beschreibung": "Steil auf Säulen, ohne Trassschatten",
+    "kategorie": "",
+    "position": 42,
+    "aktiv": false
+  },
+  {
+    "kanal": "62",
+    "adresse": "",
+    "geraet": "Cameo",
+    "farbe": "NC",
+    "beschreibung": "Steil auf Säulen, ohne Trassschatten",
+    "kategorie": "",
+    "position": 43,
+    "aktiv": false
+  },
+  {
+    "kanal": "63",
+    "adresse": "",
+    "geraet": "Cameo",
+    "farbe": "NC",
+    "beschreibung": "Steil auf Säulen, ohne Trassschatten",
+    "kategorie": "",
+    "position": 44,
+    "aktiv": false
+  },
+  {
+    "kanal": "64",
+    "adresse": "",
+    "geraet": "Cameo",
+    "farbe": "NC",
+    "beschreibung": "Steil auf Säulen, ohne Trassschatten",
+    "kategorie": "",
+    "position": 45,
+    "aktiv": false
+  },
+  {
+    "kanal": "65",
+    "adresse": "",
+    "geraet": "Cameo",
+    "farbe": "NC",
+    "beschreibung": "Steil auf Säulen, ohne Trassschatten",
+    "kategorie": "",
+    "position": 46,
+    "aktiv": false
+  },
+  {
+    "kanal": "66",
+    "adresse": "",
+    "geraet": "Cameo",
+    "farbe": "NC",
+    "beschreibung": "Steil auf Säulen, ohne Trassschatten",
+    "kategorie": "",
+    "position": 47,
+    "aktiv": false
+  },
+  {
+    "kanal": "67",
+    "adresse": "",
+    "geraet": "Cameo",
+    "farbe": "NC",
+    "beschreibung": "Steil auf Säulen, ohne Trassschatten",
+    "kategorie": "",
+    "position": 48,
+    "aktiv": false
+  },
+  {
+    "kanal": "68",
+    "adresse": "",
+    "geraet": "Cameo",
+    "farbe": "NC",
+    "beschreibung": "Steil auf Säulen, ohne Trassschatten",
+    "kategorie": "",
+    "position": 49,
+    "aktiv": false
+  },
+  {
+    "kanal": "69",
+    "adresse": "",
+    "geraet": "Cameo",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 50,
+    "aktiv": false
+  },
+  {
+    "kanal": "70",
+    "adresse": "",
+    "geraet": "Cameo",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 51,
+    "aktiv": false
+  },
+  {
+    "kanal": "71",
+    "adresse": "",
+    "geraet": "Cameo",
+    "farbe": "NC",
+    "beschreibung": "",
+    "kategorie": "",
+    "position": 52,
+    "aktiv": false
+  }
+]
