@@ -544,7 +544,7 @@ const addChannelToCategory = async (categoryName) => {
   try {
     const maxPosition = Math.max(...channels.value.map(c => c.position ?? 0), 0)
     await api.post(`/api/shows/${show.value.id}/channels`, {
-      kanal: '', adresse: '', geraet: '', farbe: 'NC', beschreibung: '',
+      kanal: null, adresse: '', geraet: '', farbe: 'NC', beschreibung: '',
       kategorie: categoryName, position: maxPosition + 1, aktiv: false
     })
     await loadChannels()
@@ -562,7 +562,7 @@ const insertChannelAfter = async (channel) => {
       await showStore.updateChannel(c.id, { position: (c.position ?? 0) + 1 })
     }
     await api.post(`/api/shows/${show.value.id}/channels`, {
-      kanal: '', adresse: '', geraet: '', farbe: 'NC', beschreibung: '',
+      kanal: null, adresse: '', geraet: '', farbe: 'NC', beschreibung: '',
       kategorie: channel.kategorie, position: insertPos, aktiv: false
     })
     await loadChannels()
