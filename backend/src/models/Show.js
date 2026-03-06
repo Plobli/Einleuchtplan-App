@@ -1,6 +1,17 @@
 import pool from '../config/database.js';
 
 export const Show = {
+    toSlug(name) {
+        return name.toLowerCase().replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '');
+    },
+
+    async findBySlug(slug) {
+        const result = await pool.query(
+            'SELECT * FROM shows WHERE deleted_at IS NULL'
+        );
+        return result.rows.find(r => this.toSlug(r.name) === slug) || null;
+    },
+
     async create(name, venue, date, createdBy) {
         const result = await pool.query(
             'INSERT INTO shows (name, venue, date, created_by) VALUES ($1, $2, $3, $4) RETURNING *',

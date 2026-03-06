@@ -2,6 +2,7 @@ import express from 'express';
 import {
     getAllShows,
     getShowById,
+    getShowBySlug,
     createShow,
     updateShow,
     deleteShow,
@@ -16,6 +17,7 @@ import {
 
 const router = express.Router();
 
+router.get('/slug/:slug', getShowBySlug);
 router.get('/trash', getTrashedShows);
 router.get('/', getAllShows);
 router.get('/:id', getShowById);

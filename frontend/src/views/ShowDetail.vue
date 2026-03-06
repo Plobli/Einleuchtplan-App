@@ -16,12 +16,6 @@
         <div v-if="activeUsers.length > 0" class="active-users">
           {{ activeUsers.length }} Online
         </div>
-        <button @click="showImportModal = true" class="btn-secondary">
-          Import
-        </button>
-        <button @click="exportJSON" class="btn-secondary">
-          Export JSON
-        </button>
         <button @click="previewPDF" class="btn-secondary">
           Export PDF
         </button>
@@ -167,24 +161,6 @@
       </div>
     </div>
 
-    <!-- Import Modal -->
-    <div v-if="showImportModal" class="modal" @click.self="showImportModal = false">
-      <div class="modal-content">
-        <h2>Channels importieren</h2>
-        <p>JSON-Datei mit Channel-Daten hochladen</p>
-        <textarea 
-          v-model="importData"
-          placeholder='[{"kanal": "1", "adresse": "121", "geraet": "VK Bühne", "farbe": "NC", "beschreibung": ""}]'
-          rows="10"
-          class="import-textarea"
-        ></textarea>
-        <div class="modal-actions">
-          <button @click="showImportModal = false" class="btn-secondary">Abbrechen</button>
-          <button @click="importChannels" class="btn-primary">Importieren</button>
-        </div>
-      </div>
-    </div>
-
     <!-- Verlauf-Panel -->
     <div v-if="showHistory" class="history-panel">
       <div class="history-header">
@@ -264,9 +240,6 @@ const searchQuery = ref('')
 const editingChannelId = ref(null)
 const activeUsers = ref([])
 
-const showImportModal = ref(false)
-const importData = ref('')
-
 const showNewCategoryModal = ref(false)
 const newCategoryName = ref('')
 
@@ -289,26 +262,18 @@ onMounted(async () => {
 
 onUnmounted(() => {
   if (socket) {
-    socket.emit('show:leave', route.params.id)
+    socket.emit('show:leave', show.value?.id)
   }
 })
 
-const toSlug = (name) => name.toLowerCase().replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '')
-
 const loadShow = async () => {
-  await showStore.fetchShow(route.params.id)
-  show.value = showStore.currentShow
-  if (show.value?.name) {
-    const slug = toSlug(show.value.name)
-    if (route.params.slug !== slug) {
-      router.replace({ name: 'ShowDetail', params: { id: route.params.id, slug } })
-    }
-  }
+  const res = await api.get(`/api/shows/slug/${route.params.slug}`)
+  show.value = res.data
 }
 
 const updateShowField = async (field) => {
   try {
-    await showStore.updateShow(route.params.id, { [field]: show.value[field] })
+    await showStore.updateShow(show.value.id, { [field]: show.value[field] })
   } catch (error) {
     console.error('Fehler beim Speichern:', error)
   }
@@ -316,7 +281,7 @@ const updateShowField = async (field) => {
 
 const loadChannels = async () => {
   loading.value = true
-  await showStore.fetchChannels(route.params.id)
+  await showStore.fetchChannels(show.value.id)
   channels.value = showStore.channels
   loading.value = false
 }
@@ -324,7 +289,7 @@ const loadChannels = async () => {
 const setupWebSocket = () => {
   if (!socket) return
 
-  socket.emit('show:join', route.params.id)
+  socket.emit('show:join', show.value.id)
 
   socket.on('show:users', (users) => {
     activeUsers.value = users
@@ -401,7 +366,7 @@ const updateChannel = async (channel, field, value) => {
     
     if (socket) {
       socket.emit('channel:update', {
-        showId: route.params.id,
+        showId: show.value.id,
         channelId: channel.id,
         field,
         value
@@ -413,41 +378,6 @@ const updateChannel = async (channel, field, value) => {
   }
 
   editingChannelId.value = null
-}
-
-const importChannels = async () => {
-  try {
-    const data = JSON.parse(importData.value)
-    
-    // Add position field
-    const channelsWithPosition = data.map((ch, index) => ({
-      ...ch,
-      position: index + 1,
-      aktiv: ch.aktiv || false
-    }))
-
-    await showStore.importChannels(route.params.id, channelsWithPosition)
-    showImportModal.value = false
-    importData.value = ''
-    await loadChannels()
-  } catch (error) {
-    alert('Fehler beim Importieren: ' + error.message)
-  }
-}
-
-const exportJSON = async () => {
-  try {
-    const data = await showStore.exportAsJSON(route.params.id)
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `${show.value.name}_${new Date().toISOString().split('T')[0]}.json`
-    a.click()
-    URL.revokeObjectURL(url)
-  } catch (error) {
-    alert('Fehler beim Export: ' + error.message)
-  }
 }
 
 const buildPDF = () => {
@@ -543,8 +473,8 @@ const loadHistory = async () => {
   historyLoading.value = true
   try {
     const [channelRes, showRes] = await Promise.all([
-      api.get(`/api/channels/show/${route.params.id}/history`),
-      api.get(`/api/shows/${route.params.id}/history`)
+      api.get(`/api/channels/show/${show.value.id}/history`),
+      api.get(`/api/shows/${show.value.id}/history`)
     ])
     const channelEntries = channelRes.data.map(e => ({ ...e, _type: 'channel' }))
     const showEntries = showRes.data.map(e => ({ ...e, _type: 'show' }))
@@ -568,7 +498,7 @@ const toggleHistory = async () => {
 const revert = async (entry) => {
   try {
     if (entry._type === 'show') {
-      await api.post(`/api/shows/${route.params.id}/revert/${entry.id}`)
+      await api.post(`/api/shows/${show.value.id}/revert/${entry.id}`)
       await loadShow()
     } else {
       await api.post(`/api/channels/revert/${entry.id}`)
@@ -613,7 +543,7 @@ const addChannelToCategory = async (categoryName) => {
       aktiv: false
     }
     
-    const response = await api.post(`/api/shows/${route.params.id}/channels`, newChannel)
+    const response = await api.post(`/api/shows/${show.value.id}/channels`, newChannel)
     channels.value.push(response.data)
   } catch (error) {
     alert('Fehler beim Hinzufügen')
@@ -669,7 +599,7 @@ const formatDateTime = (date) => {
 const deleteShow = async () => {
   if (!confirm(`Show "${show.value.name}" wirklich in den Papierkorb verschieben?`)) return
   try {
-    await showStore.deleteShow(route.params.id)
+    await showStore.deleteShow(show.value.id)
     router.push('/')
   } catch (error) {
     alert('Fehler beim Löschen: ' + error.message)

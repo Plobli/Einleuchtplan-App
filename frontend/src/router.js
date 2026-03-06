@@ -20,7 +20,7 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
-    path: '/show/:id/:slug?',
+    path: '/show/:slug',
     name: 'ShowDetail',
     component: () => import('./views/ShowDetail.vue'),
     meta: { requiresAuth: true }

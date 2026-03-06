@@ -30,7 +30,7 @@
           v-for="show in shows" 
           :key="show.id" 
           class="show-card"
-          @click="$router.push(`/show/${show.id}/${show.name.toLowerCase().replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '')}`)"
+          @click="$router.push(`/show/${show.name.toLowerCase().replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '')}`)"
         >
           <h3>{{ show.name }}</h3>
           <p class="venue">{{ show.venue || 'Keine Bühne' }}</p>

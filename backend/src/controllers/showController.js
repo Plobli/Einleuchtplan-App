@@ -102,6 +102,18 @@ export const updateShow = async (req, res, next) => {
     }
 };
 
+export const getShowBySlug = async (req, res, next) => {
+    try {
+        const show = await Show.findBySlug(req.params.slug);
+        if (!show) {
+            return res.status(404).json({ error: 'Show not found' });
+        }
+        res.json(show);
+    } catch (error) {
+        next(error);
+    }
+};
+
 export const getShowHistory = async (req, res, next) => {
     try {
         const history = await Show.getHistory(req.params.id, 50);
