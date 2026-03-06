@@ -58,13 +58,17 @@ export const Channel = {
         try {
             await client.query('BEGIN');
 
+            // Get current values for history
+            const current = await client.query('SELECT * FROM channels WHERE id = $1', [id]);
+            const currentChannel = current.rows[0];
+
             // Build update query
             const fields = [];
             const values = [];
             let paramCount = 1;
 
             const updatableFields = ['adresse', 'geraet', 'farbe', 'beschreibung', 'aktiv'];
-            
+
             for (const field of updatableFields) {
                 if (data[field] !== undefined) {
                     fields.push(`${field} = $${paramCount++}`);
@@ -79,6 +83,21 @@ export const Channel = {
                 values
             );
 
+            // Record history for changed fields
+            for (const field of updatableFields) {
+                if (data[field] !== undefined) {
+                    const oldVal = currentChannel ? String(currentChannel[field] ?? '') : '';
+                    const newVal = String(data[field] ?? '');
+                    if (oldVal !== newVal) {
+                        await client.query(
+                            `INSERT INTO channel_history (channel_id, user_id, field_name, old_value, new_value)
+                             VALUES ($1, $2, $3, $4, $5)`,
+                            [id, userId || null, field, oldVal, newVal]
+                        );
+                    }
+                }
+            }
+
             await client.query('COMMIT');
             return result.rows[0];
         } catch (error) {
@@ -87,6 +106,37 @@ export const Channel = {
         } finally {
             client.release();
         }
+    },
+
+    async getHistoryByShowId(showId, limit = 50) {
+        const result = await pool.query(
+            `SELECT h.*, c.kanal, u.name as user_name
+             FROM channel_history h
+             JOIN channels c ON h.channel_id = c.id
+             LEFT JOIN users u ON h.user_id = u.id
+             WHERE c.show_id = $1
+             ORDER BY h.changed_at DESC
+             LIMIT $2`,
+            [showId, limit]
+        );
+        return result.rows;
+    },
+
+    async revert(historyId) {
+        const histResult = await pool.query(
+            'SELECT * FROM channel_history WHERE id = $1', [historyId]
+        );
+        const entry = histResult.rows[0];
+        if (!entry) throw new Error('History entry not found');
+
+        const allowedFields = ['adresse', 'geraet', 'farbe', 'beschreibung', 'aktiv'];
+        if (!allowedFields.includes(entry.field_name)) throw new Error('Invalid field');
+
+        const result = await pool.query(
+            `UPDATE channels SET ${entry.field_name} = $1 WHERE id = $2 RETURNING *`,
+            [entry.old_value, entry.channel_id]
+        );
+        return result.rows[0];
     },
 
     async delete(id) {

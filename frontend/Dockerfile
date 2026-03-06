@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
@@ -8,5 +8,6 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-# Keep container running so volume is accessible
-CMD ["tail", "-f", "/dev/null"]
+FROM nginx:alpine
+COPY --from=builder /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf

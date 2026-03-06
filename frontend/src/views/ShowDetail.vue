@@ -8,6 +8,7 @@
           <p class="show-meta">
             <span v-if="show.venue">{{ show.venue }}</span>
             <span v-if="show.date">{{ formatDate(show.date) }}</span>
+            <span>Stand: {{ formatDate(new Date().toISOString()) }}</span>
           </p>
         </div>
       </div>
@@ -21,8 +22,11 @@
         <button @click="exportJSON" class="btn-secondary">
           Export JSON
         </button>
-        <button @click="exportPDF" class="btn-secondary">
+        <button @click="previewPDF" class="btn-secondary">
           Export PDF
+        </button>
+        <button @click="toggleHistory" class="btn-secondary">
+          Verlauf
         </button>
         <button @click="deleteShow" class="btn-danger">
           In Papierkorb
@@ -34,30 +38,32 @@
       <!-- Aufbau-Informationen -->
       <div class="aufbau-section">
         <h2>Aufbau</h2>
-        <div class="form-grid">
-          <div class="form-group">
-            <label>Portalbrücke Höhe:</label>
-            <input v-model="show.portalbruecke" type="text" @blur="updateShowField('portalbruecke')" />
+        <template v-if="show.venue === 'K1'">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Portalbrücke Höhe:</label>
+              <input v-model="show.portalbruecke" type="text" @blur="updateShowField('portalbruecke')" />
+            </div>
+            <div class="form-group">
+              <label>Portale Auszug:</label>
+              <input v-model="show.portale" type="text" @blur="updateShowField('portale')" />
+            </div>
+            <div class="form-group">
+              <label>SB-Tor:</label>
+              <input v-model="show.sbtor" type="text" @blur="updateShowField('sbtor')" />
+            </div>
           </div>
           <div class="form-group">
-            <label>Portale Auszug:</label>
-            <input v-model="show.portale" type="text" @blur="updateShowField('portale')" />
+            <label>Höhe Züge:</label>
+            <div class="editor-toolbar">
+              <button @click="formatText('zuege', 'bold')" class="format-btn" title="Fett" type="button"><strong>B</strong></button>
+              <button @click="formatText('zuege', 'italic')" class="format-btn" title="Kursiv" type="button"><em>I</em></button>
+            </div>
+            <textarea ref="zuegeTextarea" v-model="show.zuege" @blur="updateShowField('zuege')" rows="3"></textarea>
           </div>
-          <div class="form-group">
-            <label>SB-Tor:</label>
-            <input v-model="show.sbtor" type="text" @blur="updateShowField('sbtor')" />
-          </div>
-        </div>
+        </template>
         <div class="form-group">
-          <label>Höhe Züge:</label>
-          <div class="editor-toolbar">
-            <button @click="formatText('zuege', 'bold')" class="format-btn" title="Fett" type="button"><strong>B</strong></button>
-            <button @click="formatText('zuege', 'italic')" class="format-btn" title="Kursiv" type="button"><em>I</em></button>
-          </div>
-          <textarea ref="zuegeTextarea" v-model="show.zuege" @blur="updateShowField('zuege')" rows="3"></textarea>
-        </div>
-        <div class="form-group">
-          <label>Weitere Aufbaunotizen:</label>
+          <label>{{ show.venue === 'K1' ? 'Weitere Aufbaunotizen' : 'Aufbaunotizen' }}:</label>
           <div class="editor-toolbar">
             <button @click="formatText('aufbau', 'bold')" class="format-btn" title="Fett" type="button"><strong>B</strong></button>
             <button @click="formatText('aufbau', 'italic')" class="format-btn" title="Kursiv" type="button"><em>I</em></button>
@@ -179,6 +185,46 @@
       </div>
     </div>
 
+    <!-- Verlauf-Panel -->
+    <div v-if="showHistory" class="history-panel">
+      <div class="history-header">
+        <h3>Verlauf (letzte 50)</h3>
+        <button @click="showHistory = false" class="btn-secondary">✕</button>
+      </div>
+      <div v-if="historyLoading" class="history-loading">Lädt...</div>
+      <div v-else-if="history.length === 0" class="history-empty">Keine Änderungen</div>
+      <ul v-else class="history-list">
+        <li v-for="entry in history" :key="entry.id" class="history-entry">
+          <div class="history-meta">
+            <span class="history-kanal">Kanal {{ entry.kanal }}</span>
+            <span class="history-field">{{ fieldLabel(entry.field_name) }}</span>
+            <span class="history-time">{{ formatDateTime(entry.changed_at) }}</span>
+            <span v-if="entry.user_name" class="history-user">{{ entry.user_name }}</span>
+          </div>
+          <div class="history-values">
+            <span class="history-old">{{ entry.old_value || '–' }}</span>
+            <span class="history-arrow">→</span>
+            <span class="history-new">{{ entry.new_value || '–' }}</span>
+          </div>
+          <button @click="revert(entry)" class="btn-revert">Rückgängig</button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- PDF Vorschau Modal -->
+    <div v-if="pdfPreviewUrl" class="modal pdf-preview-modal" @click.self="closePdfPreview">
+      <div class="modal-content pdf-modal-content">
+        <div class="modal-actions pdf-modal-header">
+          <h2>PDF Vorschau</h2>
+          <div style="display: flex; gap: var(--space-3);">
+            <button @click="downloadPDF" class="btn-primary">Herunterladen</button>
+            <button @click="closePdfPreview" class="btn-secondary">Schließen</button>
+          </div>
+        </div>
+        <iframe :src="pdfPreviewUrl" class="pdf-iframe"></iframe>
+      </div>
+    </div>
+
     <!-- Neue Kategorie Modal -->
     <div v-if="showNewCategoryModal" class="modal" @click.self="showNewCategoryModal = false">
       <div class="modal-content">
@@ -224,6 +270,10 @@ const newCategoryName = ref('')
 
 const zuegeTextarea = ref(null)
 const aufbauTextarea = ref(null)
+const pdfPreviewUrl = ref(null)
+const showHistory = ref(false)
+const history = ref([])
+const historyLoading = ref(false)
 
 let typingTimeout = null
 const socket = getSocket()
@@ -389,18 +439,19 @@ const exportJSON = async () => {
   }
 }
 
-const exportPDF = () => {
+const buildPDF = () => {
   const doc = new jsPDF()
-  
+
   doc.setFontSize(16)
   doc.text(show.value.name, 14, 15)
-  
-  if (show.value.venue) {
-    doc.setFontSize(10)
-    doc.text(`Venue: ${show.value.venue}`, 14, 22)
-  }
-  
-  // Exportiere Kanäle, die eine Beschreibung haben
+
+  doc.setFontSize(10)
+  const metaLine = []
+  if (show.value.venue) metaLine.push(`Bühne: ${show.value.venue}`)
+  if (show.value.date) metaLine.push(formatDate(show.value.date))
+  metaLine.push(`Stand: ${formatDate(new Date().toISOString())}`)
+  doc.text(metaLine.join('   '), 14, 22)
+
   const tableData = channels.value
     .filter(c => c.beschreibung && c.beschreibung.trim() !== '')
     .map(c => [c.kanal, c.adresse, c.geraet, c.farbe, c.beschreibung])
@@ -412,7 +463,54 @@ const exportPDF = () => {
     styles: { fontSize: 8 }
   })
 
+  return doc
+}
+
+const previewPDF = () => {
+  const doc = buildPDF()
+  if (pdfPreviewUrl.value) URL.revokeObjectURL(pdfPreviewUrl.value)
+  pdfPreviewUrl.value = doc.output('bloburl')
+}
+
+const downloadPDF = () => {
+  const doc = buildPDF()
   doc.save(`${show.value.name}_${new Date().toISOString().split('T')[0]}.pdf`)
+}
+
+const closePdfPreview = () => {
+  if (pdfPreviewUrl.value) URL.revokeObjectURL(pdfPreviewUrl.value)
+  pdfPreviewUrl.value = null
+}
+
+const toggleHistory = async () => {
+  showHistory.value = !showHistory.value
+  if (showHistory.value) {
+    historyLoading.value = true
+    try {
+      const res = await api.get(`/api/channels/show/${route.params.id}/history`)
+      history.value = res.data
+    } catch (e) {
+      alert('Fehler beim Laden des Verlaufs')
+    } finally {
+      historyLoading.value = false
+    }
+  }
+}
+
+const revert = async (entry) => {
+  try {
+    await api.post(`/api/channels/revert/${entry.id}`)
+    await loadChannels()
+    const res = await api.get(`/api/channels/show/${route.params.id}/history`)
+    history.value = res.data
+  } catch (e) {
+    alert('Fehler beim Rückgängigmachen')
+  }
+}
+
+const fieldLabel = (field) => {
+  const labels = { adresse: 'Adresse', geraet: 'Gerät', farbe: 'Farbe', beschreibung: 'Beschreibung', aktiv: 'Aktiv' }
+  return labels[field] || field
 }
 
 const deleteChannel = async (channelId) => {
@@ -902,5 +1000,151 @@ const deleteShow = async () => {
 .format-btn strong,
 .format-btn em {
   font-size: var(--text-sm);
+}
+
+.history-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 380px;
+  height: 100vh;
+  background: white;
+  box-shadow: -4px 0 16px rgba(0,0,0,0.15);
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.history-header h3 {
+  margin: 0;
+  font-size: var(--text-base);
+}
+
+.history-loading, .history-empty {
+  padding: var(--space-6);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.history-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.history-entry {
+  padding: var(--space-3) var(--space-5);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.history-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+  margin-bottom: var(--space-1);
+}
+
+.history-kanal {
+  font-weight: 600;
+  color: var(--color-primary);
+  font-size: var(--text-sm);
+}
+
+.history-field {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.history-time {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  margin-left: auto;
+}
+
+.history-user {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+
+.history-values {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-2);
+}
+
+.history-old {
+  color: var(--color-danger);
+  text-decoration: line-through;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.history-new {
+  color: var(--color-success);
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.history-arrow {
+  color: var(--color-text-secondary);
+}
+
+.btn-revert {
+  background: none;
+  border: 1px solid var(--color-border-default);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+
+.btn-revert:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.pdf-preview-modal .modal-content {
+  max-width: 90vw;
+  width: 90vw;
+  max-height: 90vh;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.pdf-modal-header {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-4);
+}
+
+.pdf-modal-header h2 {
+  margin: 0;
+}
+
+.pdf-iframe {
+  flex: 1;
+  width: 100%;
+  border: none;
+  border-radius: var(--radius-sm);
 }
 </style>

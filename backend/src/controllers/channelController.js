@@ -63,6 +63,30 @@ export const updateChannel = async (req, res, next) => {
     }
 };
 
+export const getShowHistory = async (req, res, next) => {
+    try {
+        const history = await Channel.getHistoryByShowId(req.params.showId, 50);
+        res.json(history);
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const revertChannelChange = async (req, res, next) => {
+    try {
+        const channel = await Channel.revert(req.params.historyId);
+        io.to(`show-${channel.show_id}`).emit('channel:updated', {
+            channel,
+            userId: req.user.id,
+            userName: req.user.name,
+            updates: {}
+        });
+        res.json(channel);
+    } catch (error) {
+        next(error);
+    }
+};
+
 export const deleteChannel = async (req, res, next) => {
     try {
         const channel = await Channel.findById(req.params.id);

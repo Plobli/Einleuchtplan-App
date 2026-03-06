@@ -22,4 +22,4 @@ npm run db:migrate
 
 # Start the server
 echo "🚀 Starting server..."
-npm run dev
+npm run start

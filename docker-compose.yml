@@ -57,9 +57,6 @@ services:
       CORS_ORIGIN: https://theater.cfrlab.de
     ports:
       - "127.0.0.1:3006:3000"
-    volumes:
-      - ./backend/src:/app/src
-      - /app/node_modules
 
   frontend:
     build: ./frontend
@@ -67,14 +64,11 @@ services:
     restart: unless-stopped
     depends_on:
       - backend
-    volumes:
-      - frontend_dist:/app/dist
 
 
 volumes:
   postgres_data:
   redis_data:
-  frontend_dist:
 
 networks:
   default:

@@ -33,7 +33,7 @@
           @click="$router.push(`/show/${show.id}`)"
         >
           <h3>{{ show.name }}</h3>
-          <p class="venue">{{ show.venue || 'Kein Venue' }}</p>
+          <p class="venue">{{ show.venue || 'Keine Bühne' }}</p>
           <p class="date">{{ formatDate(show.date) }}</p>
           <p class="channels">{{ show.channel_count }} Channels</p>
           <p class="creator">{{ show.creator_name }}</p>
@@ -51,7 +51,7 @@
             <input v-model="newShow.name" type="text" required />
           </div>
           <div class="form-group">
-            <label>Venue</label>
+            <label>Bühne</label>
             <input v-model="newShow.venue" type="text" />
           </div>
           <div class="form-group">
