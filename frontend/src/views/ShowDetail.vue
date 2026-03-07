@@ -2,7 +2,14 @@
   <div class="show-detail-container">
     <header class="header">
       <div class="header-left">
-        <button @click="$router.push('/')" class="btn-back">Zurück</button>
+        <button @click="$router.push('/')" class="btn-back" title="Zur Übersicht">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"/>
+            <rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/>
+            <rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+        </button>
         <div v-if="show">
           <h1>{{ show.name }}</h1>
           <p class="show-meta">
@@ -21,6 +28,9 @@
         </button>
         <button @click="toggleHistory" class="btn-secondary">
           Verlauf
+        </button>
+        <button @click="archiveShow" class="btn-secondary">
+          Archivieren
         </button>
         <button @click="deleteShow" class="btn-danger">
           In Papierkorb
@@ -86,11 +96,12 @@
         <table class="channels-table">
           <thead>
             <tr>
-              <th style="width: 100px">Kanal</th>
-              <th style="width: 140px">Adresse</th>
-              <th style="width: 200px">Gerät</th>
+              <th style="width: 55px">Kreis</th>
+              <th style="width: 90px">Adresse</th>
+              <th style="width: 150px">Gerät</th>
               <th style="width: 80px">Farbe</th>
               <th>Beschreibung / Position</th>
+              <th style="width: 36px"></th>
             </tr>
           </thead>
           <tbody>
@@ -143,30 +154,22 @@
                       <option value="202">202</option>
                     </select>
                   </td>
-                  <td class="beschreibung-cell">
-                    <textarea
+                  <td>
+                    <input
                       v-model="channel.beschreibung"
                       @blur="updateChannel(channel, 'beschreibung', channel.beschreibung)"
                       @input="handleTyping(channel.id, 'beschreibung')"
-                      class="cell-textarea"
-                      placeholder="Position/Notizen"
-                      rows="1"
-                    ></textarea>
+                      class="cell-input"
+                      placeholder="Notiz..."
+                    />
                   </td>
-                </tr>
-                <tr class="insert-row">
-                  <td colspan="5" class="insert-cell">
-                    <button @click="insertChannelAfter(channel)" class="btn-insert-row">+ Zeile einfügen</button>
+                  <td class="delete-cell">
+                    <button @click="deleteChannel(channel.id)" class="btn-delete-row" title="Zeile löschen">✕</button>
+                    <button @click="insertChannelAfter(channel)" class="btn-insert-inline" title="Zeile darunter einfügen">+</button>
                   </td>
                 </tr>
               </template>
             </template>
-            <!-- Neue Kategorie hinzufügen -->
-            <tr>
-              <td colspan="5" style="text-align: center; padding: var(--space-4);">
-                <button @click="showNewCategoryModal = true" class="btn-add-category">+ Neue Kategorie</button>
-              </td>
-            </tr>
           </tbody>
         </table>
       </div>
@@ -232,7 +235,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useShowStore } from '../stores/show'
 import { getSocket } from '../api/websocket'
@@ -391,6 +394,60 @@ const updateChannel = async (channel, field, value) => {
   editingChannelId.value = null
 }
 
+const parseMarkdownSegments = (text) => {
+  const segments = []
+  const pattern = /\*\*(.*?)\*\*|\*(.*?)\*/g
+  let lastIndex = 0
+  let match
+  while ((match = pattern.exec(text)) !== null) {
+    if (match.index > lastIndex) segments.push({ text: text.slice(lastIndex, match.index), style: 'normal' })
+    if (match[1] !== undefined) segments.push({ text: match[1], style: 'bold' })
+    else segments.push({ text: match[2], style: 'italic' })
+    lastIndex = pattern.lastIndex
+  }
+  if (lastIndex < text.length) segments.push({ text: text.slice(lastIndex), style: 'normal' })
+  return segments
+}
+
+const renderMarkdownText = (doc, text, x, startY, maxWidth, lineHeight = 5) => {
+  let currentY = startY
+  for (const rawLine of text.split('\n')) {
+    if (!rawLine.trim()) { currentY += lineHeight; continue }
+    const segments = parseMarkdownSegments(rawLine)
+    const styledWords = []
+    for (const seg of segments) {
+      for (const word of seg.text.split(/(\s+)/)) {
+        if (word) styledWords.push({ text: word, style: seg.style })
+      }
+    }
+    const flush = (tokens, y) => {
+      let rx = x
+      for (const t of tokens) {
+        doc.setFont(undefined, t.style)
+        doc.text(t.text, rx, y)
+        rx += doc.getTextWidth(t.text)
+      }
+    }
+    let lineTokens = []
+    let lineWidth = 0
+    for (const sw of styledWords) {
+      doc.setFont(undefined, sw.style)
+      const w = doc.getTextWidth(sw.text)
+      if (lineWidth + w > maxWidth && lineTokens.length > 0 && sw.text.trim()) {
+        flush(lineTokens, currentY)
+        currentY += lineHeight
+        lineTokens = []
+        lineWidth = 0
+      }
+      lineTokens.push(sw)
+      lineWidth += w
+    }
+    if (lineTokens.length) { flush(lineTokens, currentY); currentY += lineHeight }
+  }
+  doc.setFont(undefined, 'normal')
+  return currentY
+}
+
 const buildPDF = () => {
   const doc = new jsPDF()
 
@@ -423,9 +480,7 @@ const buildPDF = () => {
       doc.setFontSize(9)
       currentY += 6
       for (const [label, value] of k1Fields) {
-        const lines = doc.splitTextToSize(`${label}: ${value}`, 180)
-        doc.text(lines, 14, currentY)
-        currentY += lines.length * 5
+        currentY = renderMarkdownText(doc, `${label}: ${value}`, 14, currentY, 180)
       }
       currentY += 4
     }
@@ -439,9 +494,8 @@ const buildPDF = () => {
     doc.setFont(undefined, 'normal')
     doc.setFontSize(9)
     currentY += 6
-    const lines = doc.splitTextToSize(show.value.aufbau, 180)
-    doc.text(lines, 14, currentY)
-    currentY += lines.length * 5 + 6
+    currentY = renderMarkdownText(doc, show.value.aufbau, 14, currentY, 180)
+    currentY += 6
   }
 
   const tableData = channels.value
@@ -449,7 +503,7 @@ const buildPDF = () => {
     .map(c => [c.kanal, c.adresse, c.geraet, c.farbe, c.beschreibung])
 
   doc.autoTable({
-    head: [['Kanal', 'Adresse', 'Gerät', 'Farbe', 'Beschreibung']],
+    head: [['Kreis', 'Adresse', 'Gerät', 'Farbe', 'Beschreibung']],
     body: tableData,
     startY: currentY,
     styles: { fontSize: 8 }
@@ -541,32 +595,53 @@ const deleteChannel = async (channelId) => {
 }
 
 const addChannelToCategory = async (categoryName) => {
+  const maxPosition = Math.max(...channels.value.map(c => c.position ?? 0), 0)
+  const newPos = maxPosition + 1
+  const tempChannel = {
+    id: `temp-${Date.now()}`,
+    kanal: null, adresse: '', geraet: '', farbe: 'NC', beschreibung: '',
+    kategorie: categoryName, position: newPos, aktiv: false
+  }
+  channels.value.push(tempChannel)
   try {
-    const maxPosition = Math.max(...channels.value.map(c => c.position ?? 0), 0)
-    await api.post(`/api/shows/${show.value.id}/channels`, {
+    const res = await api.post(`/api/shows/${show.value.id}/channels`, {
       kanal: null, adresse: '', geraet: '', farbe: 'NC', beschreibung: '',
-      kategorie: categoryName, position: maxPosition + 1, aktiv: false
+      kategorie: categoryName, position: newPos, aktiv: false
     })
-    await loadChannels()
+    const idx = channels.value.findIndex(c => c.id === tempChannel.id)
+    if (idx !== -1) channels.value[idx] = res.data
   } catch (error) {
+    channels.value = channels.value.filter(c => c.id !== tempChannel.id)
     alert('Fehler beim Hinzufügen')
   }
 }
 
 const insertChannelAfter = async (channel) => {
+  const insertPos = channel.position + 1
+  const toShift = channels.value.filter(c => (c.position ?? 0) >= insertPos)
+
+  // Optimistic local update: shift positions immediately
+  toShift.forEach(c => { c.position = (c.position ?? 0) + 1 })
+
+  const tempChannel = {
+    id: `temp-${Date.now()}`,
+    kanal: null, adresse: '', geraet: '', farbe: 'NC', beschreibung: '',
+    kategorie: channel.kategorie, position: insertPos, aktiv: false
+  }
+  channels.value.push(tempChannel)
+
   try {
-    const insertPos = channel.position + 1
-    // Shift all channels at or after insertPos up by 1
-    const toShift = channels.value.filter(c => (c.position ?? 0) >= insertPos)
-    for (const c of toShift) {
-      await showStore.updateChannel(c.id, { position: (c.position ?? 0) + 1 })
-    }
-    await api.post(`/api/shows/${show.value.id}/channels`, {
-      kanal: null, adresse: '', geraet: '', farbe: 'NC', beschreibung: '',
-      kategorie: channel.kategorie, position: insertPos, aktiv: false
-    })
-    await loadChannels()
+    const [, createRes] = await Promise.all([
+      Promise.all(toShift.map(c => showStore.updateChannel(c.id, { position: c.position }))),
+      api.post(`/api/shows/${show.value.id}/channels`, {
+        kanal: null, adresse: '', geraet: '', farbe: 'NC', beschreibung: '',
+        kategorie: channel.kategorie, position: insertPos, aktiv: false
+      })
+    ])
+    const idx = channels.value.findIndex(c => c.id === tempChannel.id)
+    if (idx !== -1) channels.value[idx] = createRes.data
   } catch (error) {
+    await loadChannels()
     alert('Fehler beim Einfügen')
   }
 }
@@ -617,6 +692,16 @@ const formatDateTime = (date) => {
   return new Date(date).toLocaleString('de-DE')
 }
 
+const archiveShow = async () => {
+  if (!confirm(`Show "${show.value.name}" archivieren?`)) return
+  try {
+    await showStore.archiveShow(show.value.id)
+    router.push('/')
+  } catch (error) {
+    alert('Fehler beim Archivieren: ' + error.message)
+  }
+}
+
 const deleteShow = async () => {
   if (!confirm(`Show "${show.value.name}" wirklich in den Papierkorb verschieben?`)) return
   try {
@@ -635,40 +720,62 @@ const deleteShow = async () => {
 }
 
 .header {
-  background: white;
-  padding: var(--space-4);
-  box-shadow: var(--shadow-sm);
+  background: var(--color-surface-base);
+  border-bottom: 1px solid var(--color-border-light);
+  padding: var(--space-3) var(--space-5);
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--space-4);
+  gap: var(--space-3);
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }
 
 .header-left {
   display: flex;
   align-items: center;
   gap: var(--space-4);
+  min-width: 0;
 }
 
 .btn-back {
   background: none;
-  border: none;
-  font-size: var(--text-base);
-  color: var(--color-primary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
   cursor: pointer;
   padding: var(--space-2);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-back:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  background: var(--color-primary-subtle);
 }
 
 .header h1 {
   margin: 0;
-  font-size: var(--text-xl);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .show-meta {
   color: var(--color-text-secondary);
-  font-size: var(--text-sm);
-  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  margin-top: 2px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
 }
 
 .show-meta span {
@@ -677,68 +784,85 @@ const deleteShow = async () => {
 
 .header-actions {
   display: flex;
-  gap: var(--space-3);
+  gap: var(--space-2);
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .active-users {
-  background: var(--color-success);
-  color: white;
-  padding: var(--space-2) var(--space-3);
+  background: rgba(82, 160, 112, 0.15);
+  border: 1px solid rgba(82, 160, 112, 0.3);
+  color: var(--color-success);
+  padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-sm);
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
 }
 
 .btn-secondary {
-  background: white;
+  background: transparent;
   border: 1px solid var(--color-border-default);
-  padding: var(--space-2) var(--space-4);
+  color: var(--color-text-secondary);
+  padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-sm);
   cursor: pointer;
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
 }
 
 .btn-secondary:hover {
   background: var(--color-surface-muted);
+  color: var(--color-text-primary);
+  border-color: var(--color-border-strong);
 }
 
 .btn-danger {
-  background: var(--color-danger);
-  color: white;
-  border: none;
-  padding: var(--space-2) var(--space-4);
+  background: transparent;
+  border: 1px solid rgba(184, 64, 64, 0.35);
+  color: var(--color-danger);
+  padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-sm);
   cursor: pointer;
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
 }
 
 .btn-danger:hover {
-  background: var(--color-danger-hover);
+  background: rgba(184, 64, 64, 0.12);
+  border-color: var(--color-danger);
 }
 
 .content {
   max-width: 1400px;
   margin: 0 auto;
-  padding: var(--space-6);
+  padding: var(--space-5) var(--space-6);
 }
 
 .aufbau-section {
-  background: white;
-  padding: var(--space-6);
+  background: var(--color-surface-base);
+  border: 1px solid var(--color-border-light);
+  padding: var(--space-5) var(--space-6);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-5);
 }
 
 .aufbau-section h2 {
-  margin: 0 0 var(--space-5) 0;
-  font-size: var(--text-lg);
-  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4) 0;
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-style: normal;
 }
 
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: var(--space-4);
   margin-bottom: var(--space-4);
 }
@@ -750,26 +874,36 @@ const deleteShow = async () => {
 .form-group label {
   display: block;
   margin-bottom: var(--space-2);
+  font-size: var(--text-xs);
   font-weight: var(--font-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--color-text-secondary);
-  font-size: var(--text-sm);
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
-  padding: var(--space-3);
+  padding: var(--space-2) var(--space-3);
   border: 1px solid var(--color-border-default);
   border-radius: var(--radius-sm);
   font-size: var(--text-base);
   font-family: inherit;
+  background: var(--color-surface-muted);
+  color: var(--color-text-primary);
+  transition: border-color 0.14s;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--color-text-tertiary);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 0 0 2px rgba(196, 131, 42, 0.08);
 }
 
 .form-group textarea {
@@ -787,28 +921,43 @@ const deleteShow = async () => {
 
 .search-input {
   flex: 1;
-  min-width: 250px;
-  padding: var(--space-3);
+  min-width: 220px;
+  padding: var(--space-2) var(--space-3);
   border: 1px solid var(--color-border-default);
   border-radius: var(--radius-sm);
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
+  background: var(--color-surface-base);
+  color: var(--color-text-primary);
+  transition: border-color 0.14s;
+}
+
+.search-input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
 }
 
 .stats {
-  color: var(--color-text-secondary);
-  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
 }
 
 .table-container {
-  background: white;
+  background: var(--color-surface-base);
+  border: 1px solid var(--color-border-light);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
   overflow-x: auto;
 }
 
 .channels-table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
 .channels-table thead {
@@ -816,46 +965,54 @@ const deleteShow = async () => {
 }
 
 .channels-table th {
-  padding: var(--space-3);
+  padding: var(--space-2) var(--space-3);
   text-align: left;
-  font-weight: 600;
-  color: var(--color-text-primary);
-  border-bottom: 2px solid var(--color-border-default);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-border-default);
 }
 
 .channels-table td {
-  padding: var(--space-2);
+  padding: var(--space-1) var(--space-2);
   border-bottom: 1px solid var(--color-border-light);
   vertical-align: top;
 }
 
 .channels-table tr:hover:not(.category-row) {
-  background: var(--color-surface-subtle);
+  background: var(--color-surface-muted);
 }
 
 .category-row {
   background: var(--color-surface-muted) !important;
-  font-weight: var(--font-semibold);
 }
 
 .category-row:hover {
-  background: var(--color-border-light) !important;
+  background: var(--color-surface-elevated) !important;
 }
 
 .category-row td {
-  padding: var(--space-4) var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border-default);
+  border-left: 2px solid var(--color-primary);
 }
 
 .category-name {
-  font-size: var(--text-base);
+  font-size: var(--text-xs);
   font-weight: var(--font-semibold);
-  color: var(--color-text-primary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
 }
 
 .channel-number-input {
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-weight: var(--font-medium);
   color: var(--color-primary);
-  width: 90px;
+  width: 45px;
+  font-size: var(--text-xs);
 }
 
 .insert-row td {
@@ -880,7 +1037,7 @@ const deleteShow = async () => {
   padding: var(--space-1) 0;
   cursor: pointer;
   font-size: var(--text-xs);
-  color: var(--color-text-secondary);
+  color: var(--color-text-tertiary);
   border-radius: var(--radius-sm);
 }
 
@@ -893,22 +1050,74 @@ const deleteShow = async () => {
   color: var(--color-primary);
 }
 
+.delete-cell {
+  padding: var(--space-1) !important;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.btn-delete-row {
+  display: block;
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border-default);
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-sm);
+  line-height: 1.4;
+  margin-bottom: 2px;
+}
+
+.btn-delete-row:hover {
+  background: rgba(184, 64, 64, 0.15);
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+}
+
+.btn-insert-inline {
+  display: block;
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border-default);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-sm);
+  line-height: 1.4;
+}
+
+.btn-insert-inline:hover {
+  background: var(--color-primary-subtle);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+
 .cell-input, .cell-select {
   width: 100%;
-  padding: var(--space-2);
+  padding: var(--space-1) var(--space-2);
   border: 1px solid transparent;
   border-radius: var(--radius-sm);
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   background: transparent;
+  color: var(--color-text-primary);
+}
+
+.cell-select option {
+  background: var(--color-surface-elevated);
 }
 
 .cell-textarea {
   width: 100%;
-  padding: var(--space-2);
+  padding: var(--space-1) var(--space-2);
   border: 1px solid transparent;
   border-radius: var(--radius-sm);
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   background: transparent;
+  color: var(--color-text-primary);
   resize: vertical;
   min-height: 32px;
   font-family: inherit;
@@ -919,23 +1128,78 @@ const deleteShow = async () => {
 .cell-input:focus, .cell-select:focus, .cell-textarea:focus {
   outline: none;
   border-color: var(--color-primary);
-  background: white;
+  background: var(--color-surface-muted);
 }
 
 .beschreibung-cell {
   max-width: 400px;
+  cursor: pointer;
+}
+
+.beschreibung-text {
+  display: block;
+  font-size: var(--text-base);
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  min-height: 26px;
+  color: var(--color-text-primary);
+}
+
+.beschreibung-text.placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.beschreibung-cell:hover .beschreibung-text {
+  background: var(--color-surface-muted);
+}
+
+.beschreibung-modal-content {
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  width: min(500px, 92vw);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.beschreibung-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border-default);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary);
+}
+
+.beschreibung-modal-textarea {
+  width: 100%;
+  padding: var(--space-4);
+  border: none;
+  font-size: var(--text-base);
+  font-family: inherit;
+  resize: vertical;
+  box-sizing: border-box;
+  outline: none;
+  line-height: 1.55;
+  background: var(--color-surface-elevated);
+  color: var(--color-text-primary);
 }
 
 .btn-icon {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: var(--text-lg);
+  font-size: var(--text-base);
   padding: var(--space-1);
+  color: var(--color-text-secondary);
 }
 
 .btn-icon:hover {
-  opacity: 0.7;
+  color: var(--color-text-primary);
 }
 
 .modal {
@@ -944,7 +1208,7 @@ const deleteShow = async () => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.72);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -952,17 +1216,23 @@ const deleteShow = async () => {
 }
 
 .modal-content {
-  background: white;
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border-default);
   padding: var(--space-6);
   border-radius: var(--radius-md);
-  max-width: 600px;
+  box-shadow: var(--shadow-lg);
+  max-width: 580px;
   max-height: 80vh;
   overflow-y: auto;
   width: 90%;
 }
 
 .modal-content h2 {
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-5);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
 }
 
 .import-textarea {
@@ -970,9 +1240,11 @@ const deleteShow = async () => {
   padding: var(--space-3);
   border: 1px solid var(--color-border-default);
   border-radius: var(--radius-sm);
-  font-family: monospace;
-  font-size: var(--text-sm);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
   margin-top: var(--space-3);
+  background: var(--color-surface-muted);
+  color: var(--color-text-primary);
 }
 
 .modal-actions {
@@ -984,11 +1256,14 @@ const deleteShow = async () => {
 
 .btn-primary {
   background: var(--color-primary);
-  color: white;
+  color: #0a0a0c;
   border: none;
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-sm);
   cursor: pointer;
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  letter-spacing: 0.02em;
 }
 
 .btn-primary:hover {
@@ -1002,38 +1277,44 @@ const deleteShow = async () => {
 }
 
 .btn-add-channel {
-  background: var(--color-primary);
-  color: white;
-  border: none;
-  padding: var(--space-1) var(--space-3);
+  background: transparent;
+  color: var(--color-primary);
+  border: 1px solid rgba(196, 131, 42, 0.3);
+  padding: 2px var(--space-3);
   border-radius: var(--radius-sm);
   cursor: pointer;
-  font-size: var(--text-sm);
-  opacity: 0.7;
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  line-height: 1.6;
 }
 
 .btn-add-channel:hover {
-  opacity: 1;
+  background: var(--color-primary-subtle);
+  border-color: var(--color-primary);
 }
 
 .btn-add-category {
-  background: var(--color-primary);
-  color: white;
-  border: none;
-  padding: var(--space-2) var(--space-4);
-  border-radius: var(--radius-sm);
+  display: block;
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border-default);
+  color: var(--color-text-secondary);
   cursor: pointer;
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-sm);
+  line-height: 1.4;
 }
 
 .btn-add-category:hover {
-  background: var(--color-primary-hover);
+  background: var(--color-primary-subtle);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
 }
 
 .btn-delete {
   color: var(--color-danger);
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 20px;
 }
 
 .btn-delete:hover {
@@ -1047,32 +1328,37 @@ const deleteShow = async () => {
 }
 
 .format-btn {
-  background: white;
+  background: var(--color-surface-muted);
   border: 1px solid var(--color-border-default);
+  color: var(--color-text-secondary);
   padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-sm);
   cursor: pointer;
-  font-size: var(--text-sm);
-  min-width: 32px;
+  font-size: var(--text-xs);
+  min-width: 28px;
+  text-align: center;
 }
 
 .format-btn:hover {
-  background: var(--color-surface-muted);
+  background: var(--color-surface-elevated);
+  border-color: var(--color-border-strong);
+  color: var(--color-text-primary);
 }
 
 .format-btn strong,
 .format-btn em {
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
 }
 
 .history-panel {
   position: fixed;
   top: 0;
   right: 0;
-  width: 380px;
+  width: 360px;
   height: 100vh;
-  background: white;
-  box-shadow: -4px 0 16px rgba(0,0,0,0.15);
+  background: var(--color-surface-base);
+  border-left: 1px solid var(--color-border-default);
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.5);
   z-index: 900;
   display: flex;
   flex-direction: column;
@@ -1089,13 +1375,18 @@ const deleteShow = async () => {
 
 .history-header h3 {
   margin: 0;
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
 }
 
 .history-loading, .history-empty {
   padding: var(--space-6);
-  color: var(--color-text-secondary);
+  color: var(--color-text-tertiary);
   text-align: center;
+  font-size: var(--text-sm);
 }
 
 .history-list {
@@ -1120,9 +1411,10 @@ const deleteShow = async () => {
 }
 
 .history-kanal {
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
   color: var(--color-primary);
-  font-size: var(--text-sm);
 }
 
 .history-kanal-show {
@@ -1130,58 +1422,63 @@ const deleteShow = async () => {
 }
 
 .history-field {
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
   color: var(--color-text-secondary);
 }
 
 .history-time {
   font-size: var(--text-xs);
-  color: var(--color-text-secondary);
+  color: var(--color-text-tertiary);
   margin-left: auto;
+  font-family: var(--font-mono);
 }
 
 .history-user {
   font-size: var(--text-xs);
-  color: var(--color-text-secondary);
+  color: var(--color-text-tertiary);
 }
 
 .history-values {
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
   margin-bottom: var(--space-2);
 }
 
 .history-old {
-  color: var(--color-danger);
+  color: #a04040;
   text-decoration: line-through;
-  max-width: 120px;
+  max-width: 110px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-family: var(--font-mono);
 }
 
 .history-new {
   color: var(--color-success);
-  max-width: 120px;
+  max-width: 110px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-family: var(--font-mono);
 }
 
 .history-arrow {
-  color: var(--color-text-secondary);
+  color: var(--color-text-tertiary);
+  flex-shrink: 0;
 }
 
 .btn-revert {
   background: none;
   border: 1px solid var(--color-border-default);
-  padding: var(--space-1) var(--space-3);
+  padding: 2px var(--space-3);
   border-radius: var(--radius-sm);
   cursor: pointer;
   font-size: var(--text-xs);
-  color: var(--color-text-secondary);
+  color: var(--color-text-tertiary);
+  letter-spacing: 0.03em;
 }
 
 .btn-revert:hover {
@@ -1206,6 +1503,8 @@ const deleteShow = async () => {
 
 .pdf-modal-header h2 {
   margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
 }
 
 .pdf-iframe {
@@ -1213,5 +1512,6 @@ const deleteShow = async () => {
   width: 100%;
   border: none;
   border-radius: var(--radius-sm);
+  background: #fff;
 }
 </style>

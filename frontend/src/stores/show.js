@@ -140,6 +140,32 @@ export const useShowStore = defineStore('show', {
       } catch (error) {
         throw error.response?.data || error
       }
+    },
+
+    async fetchArchivedShows() {
+      try {
+        const response = await api.get('/api/shows/archived')
+        return response.data
+      } catch (error) {
+        throw error.response?.data || error
+      }
+    },
+
+    async archiveShow(id) {
+      try {
+        await api.post(`/api/shows/${id}/archive`)
+        this.shows = this.shows.filter(s => s.id !== id)
+      } catch (error) {
+        throw error.response?.data || error
+      }
+    },
+
+    async unarchiveShow(id) {
+      try {
+        await api.post(`/api/shows/${id}/unarchive`)
+      } catch (error) {
+        throw error.response?.data || error
+      }
     }
   }
 })

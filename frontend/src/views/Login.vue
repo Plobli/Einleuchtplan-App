@@ -97,29 +97,51 @@ const handleSubmit = async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f5f5f5;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% -10%, rgba(196, 131, 42, 0.12) 0%, transparent 70%),
+    var(--color-bg);
   padding: var(--space-4);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+  opacity: 0.5;
 }
 
 .login-card {
-  background: white;
+  background: var(--color-surface-base);
+  border: 1px solid var(--color-border-default);
+  border-top-color: rgba(196, 131, 42, 0.3);
   padding: var(--space-8);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
   width: 100%;
-  max-width: 400px;
+  max-width: 380px;
 }
 
 h1 {
   text-align: center;
   margin-bottom: var(--space-2);
+  font-family: var(--font-display);
   font-size: var(--text-xl);
+  font-weight: 600;
   color: var(--color-text-primary);
 }
 
 .subtitle {
   text-align: center;
   color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   margin-bottom: var(--space-6);
 }
 
@@ -130,8 +152,11 @@ h1 {
 .form-group label {
   display: block;
   margin-bottom: var(--space-2);
-  font-weight: 500;
-  color: var(--color-text-primary);
+  font-weight: var(--font-medium);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
 }
 
 .form-group input {
@@ -139,23 +164,32 @@ h1 {
   padding: var(--space-3);
   border: 1px solid var(--color-border-default);
   border-radius: var(--radius-sm);
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
+  background: var(--color-surface-muted);
+  color: var(--color-text-primary);
+  transition: border-color 0.14s, box-shadow 0.14s;
+}
+
+.form-group input::placeholder {
+  color: var(--color-text-tertiary);
 }
 
 .form-group input:focus {
   outline: none;
   border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(196, 131, 42, 0.1);
 }
 
 .btn-primary {
   width: 100%;
   padding: var(--space-3);
   background: var(--color-primary);
-  color: white;
+  color: #0a0a0c;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: var(--text-base);
-  font-weight: 500;
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  letter-spacing: 0.02em;
   margin-top: var(--space-4);
 }
 
@@ -164,13 +198,14 @@ h1 {
 }
 
 .btn-primary:disabled {
-  opacity: 0.6;
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
 .error-message {
-  background: #fee;
-  color: var(--color-error);
+  background: rgba(184, 64, 64, 0.1);
+  border: 1px solid rgba(184, 64, 64, 0.25);
+  color: #d07070;
   padding: var(--space-3);
   border-radius: var(--radius-sm);
   margin-bottom: var(--space-4);
@@ -179,7 +214,7 @@ h1 {
 
 .toggle-mode {
   text-align: center;
-  margin-top: var(--space-4);
+  margin-top: var(--space-5);
   color: var(--color-text-secondary);
   font-size: var(--text-sm);
 }
@@ -187,5 +222,6 @@ h1 {
 .toggle-mode a {
   color: var(--color-primary);
   cursor: pointer;
+  font-weight: var(--font-medium);
 }
 </style>

@@ -1,39 +1,30 @@
 <template>
-  <div class="trash-container">
+  <div class="archive-container">
     <header class="header">
       <div class="header-left">
         <button @click="$router.push('/')" class="btn-back">Zurück</button>
-        <h1>Papierkorb</h1>
+        <h1>Archiv</h1>
       </div>
     </header>
 
     <div class="content">
       <div v-if="loading" class="loading">Lädt...</div>
-      
-      <div v-else-if="trashedShows.length === 0" class="empty-state">
-        <p>Papierkorb ist leer</p>
+
+      <div v-else-if="archivedShows.length === 0" class="empty-state">
+        <p>Keine archivierten Shows</p>
       </div>
 
       <div v-else class="shows-grid">
-        <div 
-          v-for="show in trashedShows" 
-          :key="show.id" 
-          class="show-card"
-        >
+        <div v-for="show in archivedShows" :key="show.id" class="show-card">
           <h3>{{ show.name }}</h3>
           <p class="venue">{{ show.venue || 'Keine Bühne' }}</p>
           <p class="date">{{ formatDate(show.date) }}</p>
           <p class="channels">{{ show.channel_count }} Channels</p>
-          <p class="creator">{{ show.creator_name }}</p>
-          <p class="deleted">Gelöscht: {{ formatDateTime(show.deleted_at) }}</p>
-          
+          <p class="archived">Archiviert: {{ formatDateTime(show.archived_at) }}</p>
+
           <div class="actions">
-            <button @click="restoreShow(show.id)" class="btn-primary">
-              Wiederherstellen
-            </button>
-            <button @click="permanentDelete(show.id, show.name)" class="btn-danger">
-              Endgültig löschen
-            </button>
+            <button @click="unarchive(show.id)" class="btn-primary">Wiederherstellen</button>
+            <button @click="permanentDelete(show.id, show.name)" class="btn-danger">Endgültig löschen</button>
           </div>
         </div>
       </div>
@@ -43,19 +34,16 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
 import { useShowStore } from '../stores/show'
 
-const router = useRouter()
 const showStore = useShowStore()
-
-const trashedShows = ref([])
+const archivedShows = ref([])
 const loading = ref(true)
 
-const loadTrashedShows = async () => {
+const load = async () => {
   loading.value = true
   try {
-    trashedShows.value = await showStore.fetchTrashedShows()
+    archivedShows.value = await showStore.fetchArchivedShows()
   } catch (error) {
     alert('Fehler beim Laden: ' + error.message)
   } finally {
@@ -63,42 +51,33 @@ const loadTrashedShows = async () => {
   }
 }
 
-const restoreShow = async (showId) => {
+const unarchive = async (id) => {
   try {
-    await showStore.restoreShow(showId)
-    await loadTrashedShows()
+    await showStore.unarchiveShow(id)
+    await load()
   } catch (error) {
-    alert('Fehler beim Wiederherstellen: ' + error.message)
+    alert('Fehler: ' + error.message)
   }
 }
 
-const permanentDelete = async (showId, showName) => {
-  if (!confirm(`Show "${showName}" wirklich ENDGÜLTIG löschen? Diese Aktion kann nicht rückgängig gemacht werden!`)) return
+const permanentDelete = async (id, name) => {
+  if (!confirm(`Show "${name}" wirklich ENDGÜLTIG löschen?`)) return
   try {
-    await showStore.permanentDeleteShow(showId)
-    await loadTrashedShows()
+    await showStore.permanentDeleteShow(id)
+    await load()
   } catch (error) {
-    alert('Fehler beim Löschen: ' + error.message)
+    alert('Fehler: ' + error.message)
   }
 }
 
-const formatDate = (date) => {
-  if (!date) return ''
-  return new Date(date).toLocaleDateString('de-DE')
-}
+const formatDate = (date) => date ? new Date(date).toLocaleDateString('de-DE') : ''
+const formatDateTime = (date) => date ? new Date(date).toLocaleString('de-DE') : ''
 
-const formatDateTime = (date) => {
-  if (!date) return ''
-  return new Date(date).toLocaleString('de-DE')
-}
-
-onMounted(() => {
-  loadTrashedShows()
-})
+onMounted(load)
 </script>
 
 <style scoped>
-.trash-container {
+.archive-container {
   min-height: 100vh;
   background: var(--color-surface-subtle);
 }
@@ -108,7 +87,6 @@ onMounted(() => {
   border-bottom: 1px solid var(--color-border-light);
   padding: var(--space-4) var(--space-6);
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
@@ -178,10 +156,10 @@ onMounted(() => {
   font-size: var(--text-sm);
 }
 
-.deleted {
+.archived {
   font-size: var(--text-xs);
   font-family: var(--font-mono);
-  color: #a04040;
+  color: var(--color-text-tertiary);
   margin-top: var(--space-3);
   padding-top: var(--space-3);
   border-top: 1px solid var(--color-border-light);
@@ -206,9 +184,7 @@ onMounted(() => {
   font-weight: var(--font-semibold);
 }
 
-.btn-primary:hover {
-  background: var(--color-primary-hover);
-}
+.btn-primary:hover { background: var(--color-primary-hover); }
 
 .btn-danger {
   flex: 1;

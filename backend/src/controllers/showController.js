@@ -52,7 +52,7 @@ export const createShow = async (req, res, next) => {
             try {
                 let channelsPath;
                 if (channelTemplate === 'k1') {
-                    channelsPath = join(__dirname, '../data/default-channels.json');
+                    channelsPath = join(__dirname, '../data/k1-channels.json');
                 } else if (channelTemplate === 'kasino') {
                     channelsPath = join(__dirname, '../data/kasino-channels.json');
                 } else {
@@ -154,6 +154,88 @@ export const restoreShow = async (req, res, next) => {
     try {
         await Show.restore(req.params.id);
         res.status(204).send();
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const getArchivedShows = async (req, res, next) => {
+    try {
+        const shows = await Show.findArchived(req.user.id);
+        res.json(shows);
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const archiveShow = async (req, res, next) => {
+    try {
+        await Show.archive(req.params.id);
+        res.status(204).send();
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const unarchiveShow = async (req, res, next) => {
+    try {
+        await Show.unarchive(req.params.id);
+        res.status(204).send();
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const restoreBackup = async (req, res, next) => {
+    try {
+        const entries = req.body;
+        if (!Array.isArray(entries)) {
+            return res.status(400).json({ error: 'Invalid format', message: 'Expected an array of show entries' });
+        }
+
+        const results = { created: 0, skipped: 0, errors: [] };
+
+        for (const entry of entries) {
+            const { show, channels } = entry;
+            if (!show?.name) { results.errors.push('Entry missing show name'); continue; }
+
+            try {
+                // Skip if show with same name already exists
+                const existing = await Show.findBySlug(Show.toSlug(show.name));
+                if (existing) { results.skipped++; continue; }
+
+                const newShow = await Show.create(show.name, show.venue || null, show.date || null, req.user.id);
+
+                if (Array.isArray(channels) && channels.length > 0) {
+                    await Channel.bulkCreate(newShow.id, channels);
+                }
+
+                // Restore text fields
+                const fields = ['portalbruecke', 'portale', 'sbtor', 'zuege', 'aufbau'];
+                const updateData = {};
+                for (const f of fields) { if (show[f] != null) updateData[f] = show[f]; }
+                if (Object.keys(updateData).length > 0) {
+                    await Show.update(newShow.id, updateData, req.user.id);
+                }
+
+                results.created++;
+            } catch (err) {
+                results.errors.push(`${show.name}: ${err.message}`);
+            }
+        }
+
+        res.json(results);
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const backupAll = async (req, res, next) => {
+    try {
+        const data = await Show.backupAll();
+        const filename = `backup_${new Date().toISOString().split('T')[0]}.json`;
+        res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+        res.json(data);
     } catch (error) {
         next(error);
     }

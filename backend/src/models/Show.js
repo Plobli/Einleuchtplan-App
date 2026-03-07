@@ -27,9 +27,23 @@ export const Show = {
             FROM shows s
             LEFT JOIN users u ON s.created_by = u.id
             LEFT JOIN channels c ON s.id = c.show_id
-            WHERE s.deleted_at IS NULL
+            WHERE s.deleted_at IS NULL AND s.archived_at IS NULL
             GROUP BY s.id, u.name
             ORDER BY s.created_at DESC
+        `);
+        return result.rows;
+    },
+
+    async findArchived(userId) {
+        const result = await pool.query(`
+            SELECT s.*, u.name as creator_name,
+                   COUNT(c.id) as channel_count
+            FROM shows s
+            LEFT JOIN users u ON s.created_by = u.id
+            LEFT JOIN channels c ON s.id = c.show_id
+            WHERE s.deleted_at IS NULL AND s.archived_at IS NOT NULL
+            GROUP BY s.id, u.name
+            ORDER BY s.archived_at DESC
         `);
         return result.rows;
     },
@@ -148,5 +162,30 @@ export const Show = {
 
     async restore(id) {
         await pool.query('UPDATE shows SET deleted_at = NULL WHERE id = $1', [id]);
+    },
+
+    async archive(id) {
+        await pool.query('UPDATE shows SET archived_at = CURRENT_TIMESTAMP WHERE id = $1', [id]);
+    },
+
+    async unarchive(id) {
+        await pool.query('UPDATE shows SET archived_at = NULL WHERE id = $1', [id]);
+    },
+
+    async backupAll() {
+        const shows = await pool.query(`
+            SELECT s.*, u.name as creator_name
+            FROM shows s
+            LEFT JOIN users u ON s.created_by = u.id
+            WHERE s.deleted_at IS NULL
+            ORDER BY s.created_at DESC
+        `);
+        const { Channel } = await import('./Channel.js');
+        const result = [];
+        for (const show of shows.rows) {
+            const channels = await Channel.findByShowId(show.id);
+            result.push({ show, channels });
+        }
+        return result;
     }
 };
