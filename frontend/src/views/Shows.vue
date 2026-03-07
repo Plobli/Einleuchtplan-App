@@ -1,70 +1,85 @@
 <template>
   <div class="shows-container">
-    <header class="header">
-      <h1>Meine Shows</h1>
-      <div class="user-menu" ref="userMenuRef">
-        <button class="user-menu-trigger" @click="menuOpen = !menuOpen">
-          {{ authStore.user?.name }} <span class="chevron">▾</span>
+    <header class="app-header">
+      <div class="app-header-brand">
+        <span class="brand-mark">●</span>
+        <span class="brand-name">Einleuchtplan</span>
+      </div>
+      <div class="app-header-actions">
+        <button @click="showCreateModal = true" class="btn-primary">
+          + Neue Show
         </button>
-        <div v-if="menuOpen" class="dropdown">
-          <button @click="navigate('/archive')">Archiv</button>
-          <button @click="navigate('/trash')">Papierkorb</button>
-          <div class="dropdown-divider"></div>
-          <button @click="doDownloadBackup">Backup herunterladen</button>
-          <label class="dropdown-item">
-            Backup laden
-            <input type="file" accept=".json" @change="doRestoreBackup" style="display:none" />
-          </label>
-          <div class="dropdown-divider"></div>
-          <button @click="authStore.logout()">Abmelden</button>
+        <div class="user-menu" ref="userMenuRef">
+          <button class="user-menu-trigger" @click="menuOpen = !menuOpen">
+            {{ authStore.user?.name }}
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+              <path d="M6 8L1 3h10L6 8z"/>
+            </svg>
+          </button>
+          <div v-if="menuOpen" class="dropdown">
+            <button @click="navigate('/archive')">Archiv</button>
+            <button @click="navigate('/trash')">Papierkorb</button>
+            <div class="dropdown-divider"></div>
+            <button @click="doDownloadBackup">Backup herunterladen</button>
+            <label class="dropdown-item">
+              Backup laden
+              <input type="file" accept=".json" @change="doRestoreBackup" style="display:none" />
+            </label>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item-danger" @click="authStore.logout()">Abmelden</button>
+          </div>
         </div>
       </div>
     </header>
 
-    <div class="content">
-      <div class="toolbar">
-        <button @click="showCreateModal = true" class="btn-primary">
-          Neue Show erstellen
-        </button>
+    <main class="content">
+      <div v-if="loading" class="loading-state">
+        <div class="loading-dots"><span></span><span></span><span></span></div>
       </div>
 
-      <div v-if="loading" class="loading">Lädt...</div>
-
       <div v-else-if="shows.length === 0" class="empty-state">
-        <p>Noch keine Shows vorhanden</p>
+        <div class="empty-icon">◎</div>
+        <p class="empty-title">Noch keine Shows</p>
+        <p class="empty-sub">Erstelle deine erste Show, um loszulegen.</p>
         <button @click="showCreateModal = true" class="btn-primary">
           Erste Show erstellen
         </button>
       </div>
 
-      <div v-else>
+      <div v-else class="shows-list">
         <div v-for="([venue, venueShows]) in showsByVenue" :key="venue" class="venue-group">
-          <h2 class="venue-heading">{{ venue }}</h2>
-          <div class="shows-grid">
+          <div class="venue-label">{{ venue }}</div>
+          <div class="show-rows">
             <div
               v-for="show in venueShows"
               :key="show.id"
-              class="show-card"
+              class="show-row"
               @click="$router.push(`/show/${show.name.toLowerCase().replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '')}`)"
             >
-              <h3>{{ show.name }}</h3>
-              <p class="date">{{ formatDate(show.date) }}</p>
-              <p class="channels">{{ show.channel_count }} Channels</p>
-              <p class="creator">{{ show.creator_name }}</p>
+              <div class="show-row-name">{{ show.name }}</div>
+              <div class="show-row-meta">
+                <span v-if="show.date" class="show-row-date">{{ formatDate(show.date) }}</span>
+                <span class="show-row-channels">{{ show.channel_count }} Kanäle</span>
+                <span class="show-row-creator">{{ show.creator_name }}</span>
+              </div>
+              <div class="show-row-arrow">→</div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </main>
 
     <!-- Create Show Modal -->
-    <div v-if="showCreateModal" class="modal" @click.self="showCreateModal = false">
-      <div class="modal-content">
-        <h2>Neue Show erstellen</h2>
-        <form @submit.prevent="createShow">
+    <div v-if="showCreateModal" class="modal-overlay" @click.self="showCreateModal = false">
+      <div class="modal">
+        <div class="modal-header">
+          <h2>Neue Show</h2>
+          <button @click="showCreateModal = false" class="btn-icon-close">✕</button>
+        </div>
+        <form @submit.prevent="createShow" class="modal-body">
           <div class="form-group">
-            <label>Show Name *</label>
-            <input v-model="newShow.name" type="text" required />
+            <label>Name *</label>
+            <input v-model="newShow.name" type="text" required autofocus />
           </div>
           <div class="form-group">
             <label>Datum</label>
@@ -82,7 +97,7 @@
             <label>Bühnenname</label>
             <input v-model="newShow.venue" type="text" placeholder="optional" />
           </div>
-          <div class="modal-actions">
+          <div class="modal-footer">
             <button type="button" @click="showCreateModal = false" class="btn-secondary">
               Abbrechen
             </button>
@@ -177,7 +192,7 @@ const doRestoreBackup = async (event) => {
     if (!Array.isArray(data)) throw new Error('Ungültiges Backup-Format')
     const res = await api.post('/api/shows/restore-backup', data)
     const { created, skipped, errors } = res.data
-    let msg = `Wiederhergestellt: ${created}, übersprungen (bereits vorhanden): ${skipped}`
+    let msg = `Wiederhergestellt: ${created}, übersprungen: ${skipped}`
     if (errors.length > 0) msg += `\nFehler: ${errors.join(', ')}`
     alert(msg)
     await loadShows()
@@ -202,7 +217,7 @@ const doDownloadBackup = async () => {
 }
 
 const formatDate = (date) => {
-  if (!date) return '-'
+  if (!date) return ''
   return new Date(date).toLocaleDateString('de-DE')
 }
 </script>
@@ -210,63 +225,117 @@ const formatDate = (date) => {
 <style scoped>
 .shows-container {
   min-height: 100vh;
-  background: var(--color-surface-subtle);
-}
-
-.header {
-  background: var(--color-surface-base);
-  border-bottom: 1px solid var(--color-border-light);
-  padding: var(--space-4) var(--space-6);
+  background: var(--color-bg);
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────── */
+.app-header {
+  height: 52px;
+  background: var(--color-surface-base);
+  border-bottom: 1px solid var(--color-border-default);
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-6);
+  flex-shrink: 0;
 }
 
-.header h1 {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: var(--text-xl);
-  font-weight: 600;
+.app-header-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.brand-mark {
+  color: var(--color-primary);
+  font-size: 10px;
+  line-height: 1;
+}
+
+.brand-name {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
   color: var(--color-text-primary);
+  letter-spacing: -0.01em;
 }
 
-.user-menu {
-  position: relative;
+.app-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
 }
+
+/* ── Buttons ─────────────────────────────────────────────────────────── */
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  font-weight: var(--font-medium);
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.btn-primary:hover { background: var(--color-primary-hover); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border-default);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.btn-secondary:hover {
+  background: var(--color-surface-muted);
+  color: var(--color-text-primary);
+  border-color: var(--color-border-strong);
+}
+
+.btn-icon-close {
+  background: none;
+  border: none;
+  color: var(--color-text-tertiary);
+  font-size: var(--text-base);
+  padding: var(--space-1);
+  line-height: 1;
+  cursor: pointer;
+}
+.btn-icon-close:hover { color: var(--color-text-primary); }
+
+/* ── User menu ───────────────────────────────────────────────────────── */
+.user-menu { position: relative; }
 
 .user-menu-trigger {
   background: none;
   border: 1px solid transparent;
-  cursor: pointer;
   color: var(--color-text-secondary);
   font-size: var(--text-sm);
   display: flex;
   align-items: center;
-  gap: var(--space-1);
+  gap: var(--space-2);
   padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-sm);
+  cursor: pointer;
 }
-
 .user-menu-trigger:hover {
   background: var(--color-surface-muted);
   color: var(--color-text-primary);
-  border-color: var(--color-border-default);
-}
-
-.chevron {
-  font-size: 0.75em;
-  opacity: 0.6;
+  border-color: var(--color-border-light);
 }
 
 .dropdown {
   position: absolute;
   right: 0;
-  top: calc(100% + 4px);
+  top: calc(100% + 6px);
   background: var(--color-surface-elevated);
   border: 1px solid var(--color-border-default);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
-  min-width: 190px;
+  box-shadow: var(--shadow-lg);
+  min-width: 200px;
   z-index: 100;
   overflow: hidden;
 }
@@ -282,192 +351,215 @@ const formatDate = (date) => {
   cursor: pointer;
   font-size: var(--text-sm);
   font-family: inherit;
-  font-weight: normal;
+  font-weight: var(--font-normal);
   color: var(--color-text-primary);
   box-sizing: border-box;
 }
-
 .dropdown button:hover,
 .dropdown .dropdown-item:hover {
   background: var(--color-surface-muted);
-  color: var(--color-text-primary);
+}
+
+.dropdown-item-danger {
+  color: var(--color-danger) !important;
 }
 
 .dropdown-divider {
   height: 1px;
-  background: var(--color-border-light);
+  background: var(--color-border-default);
   margin: var(--space-1) 0;
 }
 
+/* ── Main content ─────────────────────────────────────────────────────── */
 .content {
-  max-width: 1200px;
+  flex: 1;
+  max-width: 900px;
+  width: 100%;
   margin: 0 auto;
-  padding: var(--space-6);
+  padding: var(--space-10) var(--space-6);
 }
 
-.toolbar {
+/* ── Loading ─────────────────────────────────────────────────────────── */
+.loading-state {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-16);
+}
+.loading-dots {
+  display: flex;
+  gap: var(--space-2);
+}
+.loading-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-border-strong);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+.loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+.loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50%       { opacity: 1;   transform: scale(1);   }
+}
+
+/* ── Empty state ─────────────────────────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: var(--space-16) var(--space-8);
+}
+.empty-icon {
+  font-size: 2rem;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-4);
+}
+.empty-title {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+.empty-sub {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
   margin-bottom: var(--space-6);
 }
 
-.btn-primary {
-  background: var(--color-primary);
-  color: #0a0a0c;
-  border: none;
-  padding: var(--space-3) var(--space-5);
-  border-radius: var(--radius-sm);
+/* ── Shows list ───────────────────────────────────────────────────────── */
+.shows-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+.venue-group {}
+
+.venue-label {
+  font-size: var(--text-xs);
   font-weight: var(--font-semibold);
-  font-size: var(--text-sm);
-  letter-spacing: 0.02em;
-  cursor: pointer;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border-default);
 }
 
-.btn-primary:hover {
-  background: var(--color-primary-hover);
+.show-rows {
+  display: flex;
+  flex-direction: column;
 }
 
-.btn-secondary {
-  background: transparent;
-  color: var(--color-text-secondary);
-  border: 1px solid var(--color-border-default);
-  padding: var(--space-2) var(--space-4);
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  font-size: var(--text-sm);
-}
-
-.btn-secondary:hover {
-  background: var(--color-surface-muted);
-  color: var(--color-text-primary);
-}
-
-.loading, .empty-state {
-  text-align: center;
-  padding: var(--space-8);
-  color: var(--color-text-secondary);
-}
-
-.empty-state button {
-  margin-top: var(--space-4);
-}
-
-.venue-group {
-  margin-bottom: var(--space-8);
-}
-
-.venue-heading {
-  font-family: var(--font-display);
-  font-size: var(--text-lg);
-  font-weight: var(--font-semibold);
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-4);
-  padding-bottom: var(--space-3);
-  border-bottom: 1px solid var(--color-border-light);
+.show-row {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: var(--space-6);
+  padding: var(--space-4) var(--space-4);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background 0.1s;
+  border-bottom: 1px solid var(--color-border-light);
+}
+.show-row:last-child { border-bottom: none; }
+
+.show-row:hover {
+  background: var(--color-surface-base);
 }
 
-.venue-heading::before {
-  content: '';
-  display: inline-block;
-  width: 3px;
-  height: 1em;
-  background: var(--color-primary);
-  border-radius: 2px;
+.show-row-name {
+  flex: 1;
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.show-row-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
   flex-shrink: 0;
 }
 
-.shows-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--space-4);
-}
-
-.show-card {
-  background: var(--color-surface-base);
-  border: 1px solid var(--color-border-light);
-  padding: var(--space-5);
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
-  position: relative;
-  overflow: hidden;
-}
-
-.show-card::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--color-primary);
-  opacity: 0;
-  transition: opacity 0.15s;
-}
-
-.show-card:hover {
-  border-color: var(--color-border-strong);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-1px);
-}
-
-.show-card:hover::before {
-  opacity: 1;
-}
-
-.show-card h3 {
-  margin-bottom: var(--space-3);
-  color: var(--color-text-primary);
-  font-size: var(--text-base);
-  font-weight: var(--font-semibold);
-}
-
-.show-card p {
-  margin: var(--space-1) 0;
-  color: var(--color-text-secondary);
+.show-row-date,
+.show-row-channels,
+.show-row-creator {
   font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+  font-variant-numeric: tabular-nums;
 }
 
-.show-card .channels {
+.show-row-channels {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  color: var(--color-primary);
-  margin-top: var(--space-3);
-  letter-spacing: 0.03em;
 }
 
-.modal {
+.show-row-arrow {
+  color: var(--color-text-tertiary);
+  font-size: var(--text-sm);
+  opacity: 0;
+  transition: opacity 0.1s, transform 0.1s;
+  flex-shrink: 0;
+}
+.show-row:hover .show-row-arrow {
+  opacity: 1;
+  transform: translateX(3px);
+}
+
+/* ── Modal ────────────────────────────────────────────────────────────── */
+.modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  backdrop-filter: blur(2px);
 }
 
-.modal-content {
+.modal {
   background: var(--color-surface-elevated);
   border: 1px solid var(--color-border-default);
-  padding: var(--space-6);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
-  max-width: 480px;
-  width: 90%;
+  width: min(480px, 92vw);
+  overflow: hidden;
 }
 
-.modal-content h2 {
-  margin-bottom: var(--space-5);
-  font-family: var(--font-display);
-  font-size: var(--text-lg);
-  font-weight: 600;
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5) var(--space-6);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.modal-header h2 {
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
   color: var(--color-text-primary);
+  letter-spacing: -0.01em;
 }
 
+.modal-body {
+  padding: var(--space-5) var(--space-6);
+}
+
+.modal-footer {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: flex-end;
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border-default);
+  margin-top: var(--space-5);
+}
+
+/* ── Form ─────────────────────────────────────────────────────────────── */
 .form-group {
   margin-bottom: var(--space-4);
 }
@@ -477,7 +569,7 @@ const formatDate = (date) => {
   margin-bottom: var(--space-2);
   font-size: var(--text-xs);
   font-weight: var(--font-medium);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-text-secondary);
 }
@@ -486,31 +578,23 @@ const formatDate = (date) => {
 .form-group input[type="date"],
 .form-group select {
   width: 100%;
-  padding: var(--space-3);
+  padding: var(--space-3) var(--space-3);
   border: 1px solid var(--color-border-default);
   border-radius: var(--radius-sm);
   background: var(--color-surface-muted);
   color: var(--color-text-primary);
   font-size: var(--text-sm);
-  cursor: pointer;
-  transition: border-color 0.14s;
+  transition: border-color 0.12s;
 }
 
-.form-group input[type="text"]:focus,
-.form-group input[type="date"]:focus,
+.form-group input:focus,
 .form-group select:focus {
   outline: none;
   border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(123, 143, 196, 0.12);
 }
 
 .form-group select option {
   background: var(--color-surface-elevated);
-}
-
-.modal-actions {
-  display: flex;
-  gap: var(--space-3);
-  justify-content: flex-end;
-  margin-top: var(--space-5);
 }
 </style>
