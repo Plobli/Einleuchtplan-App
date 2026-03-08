@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <div v-if="!isOnline" class="offline-banner">
+      Offline — nur Lesezugriff, OSC aktiv
+    </div>
     <router-view />
     <button class="theme-toggle" @click="toggleTheme" :title="isDark ? 'Hellmodus' : 'Dunkelmodus'">
       <span v-if="isDark">○</span>
@@ -11,6 +14,9 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useAuthStore } from './stores/auth'
+import { useOnline } from './composables/useOnline'
+
+const { isOnline } = useOnline()
 
 const authStore = useAuthStore()
 const isDark = ref(true)
@@ -61,5 +67,20 @@ onMounted(() => {
   color: var(--color-primary);
   border-color: var(--color-primary);
   background: var(--color-surface-muted);
+}
+
+.offline-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  background: #b45309;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  padding: 6px 16px;
+  letter-spacing: 0.02em;
 }
 </style>

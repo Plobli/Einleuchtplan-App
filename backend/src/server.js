@@ -10,6 +10,8 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
 import showRoutes from './routes/shows.js';
 import channelRoutes from './routes/channels.js';
+import photoRoutes from './routes/photos.js';
+import oscRoutes from './routes/osc.js';
 
 // Middleware
 import { errorHandler } from './middleware/errorHandler.js';
@@ -37,7 +39,7 @@ app.use(cors({
     origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
     credentials: true
 }));
-app.use(express.json({ limit: '10mb' }));
+app.use(express.json({ limit: '20mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 // Health check
@@ -51,6 +53,8 @@ app.use('/api/auth', authRoutes);
 // Protected routes
 app.use('/api/shows', authMiddleware, showRoutes);
 app.use('/api/channels', authMiddleware, channelRoutes);
+app.use('/api', authMiddleware, photoRoutes);
+app.use('/api', authMiddleware, oscRoutes);
 
 // Error handling
 app.use(errorHandler);

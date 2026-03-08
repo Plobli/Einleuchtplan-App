@@ -127,6 +127,31 @@ CREATE TRIGGER update_shows_updated_at BEFORE UPDATE ON shows
 DROP TRIGGER IF EXISTS update_channels_updated_at ON channels;
 CREATE TRIGGER update_channels_updated_at BEFORE UPDATE ON channels
     FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+-- Show Photos Table
+CREATE TABLE IF NOT EXISTS show_photos (
+    id SERIAL PRIMARY KEY,
+    show_id INTEGER REFERENCES shows(id) ON DELETE CASCADE,
+    caption TEXT DEFAULT '',
+    data TEXT NOT NULL,
+    original_name VARCHAR(255),
+    width INTEGER,
+    height INTEGER,
+    position INTEGER NOT NULL DEFAULT 0,
+    created_by INTEGER REFERENCES users(id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX IF NOT EXISTS idx_show_photos_show_id ON show_photos(show_id);
+
+-- Venue OSC Settings Table
+CREATE TABLE IF NOT EXISTS venue_osc_settings (
+    venue VARCHAR(255) PRIMARY KEY,
+    osc_ip VARCHAR(255) NOT NULL DEFAULT '',
+    osc_port INTEGER NOT NULL DEFAULT 8000,
+    cmd_on TEXT NOT NULL DEFAULT 'Chan {kanal} @ Full Time 3',
+    cmd_off TEXT NOT NULL DEFAULT 'Chan {kanal} @ 0 Time 0',
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 `;
 
 async function migrate() {

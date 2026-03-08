@@ -23,13 +23,22 @@
         <div v-if="activeUsers.length > 0" class="active-users">
           {{ activeUsers.length }} Online
         </div>
+        <button
+          @click="oscMode = !oscMode"
+          class="btn-osc-mode"
+          :class="{ active: oscMode }"
+          title="Einleuchtmodus umschalten"
+        >{{ oscMode ? '◉ Einleuchten' : '○ Einleuchten' }}</button>
         <div class="header-menu-wrap" @focusout="e => { if (!e.currentTarget.contains(e.relatedTarget)) showMenu = false }">
           <button @click="showMenu = !showMenu" class="btn-menu-toggle" :class="{ active: showMenu }">
             ···
           </button>
           <div v-if="showMenu" class="header-dropdown">
-            <button @click="previewPDF; showMenu = false" class="dropdown-item">
+            <button @click="previewPDF(); showMenu = false" class="dropdown-item">
               Export PDF
+            </button>
+            <button @click="loadOscSettings(); showOscModal = true; showMenu = false" class="dropdown-item">
+              OSC Einstellungen
             </button>
             <button @click="toggleHistory(); showMenu = false" class="dropdown-item">
               Verlauf
@@ -84,6 +93,8 @@
         </div>
       </div>
 
+      <PhotoSection :show-id="show.id" ref="photoSection" />
+
       <h2 class="section-heading">Festverhang</h2>
 
       <div class="toolbar">
@@ -104,34 +115,54 @@
         <table class="channels-table">
           <thead>
             <tr>
-              <th style="width: 55px">Kreis</th>
-              <th style="width: 90px">Adresse</th>
-              <th style="width: 150px">Gerät</th>
+              <th v-if="oscMode" style="width: 36px"></th>
+              <th style="width: 85px">Kreis</th>
+              <th v-if="oscMode" style="width: 36px"></th>
+              <th v-if="!oscMode" style="width: 90px">Adresse</th>
+              <th v-if="!oscMode" style="width: 150px">Gerät</th>
               <th style="width: 80px">Farbe</th>
               <th>Beschreibung / Position</th>
-              <th style="width: 36px"></th>
+              <th v-if="!oscMode" style="width: 36px"></th>
             </tr>
           </thead>
           <tbody>
             <template v-for="(group, index) in channelsByCategory" :key="index">
               <!-- Kategorie-Zeile -->
               <tr class="category-row">
-                <td colspan="6">
+                <td :colspan="oscMode ? 5 : 6">
                   <span class="category-name">{{ group.category }}<span class="category-count">{{ group.channels.length }}</span></span>
                 </td>
               </tr>
               <!-- Channel-Zeilen -->
               <template v-for="channel in group.channels" :key="channel.id">
-                <tr>
+                <tr :class="{ 'osc-active-row': oscMode && activeOscKanal === channel.kanal, 'osc-checked-row': oscMode && eingeleuchtMap[channel.id] }">
+                  <td v-if="oscMode" class="osc-cell">
+                    <button
+                      v-if="channel.kanal"
+                      @click.stop="toggleOsc(channel)"
+                      class="btn-osc"
+                      :class="{ active: activeOscKanal === channel.kanal }"
+                      title="Kreis ansteuern"
+                    >◉</button>
+                  </td>
                   <td>
                     <input
                       v-model="channel.kanal"
                       @blur="updateChannel(channel, 'kanal', channel.kanal)"
                       @input="handleTyping(channel.id, 'kanal')"
                       class="cell-input channel-number-input"
+                      :disabled="oscMode"
                     />
                   </td>
-                  <td>
+                  <td v-if="oscMode" class="check-cell">
+                    <button
+                      @click.stop="toggleCheck(channel)"
+                      class="btn-check"
+                      :class="{ checked: eingeleuchtMap[channel.id] }"
+                      title="Einleuchtet"
+                    >✓</button>
+                  </td>
+                  <td v-if="!oscMode">
                     <input
                       v-model="channel.adresse"
                       @blur="updateChannel(channel, 'adresse', channel.adresse)"
@@ -139,7 +170,7 @@
                       class="cell-input"
                     />
                   </td>
-                  <td>
+                  <td v-if="!oscMode">
                     <input
                       v-model="channel.geraet"
                       @blur="updateChannel(channel, 'geraet', channel.geraet)"
@@ -152,6 +183,7 @@
                       v-model="channel.farbe"
                       @change="updateChannel(channel, 'farbe', channel.farbe)"
                       class="cell-select"
+                      :disabled="oscMode"
                     >
                       <option value="NC">NC</option>
                       <option value="200">200</option>
@@ -159,16 +191,22 @@
                       <option value="202">202</option>
                     </select>
                   </td>
-                  <td>
-                    <input
+                  <td class="beschreibung-cell" @click="!oscMode && (editingBeschreibungId = channel.id)">
+                    <textarea
+                      v-if="editingBeschreibungId === channel.id && !oscMode"
                       v-model="channel.beschreibung"
-                      @blur="updateChannel(channel, 'beschreibung', channel.beschreibung)"
+                      @blur="updateChannel(channel, 'beschreibung', channel.beschreibung); editingBeschreibungId = null"
                       @input="handleTyping(channel.id, 'beschreibung')"
-                      class="cell-input"
+                      class="cell-input beschreibung-textarea"
                       placeholder="Notiz..."
-                    />
+                      rows="1"
+                      v-focus
+                    ></textarea>
+                    <span v-else class="beschreibung-text" :class="{ empty: !channel.beschreibung }">
+                      {{ channel.beschreibung || 'Notiz…' }}
+                    </span>
                   </td>
-                  <td class="delete-cell">
+                  <td v-if="!oscMode" class="delete-cell">
                     <button @click="deleteChannel(channel.id)" class="btn-delete-row" title="Zeile löschen">✕</button>
                     <button @click="insertChannelAfter(channel)" class="btn-insert-inline" title="Zeile darunter einfügen">+</button>
                   </td>
@@ -222,6 +260,46 @@
       </div>
     </div>
 
+    <!-- OSC Einstellungen Modal -->
+    <div v-if="showOscModal" class="modal" @click.self="showOscModal = false">
+      <div class="modal-content">
+        <h2>OSC Einstellungen</h2>
+        <div v-if="show?.venue" class="osc-venue-tag">Bühne: <strong>{{ show.venue }}</strong></div>
+        <div v-else class="osc-no-venue">Keine Bühne für diese Show konfiguriert.</div>
+        <template v-if="show?.venue">
+          <div class="form-group" style="margin-top: var(--space-4)">
+            <label>IP-Adresse des Pults</label>
+            <input v-model="oscSettings.osc_ip" type="text" placeholder="192.168.1.100" />
+          </div>
+          <div class="form-group">
+            <label>UDP-Port</label>
+            <input v-model.number="oscSettings.osc_port" type="number" placeholder="8000" />
+          </div>
+          <details class="osc-advanced">
+            <summary>Erweitert: Kommando-Vorlagen</summary>
+            <div class="form-group" style="margin-top: var(--space-3)">
+              <label>Kommando Ein <span class="osc-hint">({kanal} wird ersetzt)</span></label>
+              <input v-model="oscSettings.cmd_on" type="text" />
+            </div>
+            <div class="form-group">
+              <label>Kommando Aus</label>
+              <input v-model="oscSettings.cmd_off" type="text" />
+            </div>
+          </details>
+          <div class="modal-actions">
+            <span v-if="oscSaved" class="osc-saved-msg">Gespeichert ✓</span>
+            <button @click="showOscModal = false" class="btn-secondary">Schließen</button>
+            <button @click="saveOscSettings" class="btn-primary" :disabled="oscSaving">
+              {{ oscSaving ? 'Speichert…' : 'Speichern' }}
+            </button>
+          </div>
+        </template>
+        <div v-else class="modal-actions">
+          <button @click="showOscModal = false" class="btn-secondary">Schließen</button>
+        </div>
+      </div>
+    </div>
+
     <!-- Neue Kategorie Modal -->
     <div v-if="showNewCategoryModal" class="modal" @click.self="showNewCategoryModal = false">
       <div class="modal-content">
@@ -240,13 +318,17 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
+
+const vFocus = { mounted: (el) => el.focus() }
 import { useRoute, useRouter } from 'vue-router'
 import { useShowStore } from '../stores/show'
 import { getSocket } from '../api/websocket'
 import api from '../api'
 import jsPDF from 'jspdf'
 import 'jspdf-autotable'
+import PhotoSection from '../components/PhotoSection.vue'
+import { useOnline } from '../composables/useOnline'
 
 const route = useRoute()
 const router = useRouter()
@@ -262,6 +344,7 @@ const activeUsers = ref([])
 const showNewCategoryModal = ref(false)
 const newCategoryName = ref('')
 
+const editingBeschreibungId = ref(null)
 const zuegeTextarea = ref(null)
 const aufbauTextarea = ref(null)
 const pdfPreviewUrl = ref(null)
@@ -270,9 +353,33 @@ const showHistory = ref(false)
 const history = ref([])
 const historyLoading = ref(false)
 const showMenu = ref(false)
+const photoSection = ref(null)
+const { isOnline } = useOnline()
+const oscMode = ref(false)
+const activeOscKanal = ref(null)
+const showOscModal = ref(false)
+const oscSettings = ref({ osc_ip: '', osc_port: 8000, cmd_on: 'Chan {kanal} @ Full Time 3', cmd_off: 'Chan {kanal} @ 0 Time 0' })
+const oscSaving = ref(false)
+const oscSaved = ref(false)
+const eingeleuchtMap = ref({})
 
 let typingTimeout = null
 const socket = getSocket()
+
+watch(isOnline, (online) => {
+  if (!online) {
+    oscMode.value = true
+  }
+})
+
+watch(oscMode, async (val) => {
+  if (!val && activeOscKanal.value !== null) {
+    try {
+      await api.post('/api/osc/trigger', { show_id: show.value.id, kanal: activeOscKanal.value, action: 'off' })
+    } catch (e) { /* ignore */ }
+    activeOscKanal.value = null
+  }
+})
 
 onMounted(async () => {
   await loadShow()
@@ -289,6 +396,7 @@ onUnmounted(() => {
 const loadShow = async () => {
   const res = await api.get(`/api/shows/slug/${route.params.slug}`)
   show.value = res.data
+  loadEingeleuchtMap()
 }
 
 const updateShowField = async (field) => {
@@ -454,7 +562,7 @@ const renderMarkdownText = (doc, text, x, startY, maxWidth, lineHeight = 5) => {
   return currentY
 }
 
-const buildPDF = () => {
+const buildPDF = async () => {
   const doc = new jsPDF()
 
   doc.setFontSize(16)
@@ -515,17 +623,73 @@ const buildPDF = () => {
     styles: { fontSize: 8 }
   })
 
+  // Fotos
+  try {
+    const photosRes = await api.get(`/api/shows/${show.value.id}/photos/full`)
+    const photos = photosRes.data
+    if (photos.length > 0) {
+      doc.addPage()
+      doc.setFontSize(11)
+      doc.setFont(undefined, 'bold')
+      doc.text('Fotos', 14, 15)
+      doc.setFont(undefined, 'normal')
+
+      const cols = 2
+      const pageW = 210, pageH = 297
+      const margin = 14, gap = 6
+      const colW = (pageW - 2 * margin - (cols - 1) * gap) / cols
+      const maxImgH = 70
+      const captionH = 8
+      let x = margin, y = 24
+
+      for (const photo of photos) {
+        const dataUrl = `data:image/jpeg;base64,${photo.data}`
+        const imgProps = doc.getImageProperties(dataUrl)
+        const ratio = imgProps.height / imgProps.width
+        let imgW = colW
+        let imgH = colW * ratio
+        if (imgH > maxImgH) { imgH = maxImgH; imgW = maxImgH / ratio }
+        const xOffset = x + (colW - imgW) / 2
+        const blockH = imgH + (photo.caption ? captionH : 4)
+
+        if (y + blockH > pageH - margin) {
+          doc.addPage()
+          y = margin
+          x = margin
+        }
+
+        doc.addImage(dataUrl, 'JPEG', xOffset, y, imgW, imgH)
+
+        if (photo.caption) {
+          doc.setFontSize(7)
+          doc.setTextColor(100)
+          doc.text(photo.caption, xOffset, y + imgH + 3, { maxWidth: imgW })
+          doc.setTextColor(0)
+        }
+
+        if (x === margin) {
+          x = margin + colW + gap
+        } else {
+          x = margin
+          y += blockH + 4
+        }
+      }
+    }
+  } catch (e) {
+    console.warn('Photos not included in PDF:', e)
+  }
+
   return doc
 }
 
-const previewPDF = () => {
-  const doc = buildPDF()
+const previewPDF = async () => {
+  const doc = await buildPDF()
   if (pdfPreviewUrl.value) URL.revokeObjectURL(pdfPreviewUrl.value)
   pdfPreviewUrl.value = doc.output('bloburl')
 }
 
-const downloadPDF = () => {
-  const doc = buildPDF()
+const downloadPDF = async () => {
+  const doc = await buildPDF()
   doc.save(`${show.value.name}_${new Date().toISOString().split('T')[0]}.pdf`)
 }
 
@@ -686,6 +850,69 @@ const formatText = (field, style) => {
     show.value[field].substring(end)
   
   updateShowField(field)
+}
+
+const EINLEUCHT_TTL = 6 * 60 * 60 * 1000 // 6 Stunden
+
+const loadEingeleuchtMap = () => {
+  if (!show.value?.id) return
+  try {
+    const raw = localStorage.getItem(`einleucht_${show.value.id}`)
+    if (!raw) return
+    const { map, ts } = JSON.parse(raw)
+    if (Date.now() - ts < EINLEUCHT_TTL) {
+      eingeleuchtMap.value = map
+    } else {
+      localStorage.removeItem(`einleucht_${show.value.id}`)
+    }
+  } catch (e) { /* ignore */ }
+}
+
+const saveEingeleuchtMap = () => {
+  if (!show.value?.id) return
+  localStorage.setItem(`einleucht_${show.value.id}`, JSON.stringify({ map: eingeleuchtMap.value, ts: Date.now() }))
+}
+
+const toggleCheck = (channel) => {
+  eingeleuchtMap.value = { ...eingeleuchtMap.value, [channel.id]: !eingeleuchtMap.value[channel.id] }
+  saveEingeleuchtMap()
+}
+
+const loadOscSettings = async () => {
+  if (!show.value?.venue) return
+  try {
+    const res = await api.get(`/api/osc/settings/${encodeURIComponent(show.value.venue)}`)
+    oscSettings.value = res.data
+  } catch (e) {
+    console.warn('OSC settings load failed', e)
+  }
+}
+
+const saveOscSettings = async () => {
+  oscSaving.value = true
+  try {
+    await api.put(`/api/osc/settings/${encodeURIComponent(show.value.venue)}`, oscSettings.value)
+    oscSaved.value = true
+    setTimeout(() => { oscSaved.value = false }, 2000)
+  } catch (e) {
+    alert('Fehler beim Speichern der OSC-Einstellungen')
+  } finally {
+    oscSaving.value = false
+  }
+}
+
+const toggleOsc = async (channel) => {
+  if (!channel.kanal) return
+  if (activeOscKanal.value === channel.kanal) {
+    try { await api.post('/api/osc/trigger', { show_id: show.value.id, kanal: channel.kanal, action: 'off' }) } catch (e) { /* ignore */ }
+    activeOscKanal.value = null
+  } else {
+    if (activeOscKanal.value !== null) {
+      try { await api.post('/api/osc/trigger', { show_id: show.value.id, kanal: activeOscKanal.value, action: 'off' }) } catch (e) { /* ignore */ }
+    }
+    try { await api.post('/api/osc/trigger', { show_id: show.value.id, kanal: channel.kanal, action: 'on' }) } catch (e) { /* ignore */ }
+    activeOscKanal.value = channel.kanal
+  }
 }
 
 const formatDate = (date) => {
@@ -1143,7 +1370,7 @@ const deleteShow = async () => {
   font-family: var(--font-mono);
   font-weight: var(--font-semibold);
   font-size: var(--text-sm);
-  width: 45px;
+  width: 75px;
 }
 
 /* ─── Row action buttons ─────────────────────────────────────────────── */
@@ -1398,7 +1625,8 @@ tr:hover .btn-insert-inline { opacity: 1; }
   color: var(--color-text-primary);
 }
 
-.beschreibung-cell { cursor: pointer; }
+.beschreibung-cell { cursor: text; }
+
 .beschreibung-text {
   display: block;
   font-size: var(--text-sm);
@@ -1406,41 +1634,21 @@ tr:hover .btn-insert-inline { opacity: 1; }
   word-break: break-word;
   padding: 4px var(--space-2);
   border-radius: var(--radius-sm);
-  min-height: 26px;
+  min-height: 28px;
+  line-height: 1.5;
   color: var(--color-text-primary);
 }
-.beschreibung-text.placeholder { color: var(--color-text-tertiary); }
+.beschreibung-text.empty { color: var(--color-text-tertiary); }
 .beschreibung-cell:hover .beschreibung-text { background: var(--color-surface-muted); }
 
-.beschreibung-modal-content {
-  background: var(--color-surface-elevated);
-  border: 1px solid var(--color-border-default);
-  border-radius: var(--radius-md);
-  width: min(500px, 92vw);
+.beschreibung-textarea {
+  resize: none;
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
-}
-.beschreibung-modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--space-3) var(--space-4);
-  border-bottom: 1px solid var(--color-border-default);
-  font-size: var(--text-xs);
-  color: var(--color-text-secondary);
-}
-.beschreibung-modal-textarea {
-  width: 100%;
-  padding: var(--space-4);
-  border: none;
-  font-size: var(--text-sm);
-  font-family: inherit;
-  resize: vertical;
-  box-sizing: border-box;
-  outline: none;
-  line-height: 1.6;
-  background: var(--color-surface-elevated);
-  color: var(--color-text-primary);
+  min-height: 28px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+  field-sizing: content;
 }
 
 /* ─── PDF ─────────────────────────────────────────────────────────────── */
@@ -1467,6 +1675,137 @@ tr:hover .btn-insert-inline { opacity: 1; }
   border: none;
   border-radius: var(--radius-sm);
   background: #fff;
+}
+
+/* ─── OSC Mode ───────────────────────────────────────────────────────── */
+.btn-osc-mode {
+  background: transparent;
+  border: 1px solid var(--color-border-default);
+  color: var(--color-text-tertiary);
+  border-radius: var(--radius-sm);
+  padding: 0 var(--space-3);
+  height: 30px;
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+.btn-osc-mode:hover {
+  background: var(--color-surface-muted);
+  color: var(--color-text-secondary);
+  border-color: var(--color-border-strong);
+}
+.btn-osc-mode.active {
+  background: rgba(123, 143, 196, 0.12);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.osc-cell {
+  padding: var(--space-1) var(--space-2) !important;
+  vertical-align: middle;
+  width: 40px;
+  text-align: center;
+}
+
+.btn-osc {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-tertiary);
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s, border-color 0.12s, box-shadow 0.12s;
+}
+.btn-osc:hover {
+  background: rgba(123, 143, 196, 0.12);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+.btn-osc.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(123, 143, 196, 0.5);
+}
+
+.osc-active-row td {
+  background: rgba(123, 143, 196, 0.07) !important;
+}
+
+.osc-checked-row td {
+  opacity: 0.35;
+}
+
+.check-cell {
+  padding: var(--space-1) var(--space-2) !important;
+  vertical-align: middle;
+  width: 36px;
+  text-align: center;
+}
+
+.btn-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-tertiary);
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+.btn-check:hover:not(.checked) {
+  border-color: var(--color-border-strong);
+  color: var(--color-text-secondary);
+}
+.btn-check.checked {
+  background: var(--color-success);
+  border-color: var(--color-success);
+  color: #fff;
+}
+
+.osc-venue-tag {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2);
+}
+.osc-no-venue {
+  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+  padding: var(--space-4) 0;
+}
+.osc-advanced {
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+.osc-advanced summary {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+  user-select: none;
+  padding: var(--space-2) 0;
+}
+.osc-hint {
+  font-weight: var(--font-normal);
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}
+.osc-saved-msg {
+  font-size: var(--text-sm);
+  color: var(--color-success);
+  margin-right: auto;
 }
 
 /* ─── Unused (keep for compat) ───────────────────────────────────────── */
